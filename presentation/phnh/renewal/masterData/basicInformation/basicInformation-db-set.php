@@ -85,7 +85,7 @@ if($requestType=='add'){
 //    $clsApprove->newApprovalEntry($autoNoType, $entryId, $noReference, true);
     if($finalResult){                    
         $response['type'] 	= 'pass';
-        $response['msg'] 	= 'Saved successfully.';
+        $response['msg'] 	= 'Basic Information saved successfully! Proceed to Staff Information...';
         $response['no'] 	= $noReference; 
         $response['id'] 	= $entryId;
         $db->commit();
@@ -176,7 +176,7 @@ $sql = "select * from institute_registration where institute_reg_id='$id' ";
 //    $clsApprove->newApprovalEntry($autoNoType, $entryId, $noReference, true);
     if($finalResult){                    
         $response['type'] 	= 'pass';
-        $response['msg'] 	= 'Saved successfully.';
+        $response['msg'] 	= 'Basic Information saved successfully! Proceed to Staff Information...';
         $response['no'] 	= $noReference; 
         $response['id'] 	= $entryId;
         $db->commit();
