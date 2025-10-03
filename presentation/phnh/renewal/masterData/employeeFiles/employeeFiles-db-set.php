@@ -73,7 +73,7 @@ if($requestType=='add'){
 //    $clsApprove->newApprovalEntry($autoNoType, $entryId, $noReference, true);
     if($finalResult){                    
         $response['type'] 	= 'pass';
-        $response['msg'] 	= 'Saved successfully.';
+        $response['msg'] 	= 'Documents saved successfully! Proceed to Payments...';
         $response['no'] 	= $noReference; 
         $response['id'] 	= $entryId;
         $db->commit();
@@ -141,7 +141,7 @@ elseif($requestType=='edit'){
 //    $clsApprove->newApprovalEntry($autoNoType, $entryId, $noReference, true);
     if($finalResult){                    
         $response['type'] 	= 'pass';
-        $response['msg'] 	= 'Saved successfully.';
+        $response['msg'] 	= 'Documents saved successfully! Proceed to Payments...';
         $response['no'] 	= $noReference; 
         $response['id'] 	= $entryId;
         $db->commit();
