@@ -1,0 +1,71 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15 Jun 2019, 21:13:37
+    Author     : Janaka
+*/
+body { 
+  background: url(../img/core/coconut_low.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  /*overflow: auto;*/
+}
+
+#loginContainer{
+    background: rgba(f,f,f,0.5);
+  box-shadow: 2px 2px 50px #89a34c;
+
+  /*opacity: 0.5;*/
+}
+#loginContainer #content{
+  opacity: 1 !important;
+}
+#loginContainer .card{
+  background: transparent;
+}
+.companyTitle{
+  font-weight: normal;
+  font-size: 2em;
+  color: #ccd074;
+}
+
+.systemTitle{
+  font-weight: normal;
+  font-size: 1.2em;
+  color: #c3c4bf;
+  opacity:0.75;
+  background-color: #191710 !important;
+  /*background: rgba(f,f,f,0.5);*/
+  box-shadow: 2px 2px 50px #89a34c;
+}
+
+.btn-user{
+  font-weight: bolder;
+  color : #fff;
+  background: rgba(f,f,f,0.5);
+  box-shadow: 2px 2px 50px #000;
+}
+
+input:focus{
+  outline: none;
+  box-shadow: 3px 3px 10px #0C0;
+  background: rgba(3,3,3,.18);
+}
+
+@media (min-width: 768px) {
+.companyTitle{
+  font-weight: bolder;
+  font-size: 3em;
+}
+
+.systemTitle{
+  font-weight: bolder;
+  font-size: 2em;
+}
+}

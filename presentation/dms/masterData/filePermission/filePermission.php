@@ -1,0 +1,148 @@
+
+<?php
+/* 
+ * Sethsiri IT Soultion
+ * Janaka Rajapaksha
+ * 2019-06-12
+ */
+//session_start();
+//$mainPath = $_SESSION['MAIN_PATH'];
+session_start();
+$backwardSeparator = "../../../../";
+$thisFilePath =  $_SERVER['PHP_SELF'];
+$userId 	= $_SESSION['loginId'];
+$userCompanyId = $_SESSION['companyId'];
+$userLocationId = $_SESSION['locationId'];
+//$projectName = substr($_SERVER['PHP_SELF'],0,strpos($_SERVER['PHP_SELF'],'/',1));
+
+require "{$backwardSeparator}autoLoad.php";
+
+include  "{$backwardSeparator}dataAccess/accessController.php";
+
+$searchId = (isset($_REQUEST['id']))?$_REQUEST['id']:'';
+  
+use presentation\system\masterData\classes\cls_sys_status;
+use presentation\dms\masterData\classes\cls_dms_file_permission;
+use presentation\dms\masterData\classes\cls_dms_file_group;
+use presentation\dms\masterData\classes\cls_dms_file_category;
+$modelStatus = new cls_sys_status($db);
+$model = new cls_dms_file_permission($db);
+?><!DOCTYPE html>
+<html>
+  <head>
+    <title>File Permission</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <?php include "{$backwardSeparator}header.php";?>    <!-- Bootstrap Color Picker 3.1.2-->
+
+    <script type="application/javascript" >
+      var searchId = '<?php echo $searchId ?>';
+      var backwardSeparator = '<?php echo $backwardSeparator ?>';
+    </script>
+  </head>
+  <body id="page-top">
+    <!-- Message Modal -->
+    <?php include "{$backwardSeparator}messageModal.php";?>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <?php include "{$backwardSeparator}presentation/dms/menu.php";?>      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+          <!-- Topbar -->
+          <?php include "{$backwardSeparator}top.php";?>          <!-- End of Topbar -->
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+            <form class="needs-validation" novalidate id="frmdms_file_permission">
+              <div class="card">
+                <div class="card-header">
+                  File Download Permission
+                </div>
+                <div class="card-body">
+                  <div class="form-group row">
+                    <div class="col-sm-12">
+                      <select class="form-control form-control-sm" id="cboSearch" name="cboSearch" placeholder="">
+                      </select>
+                    </div>
+                </div>
+                </div>
+              </div>
+              <br/>
+              <div class="card">
+                <div class="card-body">
+                  <?php 
+                  $modelGroup = new cls_dms_file_group($db);
+                  $modelGroup->dfg_status = '1';
+                  $modelGroup->dfg_is_deleted = 0;
+                  $modelGroup->dfg_company_id = $userCompanyId;
+                  $modelGroups = $modelGroup->getModels();
+                  foreach ($modelGroups as $modelGroup) {
+                    $modelCat = new cls_dms_file_category($db);
+                    $modelCat->dfc_status = '1';
+                    $modelCat->dfc_is_deleted = 0;
+                    $modelCat->dfc_file_group_id = $modelGroup->dfg_id;
+                    $modelCat->dfc_company_id = $userCompanyId;
+                    $modelCats = $modelCat->getModels();
+                    ?>
+                  <div class="row">
+                    <div class="col-sm-12 bg-gray-400 p-2"><?php echo $modelGroup->dfg_name;?></div>
+                  </div>
+                    <?php
+                    foreach ($modelCats as $modelCat) {
+                      $catId = $modelCat->dfc_id;
+                      $catName = $modelCat->dfc_name;
+                    ?>
+                  <div class="row">
+                    <div class="col-sm-6 p-2"><?php echo $modelCat->dfc_name;?></div>
+                    <div class="col-sm-6 p-2">
+                      <div class="form-check form-control-sm">
+                          <input class="form-check-input chk_permission" type="checkbox" id="chk_<?php echo $catId;?>" name="permission[]" value="<?php echo $catId;?>">
+                        </div>
+                    </div>
+                  </div>
+                    <?php
+                    }
+                  }
+                  ?>
+                </div>
+                <div class="card-footer">
+                  <div class="form-group row">
+                    <div class="col-sm-12 text-center">
+                      <button type="button" class="btn btn-outline-secondary" id="btnClose" style="width: 100px; margin: 5px;">Close</button>
+                      <button type="button" class="btn btn-outline-info" id="btnNew" style="width: 100px; margin: 5px;">New</button>
+                      <button type="button" class="btn btn-outline-primary" id="btnList" style="width: 100px; margin: 5px;">List</button>
+                      <button type="button" class="btn btn-outline-success" id="btnSave" style="width: 100px; margin: 5px;">Save</button>
+                      <button type="button" class="btn btn-outline-info" id="btnPrint" style="width: 100px; margin: 5px;">Print</button>
+                      <button type="button" class="btn btn-outline-primary" id="btnApprove" style="width: 100px; margin: 5px;">Approve</button>
+                      <button type="button" class="btn btn-outline-warning" id="btnReject" style="width: 100px; margin: 5px;">Reject</button>
+                      <button type="button" class="btn btn-outline-danger" id="btnDelete" style="width: 100px; margin: 5px;">Delete</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+<?php include "{$backwardSeparator}footer.php";?> 
+    <!-- Bootstrap Color Picker 3.1.2-->
+    <script src="<?php echo $backwardSeparator;?>vendor/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+    
+    <!-- Custom scripts for This page-->
+    <script src="filePermission.js"></script>    
+  </body>
+</html>
+
+
+

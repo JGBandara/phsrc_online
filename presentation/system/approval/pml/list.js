@@ -1,0 +1,288 @@
+// JavaScript Document
+$(document).ready(function() {
+$('#staffInfo,#instituteInfo,#facilityInfo').hide();	
+	
+load_detail();
+
+	
+function load_detail(){
+	$('#lblAcction').text('')
+			$('#btnReject,#btnApprove').show(); 
+	
+		$("#table-id").find("tr:gt(0)").remove();
+		var url = "list-db-get.php";
+		
+		var httpobj = $.ajax({
+			url:url,
+			dataType:'json',
+			data:'requestType=loadDetails',
+			async:false,
+			success:function(json){
+				
+				$id=json.id;
+				$name=json.ownerName;
+				$approveStatus=json.approveStatus;
+				
+									$('#table-id').append( "<tbody>" );
+				for($i=0;$id.length>$i;$i++){
+				
+				if($approveStatus[$i]==1){
+					
+					$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$name[$i]+"</td><td>"+$name[$i]+"</td><td><center><button type='button' class='btn btn-success btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Approved</button></center></td></tr>" );
+					
+					}else if($approveStatus[$i]==2){
+						$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$name[$i]+"</td><td>"+$name[$i]+"</td><td><center><button type='button' class='btn btn-danger btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Rejected</button></center></td></tr>" );
+						
+						}else{
+							$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$name[$i]+"</td><td>"+$name[$i]+"</td><td><center><button type='button' class='btn btn-warning btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Pending&nbsp;</button></center></td></tr>" );
+
+							}
+					
+				/*$('#frmItemCount #sheetSize'+$i).hide();
+				$('#frmItemCount #paperSize'+$i).hide();
+				$('#frmItemCount #singleSide'+$i).hide();
+				$('#frmItemCount #doubleSide'+$i).hide();*/
+				
+					/*$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$name[$i]+"</td><td>"+$name[$i]+"</td><td><button type='button' class='btn btn-info btn-lg' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Approved</button></td></tr>" );*/
+
+				}
+				$('#table-id').append( "</tbody>" );
+			}
+		});
+	/*<img src='../../../../img/but_rejected.png' style='width:100px' data-target='#myModal'/>	
+*/
+	}
+	
+$('#butBasicInfo').click(function(){
+	$('#basicInfo').show();
+	$('#staffInfo,#instituteInfo,#facilityInfo').hide();	
+	})
+$('#butStaffInfo').click(function(){
+	$('#staffInfo').show();
+	$('#basicInfo,#instituteInfo,#facilityInfo').hide();	
+	})	
+$('#butInstituteInfo').click(function(){
+	$('#instituteInfo').show();
+	$('#basicInfo,#staffInfo,#facilityInfo').hide();	
+	})	
+$('#butFacilityInfo').click(function(){
+	$('#facilityInfo').show();
+	$('#basicInfo,#staffInfo,#instituteInfo').hide();	
+	})	
+	
+	
+$('.btn').click(function(){
+	
+	var id=this.id;
+	
+	
+	var url = "list-db-get.php";
+    var httpobj = $.ajax({
+        url:url,
+        dataType:'json',
+        data:'requestType=loadInstituteDetail&id='+id,
+        async:false,
+        success:function(json){
+          
+          if(json){ 
+		  $('#txtId').val(json.aId);
+		  $('#lblName').text(json.ownerName);
+		  $('#lblRelationship').text(json.relationsip);
+		  $('#lblAddress').text(json.owAddress);
+		  $('#lblInsName').text(json.insName);
+		  $('#lblInsAddress').text(json.insAddress);
+		  $('#lblProvince').text(json.province);
+		  $('#lblDistrict').text(json.district);
+		  
+		  if(json.approvalStatus=='1'){
+			  $('#lblAcction').text('Approved!')
+			$("#lblAcction").css("color", "#060");
+			$('#btnReject,#btnApprove').hide();
+			  
+			  }else if(json.approvalStatus=='2'){
+				  $('#lblAcction').text('Rejected!')
+			$("#lblAcction").css("color", "#C00");
+			$('#btnReject,#btnApprove').hide();
+				  }else{
+					  
+					$('#lblAcction').text('')
+			$('#btnReject,#btnApprove').show();  
+					  
+					  }
+		  
+          }
+        }
+    });
+	
+	
+	
+	
+	})
+
+
+$('#btnApprove').click(function(){
+	
+	
+		var requestType="approve";
+		var id=$('#txtId').val();
+	
+	//	}
+			var url="list-db-set.php";
+			var obj=$.ajax({
+				url:url,
+				dataType:"json",
+				type:'post', 
+				data:"requestType="+requestType+'&id='+id,
+				async:false,
+
+				succuss:function(json){
+					
+					if(json.type=='pass'){
+						alert();
+					}
+                    else if(json.type=='fail'){
+                        modalMsgBox("Error", json.msg);
+						return;
+                    }
+							
+				}
+           
+				 
+	
+			})
+			$('#lblAcction').text('Approved!')
+			$("#lblAcction").css("color", "#060");
+			$('#btnReject,#btnApprove').hide();
+		//$("#btnClose").click();
+		//$('#modal').modal('hide')
+		load_detail();	
+	});
+	
+	
+	
+	$('#btnReject').click(function(){
+	
+	
+		var requestType="reject";
+		var id=$('#txtId').val();
+	
+	//	}
+			var url="list-db-set.php";
+			var obj=$.ajax({
+				url:url,
+				dataType:"json",
+				type:'post', 
+				data:"requestType="+requestType+'&id='+id,
+				async:false,
+
+				succuss:function(json){
+					
+					if(json.type=='pass'){
+						alert();
+					}
+                    else if(json.type=='fail'){
+                        modalMsgBox("Error", json.msg);
+						return;
+                    }
+							
+				}
+           
+				 
+	
+			})
+			$('#lblAcction').text('Rejected!')
+			$("#lblAcction").css("color", "#C00");
+			$('#btnReject,#btnApprove').hide();
+		//$("#btnClose").click();
+		//$('#modal').modal('hide')
+		load_detail();	
+	});
+
+	
+	
+	
+	$('#frmItemCount .btnSave').click(function(){
+		
+		location.reload(); 
+		
+		})
+	
+		$('#frmItemCount .btnCancel').click(function(){
+		
+		location.reload(); 
+		
+		})
+	
+	
+	$('#frmItemCount #addSave').click(function(){
+		
+		
+		var requestType="add";
+	//	}
+			var url="itemCount-db-set.php";
+			var obj=$.ajax({
+				url:url,
+				dataType:"json",
+				data:$("#frmItemCount").serialize()+"&requestType="+requestType,
+				async:false,
+
+				succuss:function(json){
+							
+							
+							
+				}
+           
+				
+
+			});
+		
+		location.reload(); 
+		
+		})
+
+	function save(a){
+
+		$('#frmItemCount #btnSave'+a).click(function(){
+			
+			//alert();
+			
+			$id = a;
+			$sheetName =$('#frmItemCount #sheetName'+a).val();
+			$sheetSize=$('#frmItemCount #sheetSize'+a).val();
+			$paperSize=$('#frmItemCount #paperSize'+a).val();
+			$singleSide=$('#frmItemCount #singleSide'+a).val();
+			$doubleSide=$('#frmItemCount #doubleSide'+a).val();
+       
+		//if(updated==1){
+			//var requestType="edit";
+			
+		//}else{
+			
+			var requestType="edit";
+	//	}
+			var url="itemCount-db-set.php";
+			var obj=$.ajax({
+				url:url,
+				dataType:"json",
+				data:"&requestType="+requestType+"&sheetSize="+$sheetSize+"&paperSize="+$paperSize+"&singleSide="+$singleSide+"&doubleSide="+$doubleSide+"&id="+$id+'&sheetName='+$sheetName,
+				async:false,
+
+				succuss:function(json){
+							
+							
+							
+				}
+           
+
+
+			});
+		//alert(id);
+		
+		
+	})
+
+
+	}	
+
+
+});

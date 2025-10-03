@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<root>
+  <change>
+    <file></file>
+    <source></source>
+    <line></line>
+    <replace></replace>
+  </change>
+  <change>
+    <file>.htaccess</file>
+    <insert>#set max post size
+php_value post_max_size 20M</insert>
+    <file>php.ini</file>
+    <insert>max_input_vars = 30000</insert>
+    <insert>post_max_size=20M</insert>
+
+
+  </change>
+  <change>
+    <file>index.php</file>
+    <source>header('Location: http://localhost/core/main.php');</source>
+    <line>4</line>
+    <replace>header('Location: http://core.sethsiri.com/main.php')</replace>
+  </change>
+  <change>
+    <file>autoLoad.php</file>
+    <source>include_once $_SERVER['DOCUMENT_ROOT'] . '/core/'.$className.'.php';</source>
+    <line>6</line>
+    <replace>include_once $_SERVER['DOCUMENT_ROOT'] . '/'.$className.'.php';)</replace>
+  </change>
+  <change>
+    <file>login.php</file>
+    <source>$_SESSION['ROOT_PATH']		=  $_SERVER['DOCUMENT_ROOT'].'/core/';</source>
+    <line>4</line>
+    <replace>$_SESSION['ROOT_PATH']		=  $_SERVER['DOCUMENT_ROOT'].'/';</replace>
+    
+    <source>$_SESSION["PROJECT_NAME"] 	=  'core';</source>
+    <line>5</line>
+    <replace>$_SESSION["PROJECT_NAME"] 	=  '';</replace>
+    
+    <source>$_SESSION['MAIN_PATH'] = 'http://'.$_SERVER['SERVER_NAME'].'/'.substr($_SERVER['PHP_SELF'],1,strpos($_SERVER['PHP_SELF'],'/',1)-1).'/';</source>
+    <line>9</line>
+    <replace>$_SESSION['MAIN_PATH'] = 'http://'.$_SERVER['SERVER_NAME'].'/';</replace>
+  </change>
+  <change>
+    <file>dataAccess\printAccessController.php</file>
+    <source>$xprojectPath = substr($thisFilePath,$projectNameLength+2);</source>
+    <line>26</line>
+    <replace>$xprojectPath = substr($thisFilePath,$projectNameLength+1);</replace>
+  </change>
+  <change>
+    <file>dataAccess\listingAccessController.php</file>
+    <source>$xprojectPath = substr($thisFilePath,$projectNameLength+2);</source>
+    <line>26</line>
+    <replace>$xprojectPath = substr($thisFilePath,$projectNameLength+1);</replace>
+  </change>
+  <change>
+    <file>dataAccess\accessController.php</file>
+    <source>$xprojectPath = substr($thisFilePath,$projectNameLength+2);</source>
+    <line>27</line>
+    <replace>$xprojectPath = substr($thisFilePath,$projectNameLength+1);</replace>
+  </change>
+  <change>
+    <file>dataAccess\serverAccessController.php</file>
+    <source>$xprojectPath = substr($thisFilePath,$projectNameLength+2);</source>
+    <line>27</line>
+    <replace>$xprojectPath = substr($thisFilePath,$projectNameLength+1);</replace>
+  </change>
+</root>
