@@ -28,6 +28,7 @@ if($requestType=='loadDetails'){
     institute_registration.reg_no,   
     institute_payment_detail.payment_date,   
     institute_payment_detail.payment_type,   
+    institute_payment_detail.payment_reg_fee,   
     CASE 
         WHEN institute_payment_detail.payment_is_approval IN (1) THEN 'Approved'
         WHEN institute_payment_detail.payment_is_approval IN (2, 12, 9) THEN 'Rejected'
@@ -49,7 +50,7 @@ INNER JOIN
     ON institute_registration.ins_type_id = man_institute_main.main_cat_id 
 
 ORDER BY 
-    institute_registration.ins_application_id ASC;";
+    institute_payment_detail.payment_date DESC;";
 		//  where institute_registration.ins_province_id=$userLocationId
 	$result=$db->singleQuery($sql);
 	while($row=mysqli_fetch_array($result)){
@@ -58,6 +59,7 @@ ORDER BY
 		$response['ownerName'][]=$row['ins_institute_name'];
 		$response['crDate'][]=$row['payment_date'];
 		$response['paymentType'][]=$row['payment_type'];
+		$response['regAmount'][]=$row['payment_reg_fee'];
 		$response['cat_name'][]=$row['cat_name'];
 		$response['approveStatus'][]=$row['payment_is_approval'];
 		
