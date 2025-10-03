@@ -77,13 +77,13 @@ while($row=mysqli_fetch_array($result)){
       <?php if($menu[52] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalCheck/index.php">Approval Check</a>
       <?php } ?> 
             
-      <?php if($menu[53] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalRecommandation/index.php">Approval Recommandation</a>
+      <?php if($menu[53] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalRecommandation/index.php">Approval Inspection</a>
       <?php } ?> 
             
       <?php if($menu[54] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalListing/index.php">Approval Progress</a>
       <?php } ?> 
             
-      <?php if($menu[42] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApproval/index.php">Renewal Approval</a>
+      <?php if($menu[42] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApproval/index.php">Renewal Recommendation</a>
       <?php } ?> 
       </div>
   </div>
