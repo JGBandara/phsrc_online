@@ -403,7 +403,7 @@ if($_REQUEST['submit']=="Test"){
            
 		<a class="close" href="#">&times;</a>
 		<div class="content">
-                    <center> <img src="img/mainImg.jpg" height="80%"/></br><H2 style="color:Red"><b>WP registrations are not allowed.</b></H2></center>
+                    <center> <img src="img/mainImg.jpg" height="70%"></br><H2 style="color:Red"><b></b></H2></center>
 		</div>
 	</div>
 </div>

@@ -23,7 +23,7 @@ class cls_approval
 		$this->userComId = $userCompanyId;
 		$this->userLocId = $userLocationId;
 		$this->userId = $userId;
-        $this->leave = false;
+    $this->leave = false;
 		$this->cr= false;
         $this->employeeId = '';
 	}

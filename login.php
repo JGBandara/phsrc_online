@@ -3,7 +3,7 @@
 session_start();
 
 $_SESSION['ROOT_PATH']		=  $_SERVER['DOCUMENT_ROOT'].'/phsrc_online';
-$_SESSION["projectName"] 	=  'phsrc_online';
+$_SESSION["projectName"] 	=  'phsrcoffline';
 
 
 date_default_timezone_set('Asia/Kolkata');

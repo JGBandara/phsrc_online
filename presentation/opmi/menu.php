@@ -83,7 +83,36 @@ while($row=mysqli_fetch_array($result)){
   </div>
 </li>
 <?php } ?><!-- Nav Item - Pages Collapse Menu -->
-<!-- Nav Item - Pages Collapse Menu -->
+<?php if($menu[1700] || true || $menu[1701] || $menu[1702] || $menu[1703] || $menu[1704] || $menu[1705] || $menu[1706]){ ?><li class="nav-item">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNewRegistration" aria-expanded="true" aria-controls="collapseNewRegistration">
+    <i class="fas fa-fw fa-list"></i>
+    <span>New Registration</span>
+  </a>
+  <div id="collapseNewRegistration" class="collapse" aria-labelledby="headingNewRegistration" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <!--<h6 class="collapse-header">New Registration:</h6>-->
+      
+      <?php if($menu[1701] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/opmi/masterData/basicInformation/basicInformation.php">Basic Information</a>
+      <?php } ?> 
+            
+      <?php if($menu[1702] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/opmi/masterData/staffInformation/staffInformation.php">Staff Information</a>
+      <?php } ?> 
+            
+      <?php if($menu[1703] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/opmi/masterData/instituteInformation/instituteInformation.php">Institution Information</a>
+      <?php } ?> 
+            
+      <?php if($menu[1704] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/opmi/masterData/InstituteFacility/InstituteFacility.php">Facilities</a>
+      <?php } ?> 
+            
+      <?php if($menu[1705] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/opmi/masterData/employeeFiles/employeeFiles.php">Document</a>
+      <?php } ?> 
+            
+      <?php if($menu[1706] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/opmi/masterData/payments/payments.php">Payment</a>
+      <?php } ?> 
+      </div>
+  </div>
+</li>
+<?php } ?><!-- Nav Item - Pages Collapse Menu -->
 <?php if($menu[3300] || true || $menu[3301]){ ?><li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHistory" aria-expanded="true" aria-controls="collapseHistory">
     <i class="fas fa-fw fa-list"></i>

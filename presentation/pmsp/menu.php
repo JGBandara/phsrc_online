@@ -68,7 +68,36 @@ while($row=mysqli_fetch_array($result)){
 <div class="sidebar-heading">
   master</div>
 <!-- Nav Item - Pages Collapse Menu -->
-<!-- Nav Item - Pages Collapse Menu -->
+<?php if($menu[2000] || true || $menu[2001] || $menu[2002] || $menu[2003] || $menu[2004] || $menu[2005] || $menu[2006]){ ?><li class="nav-item">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNewRegistration" aria-expanded="true" aria-controls="collapseNewRegistration">
+    <i class="fas fa-fw fa-list"></i>
+    <span>New Registration</span>
+  </a>
+  <div id="collapseNewRegistration" class="collapse" aria-labelledby="headingNewRegistration" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <!--<h6 class="collapse-header">New Registration:</h6>-->
+      
+      <?php if($menu[2001] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/pmsp/masterData/basicInformation/basicInformation.php">Basic Information</a>
+      <?php } ?> 
+            
+      <?php if($menu[2002] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/pmsp/masterData/staffInformation/staffInformation.php">Staff Information</a>
+      <?php } ?> 
+            
+      <?php if($menu[2003] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/pmsp/masterData/instituteInformation/instituteInformation.php">Institution Information</a>
+      <?php } ?> 
+            
+      <?php if($menu[2004] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/pmsp/masterData/InstituteFacility/InstituteFacility.php">Facilities</a>
+      <?php } ?> 
+            
+      <?php if($menu[2005] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/pmsp/masterData/employeeFiles/employeeFiles.php">Document</a>
+      <?php } ?> 
+            
+      <?php if($menu[2006] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/pmsp/masterData/payments/payments.php">Payment</a>
+      <?php } ?> 
+      </div>
+  </div>
+</li>
+<?php } ?><!-- Nav Item - Pages Collapse Menu -->
 <?php if($menu[2020] || true || $menu[2021]){ ?><li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRenewalRegistration" aria-expanded="true" aria-controls="collapseRenewalRegistration">
     <i class="fas fa-fw fa-list"></i>
