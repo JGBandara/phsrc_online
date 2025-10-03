@@ -116,7 +116,7 @@ if ($requestType == 'edit') {
 
         if ($finalResult) {
             $response['type'] = 'pass';
-            $response['msg'] = 'Saved successfully.';
+            $response['msg'] 	= 'Staff Information saved successfully! Proceed to Institution Information...';
             $response['no'] = $noReference;
             $response['id'] = $entryId;
             $db->commit();

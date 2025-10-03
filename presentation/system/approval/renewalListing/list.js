@@ -23,6 +23,7 @@ function load_detail(){
 				$name=json.ownerName;
 				$date=json.crDate;
 				$payType=json.paymentType;
+				$regAmount=json.regAmount;
 				$approveStatus=json.approveStatus;
 				$cat_name=json.cat_name
 				
@@ -31,21 +32,30 @@ function load_detail(){
 									
 				for($i=0;$id.length>$i;$i++){
 					var rowColor = "";
+                    var approveText = "";
 					if ($approveStatus[$i] === "Approved") {
-						rowColor = "background-color: rgba(33, 99, 47, 1); color: white;"; 
+						rowColor = "background-color: rgba(33, 99, 47, 1); color: white;";
+                        approveText = "Recommended By The PDHS";
 					} else if ($approveStatus[$i] === "Rejected") {
-						rowColor = "background-color: rgba(173, 10, 26, 1); color: white;"; 
+						rowColor = "background-color: rgba(173, 10, 26, 1); color: white;";
+                        approveText = "Rejected";
 					} else if ($approveStatus[$i] === "Checked") {
-						rowColor = "background-color: rgba(216, 166, 15, 1); color: black;"; 
+						rowColor = "background-color: rgba(216, 166, 15, 1); color: black;";
+                        approveText = "Officer Checked";
 					} else if ($approveStatus[$i] === "Recommended") {
-						rowColor = "background-color: rgba(33, 137, 153, 1); color: white;"; 
-					}
+						rowColor = "background-color: rgba(33, 137, 153, 1); color: white;";
+                        approveText = "Inspection Officer Checked";
+					}else{
+                        approveText = "Pending";
+                    }
 					$('#table-id').append("<tr style='" + rowColor + "'>" +
         "<td>" + $name[$i] + "</td>" +
         "<td>" + $payType[$i] + "</td>" +
+
         "<td>" + $cat_name[$i] + "</td>" +
+                        "<td>" + $regAmount[$i] + "</td>" +
         "<td>" + $date[$i] + "</td>" +
-        "<td>" + $approveStatus[$i] + "</td>" +
+                        "<td>" + approveText + "</td>" +
         "<td><center><button type='button' class='btn btn-success btn-md' data-toggle='modal' data-target='#myModal' id='" + $id[$i] + "'>View</button></center></td>" +
     "</tr>");
 					

@@ -42,11 +42,12 @@
 <table class="table table-striped table-class" id= "table-id">
   
 	
-<thead>
+<thead class="bg-gradient-dark">
 <tr>
 		<th>Institute Name</th>
 		<th>Reg Type</th>
     <th>Category</th>
+    <th>Registration Fee</th>
 		<th>Date</th>
     <th>Status</th>
 		<th>Action</th>

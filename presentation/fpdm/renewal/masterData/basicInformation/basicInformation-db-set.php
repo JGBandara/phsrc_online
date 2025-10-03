@@ -65,7 +65,7 @@ if($requestType=='add'){
 
     if($finalResult){                    
         $response['type'] 	= 'pass';
-        $response['msg'] 	= 'Saved successfully.';
+        $response['msg'] 	= 'Basic Information saved successfully! Proceed to Staff Information...';
         $response['no'] 	= $noReference; 
         $response['id'] 	= $entryId;
         $db->commit();
@@ -142,7 +142,7 @@ elseif($requestType=='edit'){
     
     if($finalResult){                    
         $response['type'] 	= 'pass';
-        $response['msg'] 	= 'Saved successfully.';
+        $response['msg'] 	= 'Basic Information saved successfully! Proceed to Staff Information...';
         $response['no'] 	= $noReference; 
         $response['id'] 	= $entryId;
         $db->commit();

@@ -110,14 +110,14 @@ $_SESSION['institute_id']=$insId;
                             <label for="txtPayAmount" class="col-form-label-sm required">Payment Type</label>
                             <select class="form-control form-control-sm" id="cboPayType" name="cboPayType">
                             <option>&nbsp;</option>
-                            <option value="Online">Online</option>
+                            <option value="Online">Card Payment</option>
                             <option value="Bank_Through">Bank Through</option>
                             <option value="Bank_Transfer">Bank Transfer</option>
                             </select>
                           </div>
                           <div class="form-group col-sm-6">
                             <label for="txtPayAmount" class="col-form-label-sm required">Registration Year</label>
-                            <input type="text" class="form-control form-control-sm" id="txtYear" name="txtYear" placeholder="" value="2025">
+                            <input type="text" class="form-control form-control-sm" id="txtYear" name="txtYear" placeholder="" value="2026">
                           </div>
                           
                         </div>
@@ -209,7 +209,7 @@ while($row=mysqli_fetch_array($result)){
                         
                         <div class="form-row">
                           <div class="form-group col-sm-12">
-                            <p><input type="checkbox" id="confirm" name="confirm" class=" col-form-label-sm required" value="confirm"><b>I further declare that the information furnished by me found to be incorrect or false at any stage my application or certificate of registration can be cancelled or suspend by the authority.</b></p>
+                            <p><input type="checkbox" id="confirm" name="confirm" class=" col-form-label-sm required" value="confirm"><b> I further declare that the information furnished by me found to be incorrect or false at any stage my application or certificate of registration can be cancelled or suspend by the authority.</b></p>
                           </div>
                         </div>
                         
