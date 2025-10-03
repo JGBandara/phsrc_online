@@ -99,7 +99,7 @@ if($requestType=='edit'){
 //    $clsApprove->newApprovalEntry($autoNoType, $entryId, $noReference, true);
     if($detailResult){                    
         $response['type'] 	= 'pass';
-        $response['msg'] 	= 'Saved successfully.';
+        $response['msg'] 	= 'Facilities saved successfully! Proceed to Documents...';
         $response['id'] 	= $entryId;
         $db->commit();
         // commit auto number
