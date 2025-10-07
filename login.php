@@ -152,7 +152,6 @@ if($newName!=null){
 	 
 	 $msg="Thank you for registrating to the PHSRC ONLINE REGISTRATION SYSTEM.
              
-Your Application Accepted.
 Your loging password is - ".implode($pass)."
                
 PHSRC";
