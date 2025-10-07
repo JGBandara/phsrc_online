@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bootstrap-colorpicker/src" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bootstrap/js" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bootstrap/scss" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/datatables/Buttons-1.5.6" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/datatables/ColReorder-1.5.0" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/datatables/DataTables-1.10.18" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/datatables/FixedColumns-3.2.5" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/datatables/FixedHeader-3.1.4" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/datatables/JSZip-2.5.0" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/datatables/KeyTable-2.5.0" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/datatables/Responsive-2.2.2" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/datatables/RowReorder-1.2.4" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/datatables/Scroller-2.0.0" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/datatables/pdfmake-0.1.36" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fontawesome-free/css" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fontawesome-free/js" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fontawesome-free/less" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fontawesome-free/scss" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fontawesome-free/sprites" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fontawesome-free/svgs" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fontawesome-free/webfonts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/gijgo-combined-1.9.13/css" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/gijgo-combined-1.9.13/fonts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/gijgo-combined-1.9.13/js" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jquery-validation/demo" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jquery-validation/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jquery-validation/src" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jquery-validation/test" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-image-resize-master/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-image-resize-master/test" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpmailer/phpmailer" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

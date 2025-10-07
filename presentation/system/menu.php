@@ -77,13 +77,28 @@ while($row=mysqli_fetch_array($result)){
       <?php if($menu[52] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalCheck/index.php">Approval Check</a>
       <?php } ?> 
             
-      <?php if($menu[53] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalRecommandation/index.php">Approval Inspection</a>
+      <?php if($menu[53] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalRecommandation/index.php">Approval Recommandation</a>
       <?php } ?> 
             
       <?php if($menu[54] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalListing/index.php">Approval Progress</a>
       <?php } ?> 
             
-      <?php if($menu[42] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApproval/index.php">Renewal Recommendation</a>
+      <?php if($menu[42] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApproval/index.php">Renewal Approval</a>
+      <?php } ?> 
+      </div>
+  </div>
+</li>
+<?php } ?><!-- Nav Item - Pages Collapse Menu -->
+<?php if($menu[60] || false || $menu[61]){ ?><li class="nav-item">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHistory" aria-expanded="true" aria-controls="collapseHistory">
+    <i class="fas fa-fw fa-list"></i>
+    <span>History</span>
+  </a>
+  <div id="collapseHistory" class="collapse" aria-labelledby="headingHistory" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <!--<h6 class="collapse-header">History:</h6>-->
+      
+      <?php if($menu[61] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/history/index.php">History</a>
       <?php } ?> 
       </div>
   </div>

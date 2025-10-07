@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MessDetectorOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCSFixerOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCodeSnifferOptionsConfiguration">
+    <option name="highlightLevel" value="WARNING" />
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/datatables/DataTables-1.10.18" />
+      <path value="$PROJECT_DIR$/vendor/gijgo-combined-1.9.13/css" />
+      <path value="$PROJECT_DIR$/vendor/bootstrap/js" />
+      <path value="$PROJECT_DIR$/vendor/fontawesome-free/svgs" />
+      <path value="$PROJECT_DIR$/vendor/gijgo-combined-1.9.13/fonts" />
+      <path value="$PROJECT_DIR$/vendor/gijgo-combined-1.9.13/js" />
+      <path value="$PROJECT_DIR$/vendor/fontawesome-free/sprites" />
+      <path value="$PROJECT_DIR$/vendor/fontawesome-free/less" />
+      <path value="$PROJECT_DIR$/vendor/bootstrap/scss" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/fontawesome-free/scss" />
+      <path value="$PROJECT_DIR$/vendor/fontawesome-free/webfonts" />
+      <path value="$PROJECT_DIR$/vendor/fontawesome-free/js" />
+      <path value="$PROJECT_DIR$/vendor/jquery-validation/lib" />
+      <path value="$PROJECT_DIR$/vendor/fontawesome-free/css" />
+      <path value="$PROJECT_DIR$/vendor/jquery-validation/src" />
+      <path value="$PROJECT_DIR$/vendor/jquery-validation/test" />
+      <path value="$PROJECT_DIR$/vendor/jquery-validation/demo" />
+      <path value="$PROJECT_DIR$/vendor/jquery-validation/dist" />
+      <path value="$PROJECT_DIR$/vendor/bootstrap-colorpicker/src" />
+      <path value="$PROJECT_DIR$/vendor/php-image-resize-master/lib" />
+      <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/vendor/bootstrap-colorpicker/dist" />
+      <path value="$PROJECT_DIR$/vendor/datatables/JSZip-2.5.0" />
+      <path value="$PROJECT_DIR$/vendor/datatables/pdfmake-0.1.36" />
+      <path value="$PROJECT_DIR$/vendor/php-image-resize-master/test" />
+      <path value="$PROJECT_DIR$/vendor/datatables/KeyTable-2.5.0" />
+      <path value="$PROJECT_DIR$/vendor/datatables/FixedColumns-3.2.5" />
+      <path value="$PROJECT_DIR$/vendor/datatables/Buttons-1.5.6" />
+      <path value="$PROJECT_DIR$/vendor/datatables/FixedHeader-3.1.4" />
+      <path value="$PROJECT_DIR$/vendor/datatables/Responsive-2.2.2" />
+      <path value="$PROJECT_DIR$/vendor/datatables/RowReorder-1.2.4" />
+      <path value="$PROJECT_DIR$/vendor/datatables/Scroller-2.0.0" />
+      <path value="$PROJECT_DIR$/vendor/datatables/ColReorder-1.5.0" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
+  <component name="PhpStanOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PsalmOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+</project>
