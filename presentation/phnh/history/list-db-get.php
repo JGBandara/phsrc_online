@@ -22,7 +22,7 @@ $requestType 	= $_REQUEST['requestType'];
 // =======================================================
 if($requestType=='loadDetails'){
   $id = $_REQUEST['id'];
-  $sql="SELECT
+ echo $sql="SELECT
   institute_registration.ins_application_id,
   institute_registration.ins_type_id,
   institute_registration.reg_no,
