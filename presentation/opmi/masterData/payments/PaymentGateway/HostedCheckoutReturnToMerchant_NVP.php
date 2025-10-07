@@ -197,6 +197,6 @@ include "connection.php";
 				
         <p style="text-align:center;"><a href= "http://localhost/MPGS/HC/index.html"><br><br><input type="button" value="Cancel Payment and Return to Main Index Page" /></a></p>-->
                 <br/><br/>
-<center><h5>Copyright ©<?php echo date("Y"); ?>&nbsp;: Sri Lanka Telecom[Services] Limited. All Rights Reserved</h5></center>
+<center><h5>Copyright ©<?php echo date("Y"); ?>&nbsp;: Private Health Services Regulatory Council-Ministry of Health. All Rights Reserved</h5></center>
     </body>
 </html>

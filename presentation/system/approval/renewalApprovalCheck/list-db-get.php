@@ -33,6 +33,7 @@ if($requestType=='loadDetails'){
 	institute_registration
 	Inner Join institute_payment_detail ON institute_registration.ins_application_id = institute_payment_detail.payment_detail_institute_id
 	Inner Join man_institute_main ON institute_registration.ins_type_id = man_institute_main.main_cat_id 
+	left join
 	order by ins_application_id asc";
 		  //  where institute_registration.ins_province_id=$userLocationId
 	  $result=$db->singleQuery($sql);

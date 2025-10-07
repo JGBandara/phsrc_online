@@ -91,7 +91,7 @@ if($_REQUEST['submit']=="Test"){
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; 2019 : Sri Lanka Telecom[Services] Limited. All Rights Reserved</span>
+            <span>Copyright &copy; Private Health Services Regulatory Council-Ministry of Health. All Rights Reserved</span>
           </div>
         </div>
       </footer>

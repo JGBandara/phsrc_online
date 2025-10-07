@@ -89,6 +89,6 @@ where payment_detail_institute_id=$insId
 </div>
         </form>
         <br/><br/>
-<center><h5>Copyright ©<?php echo date("Y"); ?>&nbsp; : Sri Lanka Telecom[Services] Limited. All Rights Reserved</h5></center>
+<center><h5>Copyright ©<?php echo date("Y"); ?>&nbsp; : Private Health Services Regulatory Council-Ministry of Health. All Rights Reserved</h5></center>
     </body>
 </html>

@@ -120,8 +120,8 @@ $( document ).ready( function () {
                         id = json.id;
 						loadSearchCombo(id);
                         $('#frm_institute_facility #cboSearch').trigger('change');
-                        modalMsgBox("Success", json.msg);
-                        location.reload();
+         modalMsgBox("Success", json.msg);
+         location.reload();
 						return;
 					}
                     else if(json.type=='fail'){
