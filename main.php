@@ -114,11 +114,21 @@ if($_REQUEST['submit']=="Test"){
         <a class="nav-link" >
             <span style="text-align:justify">+94 011 2672 911 / 2672 912<br/><br/>+94 011 2672 913 <br/>phsrc2015@gmail.com</span></a>
       </li>
+      <li class="nav-item active">
+        <p style="font-size:20px;">
+    <a href="img/User%20guideline%20for%20PHSRC%20Online%20Registration.pdf" class="nav-link" target="_blank" style="color:#ffcc00;">
+      <i class="fa fa-address-card" aria-hidden="true" style="color:#ffcc00;"></i> User Guide
+    </a>
+  </p>
+  </li>
 <div class="sidebar-heading">
         
         <br>
         
       </div>
+      <div>
+  
+</div>
     </ul>
     <!-- End of Sidebar -->
 
