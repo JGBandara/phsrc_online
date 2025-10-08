@@ -14,7 +14,7 @@
 	//$id 			= $_REQUEST['cboSearch'];
 
 	$insId			= trim($_REQUEST['insId']);
-	$mobNo	= '0756188681';
+	$mobNo	= $_REQUEST['mobNo'];
 	
 	/////////// location insert part /////////////////////
 
@@ -22,7 +22,7 @@
 	if($requestType=='edit')
 	{
            $type=$_REQUEST['type'];
-            $mobNo='0756188681';
+            //$mobNo='0711899110';
             $alphabet = "0123456789";
     $pass = array(); //remember to declare $pass as an array
     $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
