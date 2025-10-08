@@ -96,13 +96,13 @@
         <div class="form-row"><div class="form-group col-md-3 textMainTxtStyle">Address(Official)</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblRelationship"></label></div><div class="form-group col-md-3 textMainTxtStyle">Address(Private)</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblAddress"></label></div></div>
         
          <div class="form-row"><div class="form-group col-md-3 textMainTxtStyle">The relationship with the institution</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblInsRel"></label></div><div class="form-group col-md-3 textMainTxtStyle">
-&nbsp; </div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id=""></label></div></div>
+&nbsp; </div><div class="form-group col-md-3">&nbsp;<label class="textStyle" id=""></label></div></div>
         
         <div class="form-row"><div class="form-group col-md-3 textMainTxtStyle">Name of the institution</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblInsName"></label></div><div class="form-group col-md-3 textMainTxtStyle">
 Institute Address </div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblInsAddress"></label></div></div>
 
-<div class="form-row"><div class="form-group col-md-3 textMainTxtStyle">Telephone</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblProvince"></label></div><div class="form-group col-md-3 textMainTxtStyle">
-Email </div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblDistrict"></label></div></div>
+<div class="form-row"><div class="form-group col-md-3 textMainTxtStyle">Telephone</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblTelephone"></label></div><div class="form-group col-md-3 textMainTxtStyle">
+Email </div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblMail"></label></div></div>
 
 <div class="form-row"><div class="form-group col-md-3 textMainTxtStyle">Province</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblProvince"></label></div><div class="form-group col-md-3 textMainTxtStyle">
 District </div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblDistrict"></label></div></div>

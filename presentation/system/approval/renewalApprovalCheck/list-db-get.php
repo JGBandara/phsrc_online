@@ -33,10 +33,9 @@ if($requestType=='loadDetails'){
 	institute_registration
 	Inner Join institute_payment_detail ON institute_registration.ins_application_id = institute_payment_detail.payment_detail_institute_id
 	Inner Join man_institute_main ON institute_registration.ins_type_id = man_institute_main.main_cat_id 
-	Left Join sys_user_location ON sys_users.syu_division_id = sys_user_location.syo_location_id
-	left join Left Join sys_users ON pay_recept_print.user_id = sys_users.syu_id
-
-	order by ins_application_id asc";
+	inner Join sys_user_location ON institute_registration.ins_province_id = sys_user_location.syo_location_id
+	Left Join sys_users ON sys_user_location.syo_user_id = sys_users.syu_id
+	where sys_users.syu_id='$userId' and sys_user_location.syo_is_deleted='0' order by ins_application_id asc";
 		  //  where institute_registration.ins_province_id=$userLocationId
 	  $result=$db->singleQuery($sql);
 	  while($row=mysqli_fetch_array($result)){

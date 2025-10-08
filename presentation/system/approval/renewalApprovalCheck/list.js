@@ -99,13 +99,13 @@ $(document).ready(function() {
 			  
 			  if(json){ 
 				  
-			   $('#txtId').val(json.aId);
+			  $('#txtId').val(json.aId);
 			  $('#lblName').text(json.ownerName);
 			  $('#lblRelationship').text(json.relationsip);
 			  $('#lblAddress').text(json.owAddress);
 			  $('#lblInsName').text(json.insName);
 			  $('#lblInsAddress').text(json.insAddress);
-					  $('#lblTelephone').text(json.ins_telephone);
+			  $('#lblTelephone').text(json.ins_telephone);
 			  $('#lblMobile').text(json.ins_mobile);
 			  $('#lblWeb').text(json.ins_website);
 			  $('#lblMail').text(json.ins_email);
