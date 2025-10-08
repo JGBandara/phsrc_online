@@ -25,6 +25,7 @@ $autoNoType = "employeeFiles";
 $requestType 	= $_REQUEST['requestType'];
 $anStatus       = $_REQUEST['anStatus'];
 $id             = $_REQUEST['cboSearch'];
+$instituteId             = $_REQUEST['cboSearch'];
 //--------------------------------------------
 $employeeId           = isset($_REQUEST['cboCategoryId'])?trim($_REQUEST['cboCategoryId']):null;
 $bankId           = isset($_REQUEST['cboBankId'])?trim($_REQUEST['cboBankId']):null;
@@ -75,7 +76,7 @@ if($requestType=='add'){
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Documents saved successfully! Proceed to Payments...';
         $response['no'] 	= $noReference; 
-        $response['id'] 	= $entryId;
+        $response['id'] 	= $instituteId;
         $db->commit();
         // commit auto number
 //        $clsAutoNo->setAutoNoCommit($autoNoType, $autoNo);
@@ -143,7 +144,7 @@ elseif($requestType=='edit'){
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Documents saved successfully! Proceed to Payments...';
         $response['no'] 	= $noReference; 
-        $response['id'] 	= $entryId;
+        $response['id'] 	= $instituteId;
         $db->commit();
         // commit auto number
 //        $clsAutoNo->setAutoNoCommit($autoNoType, $autoNo);

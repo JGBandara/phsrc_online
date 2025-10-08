@@ -15,7 +15,7 @@ $requestType 	= $_REQUEST['requestType'];
 //         Load Details
 // =======================================================
 if($requestType=='loadDetails'){
-  $id = $_REQUEST['id'];
+   $id = $_REQUEST['id'];
    $sql = "select ins_application_id from institute_registration where institute_reg_id='$id' ";
     $result = $db->singleQuery($sql);
     while($row= mysqli_fetch_array($result)){
@@ -110,7 +110,7 @@ where institute_id=$id
 }
 elseif($requestType=='loadSearchCombo'){
     $id=$_REQUEST['id'];
-  echo $sql="SELECT
+   $sql="SELECT
        ins_application_id,
 institute_reg_id,
 reg_no

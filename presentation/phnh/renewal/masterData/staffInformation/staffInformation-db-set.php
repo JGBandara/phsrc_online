@@ -20,6 +20,7 @@ $autoNoType = "";
 $requestType 	= $_REQUEST['requestType'];
 $anStatus       = $_REQUEST['anStatus'];
 $id             = $_REQUEST['cboSearch'];
+$instituteId             = $_REQUEST['cboSearch'];
 //--------------------------------------------
 
 $cboGovOfficer           = isset($_REQUEST['cboGovOfficer'])?trim($_REQUEST['cboGovOfficer']):null;
@@ -126,7 +127,7 @@ if(count($staffDetail)&&$entryId&&$finalResult )
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Staff Information saved successfully! Proceed to Institution Information...';
         $response['no'] 	= $noReference; 
-        $response['id'] 	= $entryId;
+        $response['id'] 	= $instituteId;
         $db->commit();
 
     }

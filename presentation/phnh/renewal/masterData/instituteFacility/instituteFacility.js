@@ -77,8 +77,8 @@ $( document ).ready( function () {
   // --------------------------------------------------------
   //      Save Function
   // --------------------------------------------------------
-  $("#frm_institute_facility #btnSave").click(function(){  
-    
+  $("#frm_institute_facility #btnSave").click(function(e){
+    e.preventDefault();
   //---------------tblMainGrid1---------------------------
  		 var cbofacility ='';
 		 var txtValue   ='';
@@ -119,9 +119,9 @@ $( document ).ready( function () {
 						$('#frm_institute_facility').get(0).reset();
                         id = json.id;
 						loadSearchCombo(id);
-                        $('#frm_institute_facility #cboSearch').trigger('change');
+                     //   $('#frm_institute_facility #cboSearch').trigger('change');
          modalMsgBox("Success", json.msg);
-         location.reload();
+        // location.reload();
 						return;
 					}
                     else if(json.type=='fail'){
