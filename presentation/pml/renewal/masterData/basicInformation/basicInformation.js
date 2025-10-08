@@ -114,7 +114,6 @@ $( document ).ready( function () {
           frmData = new FormData(form[0]);
       }
       var regNo=$('#cboSearch').text();
-      alert(regNo);
       frmData.append('requestType',requestType);
       frmData.append('cboSearch',id);
       frmData.append('regNo',regNo);
@@ -233,7 +232,6 @@ $( document ).ready( function () {
               $('#frm_basic_information #cboProvince').val(json.province);
               $('#frm_basic_information #cboDistrict').val(json.district);
               var imageName=json.profileImageName;
-              //alert(json.profileImageName)
 			   $('#frm_basic_information .avatar1-pic').attr('src',backwardSeparator+'drive/insProfile/'+imageName);
           }
         }
