@@ -58,7 +58,7 @@ closeSession($session);
   try{
     $db->begin();      
 
-echo $sql="update `institute_payment_detail`
+ $sql="update `institute_payment_detail`
           set
             payment_is_approval = '1'
           where payment_detail_institute_id='$id'";
