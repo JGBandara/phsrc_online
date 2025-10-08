@@ -25,6 +25,7 @@ $autoNoType = "";
 $requestType 	= $_REQUEST['requestType'];
 $anStatus       = $_REQUEST['anStatus'];
 $id             = $_REQUEST['cboSearch'];
+$instituteId             = $_REQUEST['cboSearch'];
 //--------------------------------------------
 
 $txtEstDate           = isset($_REQUEST['txtEstDate'])?trim($_REQUEST['txtEstDate']):null;
@@ -102,7 +103,7 @@ if($requestType=='edit'){
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Institution Information saved successfully! Proceed to Facilities....';
         $response['no'] 	= $noReference; 
-        $response['id'] 	= $entryId;
+        $response['id'] 	= $instituteId;
         $db->commit();
         // commit auto number
 //        $clsAutoNo->setAutoNoCommit($autoNoType, $autoNo);
