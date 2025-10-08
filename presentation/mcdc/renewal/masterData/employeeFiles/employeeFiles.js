@@ -218,6 +218,7 @@ $( document ).ready( function () {
         success:function(json){
           if(json){ 
             for (var i=0; i<json.length; i++) {
+
 //              ema_id, sye_name, syf_name, ema_account_no, ema_amount, stat_name
               $newRow = $('#tblEmpExistingDocuments .cloneRow').eq(0).clone();
               $newRow.removeClass('cloneRow').addClass('dataRow');
