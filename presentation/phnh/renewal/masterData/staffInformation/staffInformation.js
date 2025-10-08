@@ -159,12 +159,12 @@ $( document ).ready( function () {
 					if(json.type=='pass'){
 						$('#frm_staff_information').get(0).reset();
                         id = json.id;
-                        
-                        
+
+
 						loadSearchCombo(id);
                         $('#frm_staff_information #cboSearch').trigger('change');
                         modalMsgBox("Success", json.msg);
-						location.reload(); 
+                       // setTimeout(() => location.reload(), 10000);
 						return;
 					}
                     else if(json.type=='fail'){
