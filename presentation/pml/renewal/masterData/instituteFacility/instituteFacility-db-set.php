@@ -31,6 +31,7 @@ $cboEmgKit = 0;
 $requestType 	= $_REQUEST['requestType'];
 $anStatus       = $_REQUEST['anStatus'];
 $id             = $_REQUEST['cboSearch'];
+$instituteId             = $_REQUEST['cboSearch'];
 
 $facilityDetail = json_decode($_REQUEST['facilityDetail'], true);
 
@@ -103,7 +104,7 @@ if($requestType=='edit'){
     if($detailResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Facilities saved successfully! Proceed to Documents...';
-        $response['id'] 	= $entryId;
+        $response['id'] 	= $instituteId;
         $db->commit();
         // commit auto number
 //        $clsAutoNo->setAutoNoCommit($autoNoType, $autoNo);
