@@ -162,7 +162,7 @@ $( document ).ready( function () {
 						loadSearchCombo(id);
                         $('#frm_staff_information #cboSearch').trigger('change');
                         modalMsgBox("Success", json.msg);
-                        location.reload(); 
+                      //  location.reload();
 						return;
 					}
                     else if(json.type=='fail'){
