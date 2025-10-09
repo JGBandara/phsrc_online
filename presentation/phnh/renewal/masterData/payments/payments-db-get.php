@@ -41,7 +41,7 @@ if($requestType=='loadDetails'){
               order by payment_detail_institute_id asc";
       $result=$db->singleQuery($sql);
       while($row=mysqli_fetch_array($result)){
-        $response['regYear']  =$row['payment_reg_year'];
+        // $response['regYear']  =$row['payment_reg_year'];
         $response['payregFee']  =$row['payment_reg_fee'];
                     $response['paystFee']  =$row['payment_stamp_fee'];
                     
