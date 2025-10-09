@@ -95,8 +95,8 @@
         
         <div class="form-row"><div class="form-group col-md-3 textMainTxtStyle">Address(Official)</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblRelationship"></label></div><div class="form-group col-md-3 textMainTxtStyle">Address(Private)</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblAddress"></label></div></div>
         
-         <div class="form-row"><div class="form-group col-md-3 textMainTxtStyle">The relationship with the institution</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblInsRel"></label></div><div class="form-group col-md-3 textMainTxtStyle">
-&nbsp; </div><div class="form-group col-md-3">&nbsp;<label class="textStyle" id=""></label></div></div>
+         <div class="form-row"><div class="form-group col-md-3 textMainTxtStyle">The relationship with the institution</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblRelationship"></label></div><div class="form-group col-md-3 textMainTxtStyle">
+&nbsp;Mobile No </div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblMobile"></label></div></div>
         
         <div class="form-row"><div class="form-group col-md-3 textMainTxtStyle">Name of the institution</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblInsName"></label></div><div class="form-group col-md-3 textMainTxtStyle">
 Institute Address </div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="lblInsAddress"></label></div></div>
