@@ -51,7 +51,7 @@ INNER JOIN
 Inner Join 
 	sys_user_location 
 	ON institute_registration.ins_province_id = sys_user_location.syo_location_id
-Left Join 
+Inner Join 
 	sys_users 
 	ON sys_user_location.syo_user_id = sys_users.syu_id
 where sys_users.syu_id='$userId' and sys_user_location.syo_is_deleted='0'
