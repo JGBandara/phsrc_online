@@ -34,7 +34,7 @@ if($requestType=='loadDetails'){
 	Inner Join institute_payment_detail ON institute_registration.ins_application_id = institute_payment_detail.payment_detail_institute_id
 	Inner Join man_institute_main ON institute_registration.ins_type_id = man_institute_main.main_cat_id 
 	inner Join sys_user_location ON institute_registration.ins_province_id = sys_user_location.syo_location_id
-	Left Join sys_users ON sys_user_location.syo_user_id = sys_users.syu_id
+	Inner Join sys_users ON sys_user_location.syo_user_id = sys_users.syu_id
 	where sys_users.syu_id='$userId' and sys_user_location.syo_is_deleted='0' order by ins_application_id asc";
 		  //  where institute_registration.ins_province_id=$userLocationId
 	  $result=$db->singleQuery($sql);
@@ -228,7 +228,7 @@ Inner Join tbl_facility ON institute_facility_detail.facility_id = tbl_facility.
 		}
 		$response['detailVal3'] = $arrDetail3;
                 //------------------------------------------------------------------------------------
-                $sql = "select dfi_id, dfi_file_name, dfi_file_extension, dfi_store_location, dfi_url, dfi_reference_no, dfi_reference_id, 
+        $sql = "select dfi_id, dfi_file_name, dfi_file_extension, dfi_store_location, dfi_url, dfi_reference_no, dfi_reference_id, 
 		dfg_name, dfc_name, dfi_file_version, dfi_meta_data, dfi_remarks, ifnull(stat_name,'') as `status`, 
 		if(dfi_is_deleted='1','Yes','No') as `is deleted`, ifnull(dfp_id,0) as `permission`
         from dms_trn_file
@@ -237,7 +237,7 @@ Inner Join tbl_facility ON institute_facility_detail.facility_id = tbl_facility.
           left join sys_status on dfi_status=stat_id
           left join dms_file_permission on dfp_file_category_id=dfi_file_category_id and dfp_user_id='$userId' and dfp_status='1' and dfp_is_deleted='0'
         where 1=1 and dfi_company_id='$userCompanyId' and dfi_reference_id='$id' and dfg_id='11' and dfi_is_deleted='0'
-        order by dfc_name asc, dfi_file_name asc, dfi_file_version asc ";
+        group by dfi_id ";
   $result = $db->singleQuery($sql);
   $arr = [];
   while($row = mysqli_fetch_assoc($result)){
