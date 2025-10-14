@@ -110,7 +110,7 @@ $_SESSION['institute_id']=$insId;
                             <label for="txtPayAmount" class="col-form-label-sm">Payment Type</label>
                             <select class="form-control form-control-sm" id="cboPayType" name="cboPayType">
                             <option>&nbsp;</option>
-                            <option value="Online">Card Payment</option>
+                            <option value="Card Payment">Card Payment</option>
                             <option value="Bank_Through">Bank Through</option>
                             <option value="Bank_Transfer">Bank Transfer</option>
                             </select>
@@ -199,7 +199,7 @@ while($row=mysqli_fetch_array($result)){
      <img src="../../../../../img/bankSlip.jpg" >
 
                            
-                            <!--<input type="file" class="form-control form-control-sm" id="imgBankSlip" name="imgBankSlip" placeholder="">--><input type="file" onchange="readURL(this);" accept="image/*" class="form-control form-input col-sm-6 Profile-input-file" id="fileProfileImage" name="fileProfileImage">
+                            <!--<input type="file" class="form-control form-control-sm" id="imgBankSlip" name="imgBankSlip" placeholder="">--><input type="file" onchange="readURL(this);" accept="image/*" class="form-control form-input col-sm-6 Profile-input-file" id="fileProfileImage" name="fileProfileImage" required>
                           </div>
                           
                         </div>

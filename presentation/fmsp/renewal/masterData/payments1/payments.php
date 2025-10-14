@@ -110,7 +110,7 @@ $_SESSION['institute_id']=$insId;
                             <label for="txtPayAmount" class="col-form-label-sm required">Payment Type</label>
                             <select class="form-control form-control-sm" id="cboPayType" name="cboPayType">
                             <option>&nbsp;</option>
-                            <option value="Online">Online</option>
+                            <option value="Card Payment">Online</option>
                             <option value="Bank_Through">Bank Through</option>
                             <option value="Bank_Transfer">Bank Transfer</option>
                             </select>

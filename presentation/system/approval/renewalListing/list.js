@@ -147,7 +147,7 @@ $('.btn').click(function(){
                   $('#txtEstDate').text(json.stDate);
                   $('#txtBR').text(json.brNo);
                   $('#textBoi').text(json.boiReg);
-                  $('#txtInsType').text(json.txtInsType);
+                  $('#txtInsType').text(json.ins_type);
                   $('#txtOwnerShip').text(json.ownership);
                   //-------------------------------------------------------------------------
 		  $('#textRecKeep').text('Manual');
