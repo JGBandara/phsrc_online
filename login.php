@@ -150,9 +150,9 @@ if($newName!=null){
  $resultNW=$db->executeQuery($sql);
  if($resultNW){
 	 
-	 $msg="Thank you for registrating with the PHSRC ONLINE REGISTRATION SYSTEM.
+	 $msg="Thank you for registering with the PHSRC Online Registration System.
              
-Your loging password is - ".implode($pass)."
+Your Login Password:  ".implode($pass)."
                
 PHSRC";
 	 
