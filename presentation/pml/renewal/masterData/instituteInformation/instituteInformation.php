@@ -128,7 +128,7 @@ where status='1' and is_deleted='0' and main_cat_id='3'
 						$result=$db->singleQuery($sql);
 						while($row=mysqli_fetch_array($result))
 						{
-							echo "<option value=\"".$row['cat_name']."\">".$row['cat_name']." </option>";
+							echo "<option value=\"".$row['sub_cat_id']."\">".$row['cat_name']." </option>";
 						}
           ?>
                 
