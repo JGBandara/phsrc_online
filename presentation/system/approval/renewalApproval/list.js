@@ -286,7 +286,7 @@ $('.btn').click(function(){
 			   $('#txthidImg').val($imageName);
               // alert($src);
               //$('#slip').attr("src", $src);
-              $('#slip').attr('href',backwardSeparator+'img/BankSlip/'+$imageName); 
+              $('#slip').attr('href',backwardSeparator+'img/BankSlip/'+$imageName);
        
 		  if(json.approval=='1'){
 			  $('#lblAcction').text('Approved!')

@@ -299,7 +299,7 @@ Government officer or not (If yes name of the institution and the post held by t
          <div class="form-row"><div class="form-group col-md-3">Registration Fee</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtregAmount"></label></div><div class="form-group col-md-3">
  Stamp Fee</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtStampAmount"></label></div></div>
  
- <div class="form-row"><div class="form-group col-md-3">Arrears Amount</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtArras"></label></div><div class="form-group col-md-3">
+ <div class="form-row"><div class="form-group col-md-3">Board Payment</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtArras"></label></div><div class="form-group col-md-3">
 Payment Amount</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtAmount"></label></div></div>
 
  <div class="form-row"><div class="form-group col-md-3">Paying Branch</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtPaymentBranch"></label></div><div class="form-group col-md-3">Payment Date
