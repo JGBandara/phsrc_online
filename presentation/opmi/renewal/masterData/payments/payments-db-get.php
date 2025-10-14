@@ -62,7 +62,7 @@ man_institute_sub.reg_amount,
 man_institute_sub.stamp_fee
 FROM
 institute_information
-Inner Join man_institute_sub ON institute_information.ins_type = man_institute_sub.sub_cat_id where institute_information.ins_info_institute_id=$id";
+Inner Join man_institute_sub ON institute_information.ins_type = man_institute_sub.cat_name where institute_information.ins_info_institute_id=$id";
        $resultAm=$db->singleQuery($sqlAm);
        while ($row1 = mysqli_fetch_array($resultAm)) {
            
