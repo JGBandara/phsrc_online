@@ -117,7 +117,7 @@ $( document ).ready( function () {
 
 $('#cboPayType').change(function(){
 	
-	if($(this).val()=='Online'){
+	if($(this).val()=='Card Payment'){
 		$('.hideOnline').hide();
 		$('.hideOnlineSlip').hide();
 		}else{
