@@ -305,6 +305,7 @@ Payment Amount</div><div class="form-group col-md-3">:&nbsp;<label class="textSt
  <div class="form-row"><div class="form-group col-md-3">Paying Branch</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtPaymentBranch"></label></div><div class="form-group col-md-3">Payment Date
 &nbsp;</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtPaymentDate"></label></div></div>
       <br>
+      
       <div class="form-row"><div class="form-group col-md-3">Bank Slip</div><div class="form-group col-md-3">:&nbsp;<a style ="display:contents" target="_blank" id ="slip">View</a></div><div class="form-group col-md-3">&nbsp;</div><div class="form-group col-md-3">&nbsp;</div></div>
         
         </div>

@@ -186,7 +186,7 @@ where institute_information.ins_info_institute_id=$id
 		$response['stDate']=$row['ins_date_of_stablishment'];
 		$response['brNo']=$row['ins_br_no'];
 		$response['boiReg']=$row['ins_boi_registration'];
-		$response['ins_type']=$row['ins_type'];
+		$response['txtInsType']=$row['ins_type'];
 		$response['ownership']=$row['ownership'];
 		
 		}
