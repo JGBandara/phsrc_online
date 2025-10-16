@@ -236,6 +236,25 @@ closeSession($session);
 ?>
 <!DOCTYPE html>
 <html lang="en" >
+<style>
+  /* Make sure footer comes after page content */
+  .page-footer {
+    color: #fff; /* white text */
+    text-align: center;
+    padding: 12px 0;
+    margin-top: 400px; /* space above footer */
+  }
+
+  .page-footer span {
+    color: #fff;
+    font-size: 18px;
+  }
+  .cotn_principal {
+  position: relative;
+  min-height: auto;
+}
+
+</style>
 
 <head>
   <meta charset="UTF-8">
@@ -390,9 +409,18 @@ closeSession($session);
     
   </div>
  </div>
- <div style="height:480px"></div>
-   <div class="headerText" ><img src="img/core/footer_text.png"></div>
-</div>
+
+<footer class="page-footer">
+  <div class="container">
+    <div class="copyright">
+      <span>
+        &copy; <?php echo date('Y'); ?> Private Health Services Regulatory Council - Ministry of Health. 
+        All Rights Reserved.
+      </span>
+    </div>
+  </div>
+</footer>
+
     <script  src="js/animate_js/js/index.js"></script>
 </body>
 
