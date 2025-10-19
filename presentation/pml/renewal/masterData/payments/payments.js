@@ -301,15 +301,16 @@ $('#cboPayType').change(function(){
                          $stampFee=parseFloat(json.stampFee); 
                          $payarreas=parseFloat(json.payarreas); 
                          $type=json.$type;
-                         if($type=="Large Labs"){
-$('#cboBoardType').append(`<option value="Large">With Main Board(Large)</option>
+                         if($type=="Large Labs"){                      
+$('#cboBoardType').empty().append(`<option value="Large">With Main Board(Large)</option>
   <option value="LargeRg">Registration Board Only(Large)</option>`);
                          }else if($type=="Medium Labs"){
-$('#cboBoardType').append(`<option value="Medium">With Main Board(Medium)</option>
+$('#cboBoardType').empty().append(`<option value="Medium">With Main Board(Medium)</option>
   <option value="MediumRg">Registration Board Only(Medium)</option>`);
                          }else{
-                          $('#cboBoardType').append(` <option value="Small">With Main Board(Small)</option>
+                          $('#cboBoardType').empty().append(` <option value="Small">With Main Board(Small)</option>
   <option value="smallRg">Registration Board Only(Small)</option>`);
+                          }
                           }
                          $('#frm_payment_information #txtRegFee').val($pymentAm);
                          
