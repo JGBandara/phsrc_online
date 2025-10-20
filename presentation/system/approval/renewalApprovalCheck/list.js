@@ -359,6 +359,7 @@ $(document).ready(function() {
 	$('#btnApprove').click(function(){
 		
 		var txtRemark=$('#txtRemark').val();
+		var cboInspection=$('#cboInspection').val();
 			var requestType="approve";
 			var id=$('#txtId').val();
 		
@@ -367,7 +368,7 @@ $(document).ready(function() {
 					url:url,
 					dataType:"json",
 					type:'post', 
-					data:"requestType="+requestType+'&id='+id+'&txtRemark='+txtRemark,
+					data:"requestType="+requestType+'&id='+id+'&txtRemark='+txtRemark+'&cboInspection='+cboInspection,
 					async:false,
 	
 					succuss:function(json){
