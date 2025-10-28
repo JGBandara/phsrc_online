@@ -659,7 +659,7 @@ Technicians
             <center><select class="form-control form-control-sm" id="cboInspection" name="cboInspection">
                 <?php
 
-                $sql = "SELECT syu_id,syu_full_name FROM sys_users s JOIN mst_locations_user l ON s.syu_id=l.intUserId WHERE syu_designation_id=6 AND l.intLocationId=$userLocationId";
+                $sql = "SELECT syu_id,syu_full_name FROM sys_users s JOIN sys_user_location l ON s.syu_id=l.syo_user_id WHERE syu_designation_id=6 AND l.syo_location_id=$userLocationId";
 
                 $result = $db->singleQuery($sql);
                 while ($row = mysqli_fetch_array($result)) {
