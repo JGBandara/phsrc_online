@@ -185,7 +185,7 @@ $('#cboPayType').change(function(){
 						loadSearchCombo(id);
                         $('#frm_payment_information #cboSearch').trigger('change');
                         modalMsgBox("Success", json.msg);
-						if(json.payType=='Online'){
+						if(json.payType=='Card Payment'){
 					 window.open("../../../../payment/index.php","_self");
 					  }
 						return;
@@ -300,18 +300,27 @@ $('#cboPayType').change(function(){
                          $pymentAm=parseFloat(json.totAmount); 
                          $stampFee=parseFloat(json.stampFee); 
                          $payarreas=parseFloat(json.payarreas); 
-                         $type=json.$type;
-                         if($type=="Large Labs"){                      
-$('#cboBoardType').empty().append(`<option value="Large">With Main Board(Large)</option>
-  <option value="LargeRg">Registration Board Only(Large)</option>`);
-                         }else if($type=="Medium Labs"){
-$('#cboBoardType').empty().append(`<option value="Medium">With Main Board(Medium)</option>
-  <option value="MediumRg">Registration Board Only(Medium)</option>`);
-                         }else{
-                          $('#cboBoardType').empty().append(` <option value="Small">With Main Board(Small)</option>
-  <option value="smallRg">Registration Board Only(Small)</option>`);
-                          }
-                          }
+                         var type=json.type;
+                         
+                         if (type.trim() === "Large Labs") {
+  $('#cboBoardType').empty().append(`
+     <option value=""></option>
+    <option value="Large">With Main Board (Large)</option>
+    <option value="LargeRg">Registration Board Only (Large)</option>
+  `);
+} else if (type.trim() === "Medium Labs") {
+  $('#cboBoardType').empty().append(`
+    <option value=""></option>
+    <option value="Medium">With Main Board (Medium)</option>
+    <option value="MediumRg">Registration Board Only (Medium)</option>
+  `);
+} else {
+  $('#cboBoardType').empty().append(`
+    <option value=""></option>
+    <option value="Small">With Main Board (Small)</option>
+    <option value="SmallRg">Registration Board Only (Small)</option>
+  `);
+}
                          $('#frm_payment_information #txtRegFee').val($pymentAm);
                          
                          $('#frm_payment_information #txtStampFee').val($stampFee);

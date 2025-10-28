@@ -178,7 +178,7 @@ $('#cboPayType').change(function(){
                         $('#frm_payment_information #cboSearch').trigger('change');
                         modalMsgBox("Success", json.msg);
                         setTimeout(location.reload(), 5000);
-						if(json.payType=='Online'){
+						if(json.payType=='Card Payment'){
 					  window.open("../../../../payment/index.php","_self");
 					  }
 						return;

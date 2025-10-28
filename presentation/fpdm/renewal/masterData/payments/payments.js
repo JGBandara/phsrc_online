@@ -125,7 +125,6 @@ $('#cboPayType').change(function(){
 		$('.hideOnline').show();
 		$('.hideOnlineSlip').show();
 			}
-	
 	})
 
   // --------------------------------------------------------
@@ -177,7 +176,7 @@ $('#cboPayType').change(function(){
 						loadSearchCombo(id);
                         $('#frm_payment_information #cboSearch').trigger('change');
                         modalMsgBox("Success", json.msg);
-						if(json.payType=='Online'){
+						if(json.payType=='Card Payment'){
 					  window.open("../../../../payment/index.php","_self");
 					  }
 						return;
