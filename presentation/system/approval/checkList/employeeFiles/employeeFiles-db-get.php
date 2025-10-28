@@ -51,7 +51,7 @@ man_institute_main.main_cat_id
 FROM
 institute_registration
 Inner Join institute_payment_detail ON institute_registration.ins_application_id = institute_payment_detail.payment_detail_institute_id
-Inner Join man_institute_main ON institute_registration.ins_type_id = man_institute_main.main_cat_id  where  institute_payment_detail.paymet_is_success=1 and institute_registration.ins_province_id=$userLocationId order by ins_application_id asc";
+Inner Join man_institute_main ON institute_registration.ins_type_id = man_institute_main.main_cat_id  where  institute_payment_detail.paymet_is_success=1 and institute_registration.ins_province_id=$userLocationId and institute_payment_detail.Inspection_user=$userId order by ins_application_id asc";
 		  $html = "<option vlaue=\"\"></option>";
 	$result=$db->singleQuery($sql);
 	while($row=mysqli_fetch_array($result)){
