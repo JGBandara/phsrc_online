@@ -72,7 +72,7 @@ closeSession($session);
         $db->commit();
 	//---------------------------------------------------------------------------------------------------------
 		
-	$sqlSysUpdate="SELECT
+	 $sqlSysUpdate="SELECT
 institute_registration.ins_application_id,
 institute_registration.ins_type_id,
 institute_registration.ins_owner_name,
@@ -160,6 +160,7 @@ left Join institute_information ON institute_registration.ins_application_id = i
 left Join institute_staff_information ON institute_registration.ins_application_id = institute_staff_information.st_info_institute_id
 left Join institute_facility ON institute_registration.ins_application_id = institute_facility.ins_faci_institute_id
 left Join institute_payment_detail ON institute_registration.ins_application_id = institute_payment_detail.payment_detail_institute_id
+where institute_registration.ins_application_id=$id
 limit 1
 
 ";
@@ -169,7 +170,7 @@ limit 1
                 $insType=$row['ins_type_id'];
             
             
-		 $applicationId=$row['ins_application_id'];
+		$applicationId=$row['ins_application_id'];
 		$ownerName=$row['fpds_owner_name'];
 		$relationsip=$row['fpds_owner_relationship'];
 		$owAddress=$row['fpds_owner_address'];
@@ -181,11 +182,11 @@ limit 1
 		$web=$row['ins_website'];
 		$date=$row['ins_date_of_stablishment'];
 		$description='';
-                $br_no=$row['ins_br_no'];
-                $prc_hr=$row['ins_practice_hr'];
+		$br_no=$row['ins_br_no'];
+        $prc_hr=$row['ins_practice_hr'];
 		$provinceId= $row['ins_province_id'];
 		$distrctId= $row['ins_district_id'];
-                $anuFee=$row['payment_reg_fee'];
+        $anuFee=$row['payment_reg_fee'];
 		$approvalStatus=$row['fpds_pd_approval'];
 		//------------------------------------------------------------------------------------------------
 		$slmc=$row['st_info_slmc_reg_no'];
@@ -221,7 +222,9 @@ limit 1
 		//------------------------------------------------------------------------------------------------
 		}
 	//------------------------------------------------------------------------------------------------
+
 	include "{$backwardseperator}dataAccess/misconnector.php";
+
         
         if($insType==1){
            $mainCat_id=1; 
@@ -242,15 +245,14 @@ limit 1
 		{
 			 $serial = $row['serial'];
 		}
-		 $newRegNo=$prf.++$serial;
+		$newRegNo=$prf.++$serial;
 	
 /* $sql="INSERT INTO reg_ins_comm (mainCat_id, subCat_id, ins_name, reg_no, address, telephone, fax, email, web, Start_date, discription, is_slmc_mem, slmc_no, is_display_web, is_close, is_board_issued, is_bio_reg, bis_registration, hours_of_prctices, province_id, district_id, ownership_type, record_keeping, price_cat_id, annual_fee,created_by,created_date,is_deleted) VALUES ('5','0','$insName','$newRegNo','$address','$telNo','$fax','$email','$web','$date','$description',1,'$slmc',$intDisplay,$intClouse,$intBo,$intBio,'$bisRegistration','$prcticeHR',$provinceId,$distrctId,$ownrShip,$recordKeep,5,$annalFee,'0',now(),0)";*/
-  $sql="INSERT INTO reg_ins_comm (mainCat_id, subCat_id, ins_name, reg_no, address, telephone, fax, email, web, Start_date, discription, is_slmc_mem, slmc_no, is_display_web, is_close, is_board_issued, is_bio_reg, bis_registration, hours_of_prctices, province_id, district_id, ownership_type, record_keeping, price_cat_id, annual_fee,created_by,created_date,is_deleted,online_application_id) VALUES ($mainCat_id,'0','$insName','$newRegNo','$insAddress','$telNo','','$email','$web',now(),'',0,'',1,0,0,0,'$br_no','$prc_hr',$provinceId,$distrctId,1,1,1,'$anuFee',1,now(),0,$applicationId)
-  ";
+//   $sql="INSERT INTO reg_ins_comm (mainCat_id, subCat_id, ins_name, reg_no, address, telephone, fax, email, web, Start_date, discription, is_slmc_mem, slmc_no, is_display_web, is_close, is_board_issued, is_bio_reg, bis_registration, hours_of_prctices, province_id, district_id, ownership_type, record_keeping, price_cat_id, annual_fee,created_by,created_date,is_deleted,online_application_id) VALUES ($mainCat_id,'0','$insName','$newRegNo','$insAddress','$telNo','','$email','$web',now(),'',0,'',1,0,0,0,'$br_no','$prc_hr',$provinceId,$distrctId,1,1,1,'$anuFee',1,now(),0,$applicationId)
+//   ";
 
-  $sql="update reg_ins_comm set
+ $sql="update reg_ins_comm set
   mainCat_id='$mainCat_id',
-  subCat_id='0',
   ins_name='$insName',
   address='$insAddress',
   telephone='$telNo',
@@ -270,10 +272,10 @@ limit 1
   province_id='$provinceId',
   district_id='$distrctId',
   ownership_type='$ownrShip',
-  record_keeping='$recordKeep'
-  annual_fee=$payAmont";
+  record_keeping='$recordKeep',
+  annual_fee='$payAmont' where institute_id='$lastId'"; 
 		$result =mysqli_query($conn,$sql);
-		$lastId=$conn -> insert_id;
+		//$lastId=$conn -> insert_id;
                 
                 
                 
@@ -390,7 +392,7 @@ institute_staff_information_managment_detail where institute_staff_information_m
             
 
 					
-				echo	$sql = "INSERT INTO reg_ins_managment (institute_id,position_id,name,contact_detail,info,created_by,created_date) 
+			$sql = "INSERT INTO reg_ins_managment (institute_id,position_id,name,contact_detail,info,created_by,created_date) 
 				VALUES ($lastId,'$Position','$Name','$Contact','$Information',1,now())";
 				
 					$result =mysqli_query($conn,$sql);
