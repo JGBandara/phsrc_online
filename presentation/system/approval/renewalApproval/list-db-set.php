@@ -1,7 +1,6 @@
 <?php
 session_start();
 $backwardSeparator = "../../../../";
-$backwardseperator = "../../../../";
 $thisFilePath =  $_SERVER['PHP_SELF'];
 $userId 	= $_SESSION['loginId'];
 $userCompanyId = $_SESSION['companyId'];
@@ -47,14 +46,14 @@ while($row=mysqli_fetch_array($result)){
 
 
 
-	 $msg="Your application Approved by PDHS.
+// 	 $msg="Your application Approved by PDHS.
 	 
-	 More information please contact PDHS office.";
+// 	 More information please contact PDHS office.";
 	
-	 require_once $backwardSeparator.'classes/ESMSWS.php';
-$session=createSession('','esmsusr_1f7m','3esotc9','');
-sendMessages($session,'PHSRC',$msg,array($newMobile),1);  
-closeSession($session);
+// 	 require_once $backwardSeparator.'classes/ESMSWS.php';
+// $session=createSession('','esmsusr_1f7m','3esotc9','');
+// sendMessages($session,'PHSRC',$msg,array($newMobile),1);  
+// closeSession($session);
   try{
     $db->begin();      
 
@@ -72,7 +71,7 @@ closeSession($session);
         $db->commit();
 	//---------------------------------------------------------------------------------------------------------
 		
-	 $sqlSysUpdate="SELECT
+$sqlSysUpdate="SELECT
 institute_registration.ins_application_id,
 institute_registration.ins_type_id,
 institute_registration.ins_owner_name,
@@ -86,6 +85,7 @@ institute_registration.ins_email,
 institute_registration.ins_website,
 institute_registration.ins_province_id,
 institute_registration.ins_district_id,
+institute_registration.reg_no,
 institute_information.ins_info_institute_id,
 institute_information.ins_date_of_stablishment,
 institute_information.ins_br_no,
@@ -153,7 +153,9 @@ institute_payment_detail.payment_reg_type_id,
 institute_payment_detail.payment_is_approval,
 institute_payment_detail.payment_online_payment_order_id,
 institute_payment_detail.payment_online_payment_on,
-institute_payment_detail.paymet_is_success
+institute_payment_detail.paymet_is_success,
+institute_payment_detail.payment_arrears
+
 FROM
 institute_registration
 left Join institute_information ON institute_registration.ins_application_id = institute_information.ins_info_institute_id
@@ -161,15 +163,11 @@ left Join institute_staff_information ON institute_registration.ins_application_
 left Join institute_facility ON institute_registration.ins_application_id = institute_facility.ins_faci_institute_id
 left Join institute_payment_detail ON institute_registration.ins_application_id = institute_payment_detail.payment_detail_institute_id
 where institute_registration.ins_application_id=$id
-limit 1
-
-";
+limit 1";
 	$result=$db->singleQuery($sqlSysUpdate);
 	while($row=mysqli_fetch_array($result)){
             
-                $insType=$row['ins_type_id'];
-            
-            
+        $insType=$row['ins_type_id'];
 		$applicationId=$row['ins_application_id'];
 		$ownerName=$row['fpds_owner_name'];
 		$relationsip=$row['fpds_owner_relationship'];
@@ -199,13 +197,12 @@ limit 1
 		$gov_is_name=$row['st_info_gov_ins_name'];
 		$prcticeHR= $row['st_info_hours_of_practice'];
 		//------------------------------------------------------------------------------------------------
-		$recordKeep=$row['record_keep_id'];
+	
 		$speciality_availability=$row['ins_info_visiting_speciality_availability'];
 		$lab_facility=$row['ins_info_dental_lab_facility'];
 		$x_ray_facility= $row['ins_info_x_ray_facility'];
 		$em_kit_availability=$row['ins_info_emargancy_kit_availability'];
 		$other_facility=$row['ins_info_other_facility'];
-		$ownrShip=$row['ins_info_owner'];
 		$annalFee='10000';
 		$prac_type= $row['ins_info_practice_type'];
 		$speciality_info=$row['ins_info_speciality'];
@@ -216,14 +213,16 @@ limit 1
 		$payDate=$row['payment_date'];
 		$payRegAmount=$row['payment_reg_fee'];
 		$payStampAmount=$row['payment_stamp_fee'];
-		$payRegYear='2020';
+		$payRegYear=$row['payment_reg_year'];
 		$payType= $row['payment_type'];
 		$payImageName=$row['payment_silp_name'];
+		$board = $row['payment_arrears'];
+		$newRegNo = $row['reg_no'];
 		//------------------------------------------------------------------------------------------------
 		}
 	//------------------------------------------------------------------------------------------------
 
-	include "{$backwardseperator}dataAccess/misconnector.php";
+	include "{$backwardSeparator}dataAccess/misconnector.php";
 
         
         if($insType==1){
@@ -237,21 +236,21 @@ limit 1
 	//$lenght=11;
 	//$min =10;
 	
-	$sql="SELECT MAX(CAST(SUBSTRING(reg_no, $lenght, length(reg_no)-$min) AS UNSIGNED)) AS serial FROM reg_ins_comm
-	where is_deleted='0' and reg_no  like '%$prf%'";
-	//$result = mysqli_query($conn,$sql);
+	// $sql="SELECT MAX(CAST(SUBSTRING(reg_no, $lenght, length(reg_no)-$min) AS UNSIGNED)) AS serial FROM reg_ins_comm
+	// where is_deleted='0' and reg_no  like '%$prf%'";
+	// //$result = mysqli_query($conn,$sql);
 	
-	while($row=mysqli_fetch_array($result))
-		{
-			 $serial = $row['serial'];
-		}
-		$newRegNo=$prf.++$serial;
+	// while($row=mysqli_fetch_array($result))
+	// 	{
+	// 		 $serial = $row['serial'];
+	// 	}
+	// 	// $newRegNo=$prf.++$serial;
 	
 /* $sql="INSERT INTO reg_ins_comm (mainCat_id, subCat_id, ins_name, reg_no, address, telephone, fax, email, web, Start_date, discription, is_slmc_mem, slmc_no, is_display_web, is_close, is_board_issued, is_bio_reg, bis_registration, hours_of_prctices, province_id, district_id, ownership_type, record_keeping, price_cat_id, annual_fee,created_by,created_date,is_deleted) VALUES ('5','0','$insName','$newRegNo','$address','$telNo','$fax','$email','$web','$date','$description',1,'$slmc',$intDisplay,$intClouse,$intBo,$intBio,'$bisRegistration','$prcticeHR',$provinceId,$distrctId,$ownrShip,$recordKeep,5,$annalFee,'0',now(),0)";*/
 //   $sql="INSERT INTO reg_ins_comm (mainCat_id, subCat_id, ins_name, reg_no, address, telephone, fax, email, web, Start_date, discription, is_slmc_mem, slmc_no, is_display_web, is_close, is_board_issued, is_bio_reg, bis_registration, hours_of_prctices, province_id, district_id, ownership_type, record_keeping, price_cat_id, annual_fee,created_by,created_date,is_deleted,online_application_id) VALUES ($mainCat_id,'0','$insName','$newRegNo','$insAddress','$telNo','','$email','$web',now(),'',0,'',1,0,0,0,'$br_no','$prc_hr',$provinceId,$distrctId,1,1,1,'$anuFee',1,now(),0,$applicationId)
 //   ";
 
- $sql="update reg_ins_comm set
+$sql="update reg_ins_comm set
   mainCat_id='$mainCat_id',
   ins_name='$insName',
   address='$insAddress',
@@ -260,7 +259,7 @@ limit 1
   email='$email',
   web='$web',
   Start_date='$date',
-  discription='$descriptio',
+  discription='$description',
   is_slmc_mem='0',
   slmc_no='',
   is_display_web='1',
@@ -271,20 +270,15 @@ limit 1
   hours_of_prctices='$prc_hr',
   province_id='$provinceId',
   district_id='$distrctId',
-  ownership_type='$ownrShip',
-  record_keeping='$recordKeep',
   annual_fee='$payAmont' where institute_id='$lastId'"; 
+
 		$result =mysqli_query($conn,$sql);
-		//$lastId=$conn -> insert_id;
-                
-                
-                
-		
-		if($result){
+	
+    	if($result){
 			
-			
-			$sqlReceipt="SELECT MAX(recipt_id)+1 AS reciptNo FROM pay_recept_print";
+		$sqlReceipt="SELECT MAX(recipt_id)+1 AS reciptNo FROM pay_recept_print";
 		$result=mysqli_query($conn,$sqlReceipt);
+
 		while($row=mysqli_fetch_array($result)){
 
 			$recept_no=$row['reciptNo'];
@@ -306,10 +300,10 @@ limit 1
 		$regAmount=$payRegAmount;
 		$stampAmount=$payStampAmount;
 		
-       $sql="INSERT INTO pay_recept_print  (reg_id,reg_no,reg_year,reg_date,recipt_no,our_ref,pay_type,cheque_no,reg_amount,stamp_amount,amount_text,amount,is_submit,is_print,is_deleted,created_date)VALUE('$insId','$insRegVal','$yearVal','$dateVal','$reciptVal','$insRefVal','$payTypVal','$chqVal','$regAmount','$stampAmount','$insAmount','$amountVal','1',0,'0',now())";
+ $sql="INSERT INTO pay_recept_print  (reg_id,reg_no,reg_year,reg_date,recipt_no,our_ref,pay_type,cheque_no,reg_amount,stamp_amount,amount_text,amount,is_submit,is_print,is_deleted,board_amount,created_date)VALUES('$insId','$insRegVal','$yearVal','$dateVal','$reciptVal','$insRefVal','$payTypVal','$chqVal','$regAmount','$stampAmount','$insAmount','$amountVal','1','0','0','$board',now())";
 	   
 	   $finalResult=mysqli_query($conn,$sql);
-			
+
 			}
 		
 		mysqli_close($conn);
@@ -325,12 +319,13 @@ institute_facility_detail where institute_facility_detail.facility_detail_instit
                     $Facility		= $row['facility_id'];
 		   $Value 	        = $row['facility_detail_value'];
 		   $Discription	        = $row['facility_description'];
-            include "{$backwardseperator}dataAccess/misconnector.php";
+
+		   include "{$backwardSeparator}dataAccess/misconnector.php";
             
                    
 					
 					 $sql = "INSERT INTO reg_ins_faci (institute_id,facility,value,description,created_by,created_date) 
-				VALUES ($lastId,$Facility,'$Value','$Discription',1,now())";
+				VALUES ('$lastId','$Facility','$Value','$Discription',1,now())";
 				
 					$result =mysqli_query($conn,$sql);
                                         
@@ -360,12 +355,12 @@ institute_staff_information_stf_detail where institute_staff_information_stf_det
 			$PostGraduate 	= $row['post_gradu'];
 			$Speciality	= $row['speciality'];
 			$Registerd	= $row['Register_id'];
-            include "{$backwardseperator}dataAccess/misconnector.php";
+            include "{$backwardSeparator}dataAccess/misconnector.php";
             
 
 					
 					$sql = "INSERT INTO reg_ins_doctor (institute_id,Name,Qulification,institute,country,post_gradu,speciality,Register_id,created_by,created_date) 
-				VALUES ($lastId,'$Name','$Qulifications','$Institute','$Country','$PostGraduate','$Speciality','$Registerd',1,now())";
+				VALUES ('$lastId','$Name','$Qulifications','$Institute','$Country','$PostGraduate','$Speciality','$Registerd',1,now())";
 				
 					$result =mysqli_query($conn,$sql);
                                         
@@ -388,12 +383,11 @@ institute_staff_information_managment_detail where institute_staff_information_m
 			$Name 			= $row['name'];
 			$Contact	        = $row['contact_detail'];
 			$Information	        = $row['info'];
-            include "{$backwardseperator}dataAccess/misconnector.php";
+            include "{$backwardSeparator}dataAccess/misconnector.php";
             
-
 					
 			$sql = "INSERT INTO reg_ins_managment (institute_id,position_id,name,contact_detail,info,created_by,created_date) 
-				VALUES ($lastId,'$Position','$Name','$Contact','$Information',1,now())";
+				VALUES ('$lastId','$Position','$Name','$Contact','$Information',1,now())";
 				
 					$result =mysqli_query($conn,$sql);
                                         
