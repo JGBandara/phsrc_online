@@ -244,20 +244,23 @@ Inner Join tbl_facility ON institute_facility_detail.facility_id = tbl_facility.
 	//--------------------------------------Payment --------------------------------------------------
 
 	$sqlpay = "SELECT
-institute_payment_detail.payment_reg_year,
-institute_payment_detail.payment_amount,
-institute_payment_detail.payment_date,
-institute_payment_detail.payment_branch,
-institute_payment_detail.payment_type,
-institute_payment_detail.payment_silp_name,
-institute_payment_detail.payment_reg_fee,
-institute_payment_detail.payment_stamp_fee,
-institute_payment_detail.payment_arrears,
-institute_payment_detail.reject_remark
+pd.payment_reg_year,
+pd.payment_amount,
+pd.payment_date,
+pd.payment_branch,
+pd.payment_type,
+pd.payment_silp_name,
+pd.payment_reg_fee,
+pd.payment_stamp_fee,
+pd.payment_arrears,
+pd.reject_remark,
+r.receipt_payment_order_id,
+r.receipt_path
 FROM
-institute_payment_detail
-where payment_detail_institute_id=$id
-          order by payment_detail_institute_id asc";
+institute_payment_detail pd
+LEFT JOIN receipts r ON pd.payment_detail_institute_id = r.receipt_institute_id AND pd.payment_reg_year = r.receipt_payment_reg_year
+where pd.payment_detail_institute_id=$id
+          order by pd.payment_detail_institute_id asc";
 	$resultpay = $db->singleQuery($sqlpay);
 	while ($row = mysqli_fetch_array($resultpay)) {
 		$response['regYear']  = $row['payment_reg_year'];
@@ -270,6 +273,7 @@ where payment_detail_institute_id=$id
 		$response['payment_stamp_fee']    = $row['payment_stamp_fee'];
 		$response['payment_arrears']	= $row['payment_arrears'];
 		$response['reject_remark']	= $row['reject_remark'];
+        $response['receipt_path']	=$row['receipt_path'];
 	}
 
 	echo json_encode($response);
