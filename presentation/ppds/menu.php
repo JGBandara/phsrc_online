@@ -83,7 +83,6 @@ while($row=mysqli_fetch_array($result)){
   </div>
 </li>
 <?php } ?><!-- Nav Item - Pages Collapse Menu -->
-<!-- Nav Item - Pages Collapse Menu -->
 <?php if($menu[3000] || true || $menu[3001]){ ?><li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHistory" aria-expanded="true" aria-controls="collapseHistory">
     <i class="fas fa-fw fa-list"></i>

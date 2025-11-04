@@ -380,7 +380,7 @@ $('.btnApprove').click(function(){
 				succuss:function(json){
 					
 					if(json.type=='pass'){
-						
+						alert('call');
 					}
                     else if(json.type=='fail'){
                        modalMsgBox("Error", json.msg);
@@ -393,7 +393,7 @@ $('.btnApprove').click(function(){
 			$('#lblAcction').text('Approved!')
 			$("#lblAcction").css("color", "#060");
 			$('#btnReject,#btnApprove').hide();
-			location.reload(); 
+			//location.reload(); 
 		
 	});
 	

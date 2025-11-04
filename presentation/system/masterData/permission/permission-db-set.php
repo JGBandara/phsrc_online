@@ -45,11 +45,11 @@ if($requestType=='menuPermission'){
     if(!$intEditx){
       throw new exception('Permission is Denied ...');
     }
-    $sql = "select * from sys_permission where syp_user_id='$grantUserId' and syp_menu_id='$menuId' and syp_location_id='$userLocationId' and syp_company_id='$userCompanyId'";
+  $sql = "select * from sys_permission where syp_user_id='$grantUserId' and syp_menu_id='$menuId' and syp_location_id='$userLocationId' and syp_company_id='$userCompanyId'";
     $result = $db->batchQuery($sql);
     if($row = mysqli_fetch_array($result)){
       //Update data to transaction header*******************************************
-      $sql = "update `sys_permission`
+    $sql = "update `sys_permission`
             set";
       foreach($fields as $field){
         $sql .= " ".$field."='".$status."',";
@@ -59,7 +59,7 @@ if($requestType=='menuPermission'){
     }
     else{
       $valus = "";
-      $sql = "insert into sys_permission (syp_user_id, syp_menu_id, syp_location_id, syp_company_id";
+  $sql = "insert into sys_permission (syp_user_id, syp_menu_id, syp_location_id, syp_company_id";
       foreach($fields as $field){
         $sql .= ", ".$field;
         $values .= ", '".$status."'";

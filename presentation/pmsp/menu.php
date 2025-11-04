@@ -68,7 +68,6 @@ while($row=mysqli_fetch_array($result)){
 <div class="sidebar-heading">
   master</div>
 <!-- Nav Item - Pages Collapse Menu -->
-<!-- Nav Item - Pages Collapse Menu -->
 <?php if($menu[2020] || true || $menu[2021]){ ?><li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRenewalRegistration" aria-expanded="true" aria-controls="collapseRenewalRegistration">
     <i class="fas fa-fw fa-list"></i>

@@ -56,7 +56,7 @@ while($row=mysqli_fetch_array($result)){
 <div class="sidebar-heading">
   transaction</div>
 <!-- Nav Item - Pages Collapse Menu -->
-<?php if($menu[40] || false || $menu[41] || $menu[50] || $menu[51] || $menu[52] || $menu[53] || $menu[54] || $menu[42]){ ?><li class="nav-item">
+<?php if($menu[40] || false || $menu[50] || $menu[52] || $menu[53] || $menu[54] || $menu[42]){ ?><li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseApproval" aria-expanded="true" aria-controls="collapseApproval">
     <i class="fas fa-fw fa-list"></i>
     <span>Approval</span>
@@ -65,41 +65,19 @@ while($row=mysqli_fetch_array($result)){
     <div class="bg-white py-2 collapse-inner rounded">
       <!--<h6 class="collapse-header">Approval:</h6>-->
       
-      <?php if($menu[41] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/newRegistrationApproval/index.php">New Registration Approval</a>
-      <?php } ?> 
-            
       <?php if($menu[50] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/checkList/basicInformation/basicInformation.php">Check List</a>
       <?php } ?> 
             
-      <?php if($menu[51] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/checkList/employeeFiles/employeeFiles.php">Check List Upload</a>
+      <?php if($menu[52] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalCheck/index.php">Approval Check</a>
       <?php } ?> 
             
-      <?php if($menu[52] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalCheck/index.php">Renewal Check</a>
-      <?php } ?> 
-            
-      <?php if($menu[53] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalRecommandation/index.php">Renewal Inspection</a>
-      <?php } ?> 
-      <?php if($menu[42] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApproval/index.php">Renewal Recommendation</a>
+      <?php if($menu[53] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalRecommandation/index.php">Approval Inspection</a>
       <?php } ?> 
             
       <?php if($menu[54] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalListing/index.php">Approval Progress</a>
       <?php } ?> 
             
-      
-      </div>
-  </div>
-</li>
-<?php } ?><!-- Nav Item - Pages Collapse Menu -->
-<?php if($menu[60] || false || $menu[61]){ ?><li class="nav-item">
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHistory" aria-expanded="true" aria-controls="collapseHistory">
-    <i class="fas fa-fw fa-list"></i>
-    <span>History</span>
-  </a>
-  <div id="collapseHistory" class="collapse" aria-labelledby="headingHistory" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-      <!--<h6 class="collapse-header">History:</h6>-->
-      
-      <?php if($menu[61] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/history/index.php">History</a>
+      <?php if($menu[42] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApproval/index.php">Renewal Recommendation</a>
       <?php } ?> 
       </div>
   </div>
@@ -171,7 +149,7 @@ while($row=mysqli_fetch_array($result)){
     <div class="bg-white py-2 collapse-inner rounded">
       <!--<h6 class="collapse-header">Users:</h6>-->
       
-      <?php if($menu[5] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/masterData/user/user.php">User</a>
+      <?php if($menu[5] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/masterData/user/user.php">User</a>
       <?php } ?> 
             
       <?php if($menu[6] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/masterData/user/passwordReset.php">Reset Password</a>

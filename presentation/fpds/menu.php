@@ -68,36 +68,6 @@ while($row=mysqli_fetch_array($result)){
 <div class="sidebar-heading">
   master</div>
 <!-- Nav Item - Pages Collapse Menu -->
-<?php if($menu[1200] || true || $menu[1201] || $menu[1203] || $menu[1204] || $menu[1205] || $menu[1207] || $menu[1209]){ ?><li class="nav-item">
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNewRegistration" aria-expanded="true" aria-controls="collapseNewRegistration">
-    <i class="fas fa-fw fa-list"></i>
-    <span>New Registration</span>
-  </a>
-  <div id="collapseNewRegistration" class="collapse" aria-labelledby="headingNewRegistration" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-      <!--<h6 class="collapse-header">New Registration:</h6>-->
-      
-      <?php if($menu[1201] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/fpds/masterData/basicInformation/basicInformation.php">Basic Information</a>
-      <?php } ?> 
-            
-      <?php if($menu[1203] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/fpds/masterData/staffInformation/staffInformation.php">Staff Information</a>
-      <?php } ?> 
-            
-      <?php if($menu[1204] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/fpds/masterData/instituteInformation/instituteInformation.php">Institution Information</a>
-      <?php } ?> 
-            
-      <?php if($menu[1205] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/fpds/masterData/InstituteFacility/InstituteFacility.php">Facilities</a>
-      <?php } ?> 
-            
-      <?php if($menu[1207] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/fpds/masterData/employeeFiles/employeeFiles.php">Documents</a>
-      <?php } ?> 
-            
-      <?php if($menu[1209] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/fpds/masterData/payments/payments.php">Payments</a>
-      <?php } ?> 
-      </div>
-  </div>
-</li>
-<?php } ?><!-- Nav Item - Pages Collapse Menu -->
 <?php if($menu[1220] || true || $menu[1221] || $menu[1222]){ ?><li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRenewalRegistration" aria-expanded="true" aria-controls="collapseRenewalRegistration">
     <i class="fas fa-fw fa-list"></i>
