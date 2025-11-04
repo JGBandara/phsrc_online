@@ -286,9 +286,14 @@ $('.btn').click(function(){
 			   $('#txthidImg').val($imageName);
               // alert($src);
               //$('#slip').attr("src", $src);
-              $('#slip').attr('href',backwardSeparator+'img/BankSlip/'+$imageName);
-       
-		  if(json.approval=='1'){
+              if (json.paymentType === 'Card Payment') {
+                  $('#slip').attr('href', backwardSeparator + json.receipt_path);
+              } else {
+                  $('#slip').attr('href', backwardSeparator + 'img/BankSlip/' + $imageName);
+              }
+
+
+              if(json.approval=='1'){
 			  $('#lblAcction').text('Approved!')
 			$("#lblAcction").css("color", "#060");
 			$('#btnReject,#btnApprove').hide();
