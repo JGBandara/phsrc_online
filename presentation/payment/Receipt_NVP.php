@@ -1,17 +1,16 @@
-
 <?php
-$backwardseperator = "../../";
+
 $backwardSeparator = "../../";
 session_start();
-$institute_id=$_SESSION['institute_id'];
-$userId 	= $_SESSION['loginId'];
-$insId=$_SESSION['insId'];
-$payYear=$_SESSION['regYear'];
+$institute_id = $_SESSION['institute_id'];
+$userId = $_SESSION['loginId'];
+$insId = $_SESSION['insId'];
+$payYear = $_SESSION['regYear'];
 include "api_lib.php";
 include "configuration.php";
 include "connection.php";
-require_once $backwardSeparator.'dataAccess/connector.php';
-
+require_once $backwardSeparator . 'dataAccess/connector.php';
+require_once $backwardSeparator . 'classes/cls_pdf.php';
 error_reporting(E_ALL);
 
 $errorMessage = "";
@@ -21,154 +20,220 @@ $result = "";
 
 $responseArray = array();
 
-$resultInd =  $_GET["resultIndicator"];
-$successInd = $_SESSION['successIndicator']; 
+$resultInd = $_GET["resultIndicator"];
+$successInd = $_SESSION['successIndicator'];
 
 ?>
- <?php
-   
-   $orderID = $_SESSION['orderID'];
-	 
-	 $merchantObj = new Merchant($configArray);
+<?php
 
-	 $parserObj = new Parser($merchantObj);
+$orderID = $_SESSION['orderID'];
 
-	 $requestUrl = $parserObj->FormRequestUrl($merchantObj);
+$merchantObj = new Merchant($configArray);
 
-	 $request_assoc_array = array("apiOperation"=>"RETRIEVE_ORDER",
-														 		"order.id"=>$orderID
-														 );
-	 
-	 $request = $parserObj->ParseRequest($merchantObj, $request_assoc_array);
-	 $response = $parserObj->SendTransaction($merchantObj, $request);
-	 
-	 $new_api_lib = new api_lib;
-	 $parsed_array = $new_api_lib->parse_from_nvp($response);
-	 
-   ?>
+$parserObj = new Parser($merchantObj);
+
+$requestUrl = $parserObj->FormRequestUrl($merchantObj);
+
+$request_assoc_array = array("apiOperation" => "RETRIEVE_ORDER",
+        "order.id" => $orderID
+);
+
+$request = $parserObj->ParseRequest($merchantObj, $request_assoc_array);
+$response = $parserObj->SendTransaction($merchantObj, $request);
+
+$new_api_lib = new api_lib;
+$parsed_array = $new_api_lib->parse_from_nvp($response);
+
+
+//Function For Generate Rec Numbers
+function generateAutoNumber($db)
+{
+    $year = (int)date('Y');
+    $newNumber = 1;
+    $type = 'RECEIPT';
+    $db->begin();
+    $sql = "SELECT auto_number_id,last_number,type FROM auto_numbers WHERE type='$type' AND year='$year' FOR UPDATE";
+    $result = $db->singleQuery($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $autoNumberId = $row['auto_number_id'];
+        $newNumber = $row['last_number'] + 1;
+
+        $sqlUp = "UPDATE auto_numbers SET last_number ='$newNumber' WHERE auto_number_id='$autoNumberId'";
+        $db->singleQuery($sqlUp);
+
+    } else {
+
+        $sqlIns = "INSERT INTO auto_numbers (type, year, last_number) VALUES ('$type', '$year', '$newNumber')";
+        $db->singleQuery($sqlIns);
+
+    }
+    $db->commit();
+    return strtoupper(substr($type, 0, 3)) . "-$year" . str_pad($newNumber, 5, '0', STR_PAD_LEFT);
+}
+?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <link rel="stylesheet" type="text/css" href="assets/paymentstyle.css" />
-    <head>
-      <title>DirectApi Example</title>
-      <meta http-equiv="Content-Type" content="text/html, charset=iso-8859-1">
-      <link href="../../css/sb-admin-2.css" rel="stylesheet"/>
-    </head>
-    
-    <body>
+<link rel="stylesheet" type="text/css" href="assets/paymentstyle.css"/>
+<head>
+    <title>DirectApi Example</title>
+    <meta http-equiv="Content-Type" content="text/html, charset=iso-8859-1">
+    <link href="../../css/sb-admin-2.css" rel="stylesheet"/>
+</head>
 
-		<div class="col-md-12"><p style="text-align:center;"><a href="./index.php.html"><img src="../../img/core/Capture.JPG" alt="Main Order Home Page" /></a></p>
-    <center><h1 style="color:#096"><br/>Payment Receipt</h1></center></div>
- 
-    
+<body>
+
+<div class="col-md-12"><p style="text-align:center;"><a href="./index.php.html"><img src="../../img/core/Capture.JPG"
+                                                                                     alt="Main Order Home Page"/></a>
+    </p>
+    <center><h1 style="color:#096"><br/>Payment Receipt</h1></center>
+</div>
+
+
 <?php
 
-if (strcmp($resultInd, $successInd) == 0)
-	{
-    
-	$msg='<span style="color:#390"><b>Your Payment was successful!</b></span>';	
-	//------------------------------------------------------------------------------------------------
-	
-		
-	$sql="update `institute_payment_detail`
+if (strcmp($resultInd, $successInd) == 0) {
+
+    $msg = '<span style="color:#390"><b>Your Payment was successful!</b></span>';
+    //------------------------------------------------------------------------------------------------
+$db->begin();
+
+    $sql = "update `institute_payment_detail`
             set
 					payment_online_payment_order_id   ='$orderID',
-                                        paymet_is_success='1',
-					payment_date     	=now()
-            where payment_detail_institute_id='$insId' and payment_reg_year='$payYear'";
-	$finalResult = $db->singleQuery($sql);
-		
+                    paymet_is_success='1',
+					payment_date = now()
+            where payment_detail_institute_id = '$insId' and payment_reg_year = '$payYear'";
+    $finalResult = $db->singleQuery($sql);
 
-?>
-		 <tr class="title">
-             <td colspan="2" height="25"><P><strong>&nbsp;</strong></P></td>
-         </tr>
-         <tr>
-             <td align="right" width="50%"><strong><center><h1>Your Payment was successful!</h1></center></strong></td>
-         </tr>   
-<?php
+    //Check Duplicate
+    $sqlSel = "SELECT receipt_id FROM receipts WHERE receipt_institute_id = '$insId' AND receipt_payment_order_id = '$orderID' AND receipt_payment_reg_year = '$payYear'";
+    $resultSel = $db->singleQuery($sqlSel);
+    if (!$resultSel->num_rows > 0) {
+        //PDF Generate Start
+        $recRecNumber = generateAutoNumber($db);
+        $pdf = new cls_pdf();
+        $row = [
+                "receipt_number" => $recRecNumber,
+                "receipt_created_at" => $parsed_array['creationTime'],
+                "result" => $parsed_array['result'],
+                "full_name" => $parsed_array['customer.firstName'],
+                "email" => $parsed_array['customer.email'],
+                "currency" => $parsed_array['currency'],
+                "product_name" => 'INSTITUTE RENEWAL',
+                "product_fees" =>  $parsed_array['totalAuthorizedAmount'],
+                "amount" =>  $parsed_array['totalCapturedAmount'],
+                "order_Id" =>  $parsed_array['id'],
+                "last_updated_time" =>  $parsed_array['lastUpdatedTime'],
+        ];
+        $pdfPath = $pdf->generateFromTemplate('receiptTemplate.php', $row, $recRecNumber, 'receipts', 'F');
+        if (!empty($pdfPath)) {
+            //Update PDF Data
+            $receiptPath = 'drive/receipts/' . $recRecNumber . '.pdf';
+            $sqlIns = "INSERT INTO receipts (receipt_institute_id,receipt_payment_order_id,receipt_payment_reg_year,receipt_number,receipt_path) VALUES ('$insId','$orderID','$payYear','$recRecNumber','$receiptPath')";
+            $finalResult = $db->singleQuery($sqlIns);
 
-	}
-	else
-	{
-		$msg='<span style="color:#390"><b>Your Payment was Unsuccessful!</b></span>';
-		require_once $backwardSeparator.'dataAccess/connector.php';
-		
-	$sqlPymentUpdate="UPDATE fpds_payment_detail SET
+        }
+        //PDF Generate End
+    }
+
+    $db->commit();
+
+
+    ?>
+    <tr class="title">
+        <td colspan="2" height="25"><P><strong>&nbsp;</strong></P></td>
+    </tr>
+    <tr>
+        <td align="right" width="50%"><strong>
+                <center><h1>Your Payment was successful!</h1></center>
+            </strong></td>
+    </tr>
+    <?php
+
+} else {
+    $msg = '<span style="color:#390"><b>Your Payment was Unsuccessful!</b></span>';
+    require_once $backwardSeparator . 'dataAccess/connector.php';
+
+    $sqlPymentUpdate = "UPDATE fpds_payment_detail SET
 	payment_is_approval='0',
 	payment_online_payment_order_id='',
 	payment_online_payment_on=now(),
 	paymet_is_success='0'
 	where payment_detail_institute_id='1'";
-	$result=$db->singleQuery($sqlPymentUpdate);
-?>
+    $result = $db->singleQuery($sqlPymentUpdate);
+    ?>
 
-	<!--<tr class="title">
+    <!--<tr class="title">
              <td colspan="2" height="25"><P><strong>&nbsp;</strong></P></td>
          </tr>
          <tr>
              <td align="right" width="50%"><strong><center><h1>Your Payment was Unsuccessful!</h1></center></strong></td>
          </tr>-->
-<?php
-	}
+    <?php
+}
 ?>
 
 
-  <table width="60%" align="center" cellpadding="5" border="0" style="color:">
+<table width="60%" align="center" cellpadding="5" border="0" style="color:">
 
-  <?php
+    <?php
     // echo HTML displaying Error headers if error is found
     if ($errorCode != "" || $errorMessage != "") {
-  ?>
-      <tr class="title">
-             <td colspan="2" height="25"><P><strong>&nbsp;Error Response</strong></P></td>
-         </tr>
-         <tr>
-             <td align="right" width="50%"><strong><i><?=$errorCode?>: </i></strong></td>
-             <td width="50%"><?=$errorMessage?></td>
-         </tr>
-  <?php
-    }
-    else {
-  ?>
-      <tr class="title">
-             <td colspan="2" height="25"><P><strong>&nbsp;<?=$gatewayCode?></strong></P></td>
-         </tr>
-        
-  <?php
-     }
-  ?>
-         
-  </table>
-
-  <br/><br/>
-   
-  
-   <div class="row"><div class="col-md-3"></div><div class="col-md-6">
-  	<table class="table table-bordered" width="60%">
-
-  <tbody>
-    <tr>
-      <td>Payment Amount</td>
-      <td><?php echo $parsed_array['totalAuthorizedAmount'];?></td>
-    </tr>
-    <tr>
-      <td>Payment Currency</td>
-      <td><?php echo $parsed_array['currency']; ?></td>
-    </tr>
+        ?>
+        <tr class="title">
+            <td colspan="2" height="25"><P><strong>&nbsp;Error Response</strong></P></td>
+        </tr>
         <tr>
-      <td>Order ID</td>
-      <td><?php echo $orderID; ?></td>
-    </tr>
-    <tr>
-      <td colspan="2"><?php echo $msg;?></td>
+            <td align="right" width="50%"><strong><i><?= $errorCode ?>: </i></strong></td>
+            <td width="50%"><?= $errorMessage ?></td>
+        </tr>
+        <?php
+    } else {
+        ?>
+        <tr class="title">
+            <td colspan="2" height="25"><P><strong>&nbsp;<?= $gatewayCode ?></strong></P></td>
+        </tr>
 
-    </tr>
-  </tbody>
-</table></div><div class="col-md-3"></div></div>
+        <?php
+    }
+    ?>
 
-  <!-- <table width="60%" align="center" cellpadding="5" border="0">
+</table>
+
+<br/><br/>
+
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <table class="table table-bordered" width="60%">
+
+            <tbody>
+            <tr>
+                <td>Payment Amount</td>
+                <td><?php echo $parsed_array['totalAuthorizedAmount']; ?></td>
+            </tr>
+            <tr>
+                <td>Payment Currency</td>
+                <td><?php echo $parsed_array['currency']; ?></td>
+            </tr>
+            <tr>
+                <td>Order ID</td>
+                <td><?php echo $orderID; ?></td>
+            </tr>
+            <tr>
+                <td colspan="2"><?php echo $msg; ?></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<!-- <table width="60%" align="center" cellpadding="5" border="0">
    
    	<center>
    		
@@ -193,9 +258,11 @@ if (strcmp($resultInd, $successInd) == 0)
        
          </center>
      </table>-->
-         
-     <center> <a href="../../main.php"><button class="btn btn-info">Return to the Home Page</button></a></center>
-		<!--<h2 align="center"><a href="http://localhost/MPGS/HC/index.html">Return to the Main Order Page</a></h2>-->
 
-    </body>
+<center><a href="../../main.php">
+        <button class="btn btn-info">Return to the Home Page</button>
+    </a></center>
+<!--<h2 align="center"><a href="http://localhost/MPGS/HC/index.html">Return to the Main Order Page</a></h2>-->
+
+</body>
 <html>
