@@ -275,11 +275,15 @@ $(document).ready(function() {
 				  $('#txtRemark').text(json.reject_remark);
 				  
 				   $imageName=json.payImageName;
-	
+
 				   $('#txthidImg').val($imageName);
 				  // alert($src);
 				  //$('#slip').attr("src", $src);
-				  $('#slip').attr('href',backwardSeparator+'img/BankSlip/'+$imageName); 
+                  if (json.paymentType === 'Card Payment') {
+                      $('#slip').attr('href', backwardSeparator + json.receipt_path);
+                  } else {
+                      $('#slip').attr('href', backwardSeparator + 'img/BankSlip/' + $imageName);
+                  }
 		   
 			  if(json.approval=='10'){
 				  $('#lblAcction').text('OK!')
