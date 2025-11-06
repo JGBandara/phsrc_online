@@ -11,7 +11,7 @@ $mainPath = $_SESSION['MAIN_PATH'];
 <?php 
 require_once($backwardSeparator.'dataAccess/connector.php');
 
-$sql = "select syp_menu_id from sys_permission where syp_user_id= '$intUser'  and syp_company_id='$userCompanyId'";
+$sql = "select syp_menu_id from sys_permission where syp_view ='1' AND syp_user_id= '$intUser'  and syp_company_id='$userCompanyId'";
 $result = $db->singleQuery($sql);
 while($row=mysqli_fetch_array($result)){
   $id 	= $row['syp_menu_id'];
@@ -56,7 +56,7 @@ while($row=mysqli_fetch_array($result)){
 <div class="sidebar-heading">
   transaction</div>
 <!-- Nav Item - Pages Collapse Menu -->
-<?php if($menu[40] || false || $menu[50] || $menu[52] || $menu[53] || $menu[54] || $menu[42]){ ?><li class="nav-item">
+<?php if($menu[40] || false || $menu[41] || $menu[50] || $menu[51] || $menu[52] || $menu[53] || $menu[54] || $menu[42]){ ?><li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseApproval" aria-expanded="true" aria-controls="collapseApproval">
     <i class="fas fa-fw fa-list"></i>
     <span>Approval</span>
@@ -65,13 +65,19 @@ while($row=mysqli_fetch_array($result)){
     <div class="bg-white py-2 collapse-inner rounded">
       <!--<h6 class="collapse-header">Approval:</h6>-->
       
+      <?php if($menu[41] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/newRegistrationApproval/index.php">New Registration Approval</a>
+      <?php } ?> 
+            
       <?php if($menu[50] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/checkList/basicInformation/basicInformation.php">Check List</a>
       <?php } ?> 
             
-      <?php if($menu[52] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalCheck/index.php">Approval Check</a>
+      <?php if($menu[51] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/checkList/employeeFiles/employeeFiles.php">Check List Upload</a>
       <?php } ?> 
             
-      <?php if($menu[53] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalRecommandation/index.php">Approval Inspection</a>
+      <?php if($menu[52] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalCheck/index.php">Renewal Check</a>
+      <?php } ?> 
+            
+      <?php if($menu[53] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalRecommandation/index.php">Renewal Inspection</a>
       <?php } ?> 
             
       <?php if($menu[54] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalListing/index.php">Approval Progress</a>
@@ -140,7 +146,7 @@ while($row=mysqli_fetch_array($result)){
   </div>
 </li>
 <?php } ?><!-- Nav Item - Pages Collapse Menu -->
-<?php if($menu[4] || true || $menu[5] || $menu[6] || $menu[7] || $menu[8]){ ?><li class="nav-item">
+<?php if($menu[4] || false || $menu[5] || $menu[6] || $menu[7] || $menu[8]){ ?><li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
     <i class="fas fa-fw fa-users"></i>
     <span>Users</span>
