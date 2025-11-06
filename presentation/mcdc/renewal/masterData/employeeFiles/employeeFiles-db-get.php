@@ -18,7 +18,7 @@ $requestType 	= $_REQUEST['requestType'];
 //         Load Details
 // =======================================================
 if($requestType=='loadDetails'){
-  $id = $_REQUEST['id'];
+   $id = $_REQUEST['id'];
    $sql = "select ins_application_id from institute_registration where institute_reg_id='$id' ";
     $result = $db->singleQuery($sql);
     while($row= mysqli_fetch_array($result)){
@@ -26,12 +26,12 @@ if($requestType=='loadDetails'){
     }
    $sql = "select dfi_id, dfi_file_name, dfi_file_extension, dfi_store_location, dfi_url, dfi_reference_no, dfi_reference_id, 
 		dfg_name, dfc_name, dfi_file_version, dfi_meta_data, dfi_remarks, ifnull(stat_name,'') as `status`, 
-		if(dfi_is_deleted='1','Yes','No') as `is deleted`, ifnull(dfp_id,0) as `permission`
+		if(dfi_is_deleted='1','Yes','No') as `is deleted`/*, ifnull(dfp_id,0) as `permission`*/
         from dms_trn_file
           inner join dms_file_category on dfi_file_category_id=dfc_id
           inner join dms_file_group on dfc_file_group_id=dfg_id
           left join sys_status on dfi_status=stat_id
-          left join dms_file_permission on dfp_file_category_id=dfi_file_category_id and dfp_user_id='$userId' and dfp_status='1' and dfp_is_deleted='0'
+        /*  left join dms_file_permission on dfp_file_category_id=dfi_file_category_id and dfp_user_id='$userId' and dfp_status='1' and dfp_is_deleted='0'*/
         where 1=1 and dfi_company_id='$userCompanyId' and dfi_reference_id='$id' and dfg_id='6' and dfi_is_deleted='0'
         order by dfc_name asc, dfi_file_name asc, dfi_file_version asc ";
   $result = $db->singleQuery($sql);

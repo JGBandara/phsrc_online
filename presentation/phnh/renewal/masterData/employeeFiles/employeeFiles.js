@@ -238,9 +238,9 @@ $( document ).ready( function () {
                 fileAccess(fileId);
               });
               $('.action', $newRow).hide();
-              if(json[i].permission>0){
+            /*  if(json[i].permission>0){*/
                 $('.action', $newRow).show();
-              }
+           /*   }*/
               
               $('#tblEmpExistingDocuments tbody').append($newRow);
             }
