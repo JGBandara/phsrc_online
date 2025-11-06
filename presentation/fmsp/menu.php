@@ -11,7 +11,7 @@ $mainPath = $_SESSION['MAIN_PATH'];
 <?php 
 require_once($backwardSeparator.'dataAccess/connector.php');
 
-$sql = "select syp_menu_id from sys_permission where syp_user_id= '$intUser'  and syp_company_id='$userCompanyId'";
+$sql = "select syp_menu_id from sys_permission where syp_view ='1' AND syp_user_id= '$intUser'  and syp_company_id='$userCompanyId'";
 $result = $db->singleQuery($sql);
 while($row=mysqli_fetch_array($result)){
   $id 	= $row['syp_menu_id'];
@@ -78,6 +78,36 @@ while($row=mysqli_fetch_array($result)){
       <!--<h6 class="collapse-header">Renewal Registration:</h6>-->
       
       <?php if($menu[1421] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/fmsp/renewal/basicInformation/basicInformation.php">Renewal</a>
+      <?php } ?> 
+      </div>
+  </div>
+</li>
+<?php } ?><!-- Nav Item - Pages Collapse Menu -->
+<?php if($menu[1400] || true || $menu[1401] || $menu[1402] || $menu[1403] || $menu[1404] || $menu[1405] || $menu[1406]){ ?><li class="nav-item">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNewRegistration" aria-expanded="true" aria-controls="collapseNewRegistration">
+    <i class="fas fa-fw fa-list"></i>
+    <span>New Registration</span>
+  </a>
+  <div id="collapseNewRegistration" class="collapse" aria-labelledby="headingNewRegistration" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <!--<h6 class="collapse-header">New Registration:</h6>-->
+      
+      <?php if($menu[1401] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/fmsp/masterData/basicInformation/basicInformation.php">Basic Information</a>
+      <?php } ?> 
+            
+      <?php if($menu[1402] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/fmsp/masterData/staffInformation/staffInformation.php">Staff Information</a>
+      <?php } ?> 
+            
+      <?php if($menu[1403] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/fmsp/masterData/instituteInformation/instituteInformation.php">Institution Information</a>
+      <?php } ?> 
+            
+      <?php if($menu[1404] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/fmsp/masterData/InstituteFacility/InstituteFacility.php">Facilities</a>
+      <?php } ?> 
+            
+      <?php if($menu[1405] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/fmsp/masterData/employeeFiles/employeeFiles.php">Document</a>
+      <?php } ?> 
+            
+      <?php if($menu[1406] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/fmsp/masterData/payments/payments.php">Payment</a>
       <?php } ?> 
       </div>
   </div>

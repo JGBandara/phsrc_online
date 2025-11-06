@@ -11,7 +11,7 @@ $mainPath = $_SESSION['MAIN_PATH'];
 <?php 
 require_once($backwardSeparator.'dataAccess/connector.php');
 
-$sql = "select syp_menu_id from sys_permission where syp_user_id= '$intUser'  and syp_company_id='$userCompanyId'";
+$sql = "select syp_menu_id from sys_permission where syp_view ='1' AND syp_user_id= '$intUser'  and syp_company_id='$userCompanyId'";
 $result = $db->singleQuery($sql);
 while($row=mysqli_fetch_array($result)){
   $id 	= $row['syp_menu_id'];
