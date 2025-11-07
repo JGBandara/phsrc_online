@@ -313,12 +313,12 @@ $('#cboPayType').change(function(){
 
 });// Document Ready End
 
-function loadSearchCombo($id){
+function loadSearchCombo(id){
 	$("#msgPayment").text("");
-	var url = "payments-db-get.php?requestType=loadSearchCombo&id="+$id;
+	var url = "payments-db-get.php?requestType=loadSearchCombo&id="+id;
 	var httpobj = $.ajax({url:url,async:false})
 	$('#frm_payment_information #cboSearch').html(httpobj.responseText);
-	//$('#frm_payment_information #cboSearch').val($id);
+	$('#frm_payment_information #cboSearch').val(id);
 	$('#frm_payment_information #cboSearch').trigger('change');
 }
 function calculate(){
