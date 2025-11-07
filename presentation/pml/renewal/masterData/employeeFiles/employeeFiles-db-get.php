@@ -32,7 +32,7 @@ if($requestType=='loadDetails'){
           inner join dms_file_group on dfc_file_group_id=dfg_id
           left join sys_status on dfi_status=stat_id
         /*  left join dms_file_permission on dfp_file_category_id=dfi_file_category_id and dfp_user_id='$userId' and dfp_status='1' and dfp_is_deleted='0'*/
-        where 1=1 and dfi_company_id='$userCompanyId' and dfi_reference_id='$id' and dfg_id='12' and dfi_is_deleted='0'
+        where 1=1 and dfi_company_id='$userCompanyId' and dfi_reference_id='$id' /*and dfg_id='12'*/ and dfi_is_deleted='0'
         order by dfc_name asc, dfi_file_name asc, dfi_file_version asc ";
   $result = $db->singleQuery($sql);
   $arr = [];
@@ -94,7 +94,7 @@ dms_file_group.dfg_name
 FROM
 dms_file_category
 Inner Join dms_file_group ON dms_file_category.dfc_file_group_id = dms_file_group.dfg_id
-$where 
+$where AND dms_file_category.dfc_is_deleted = 0
 ";
   }
   
@@ -162,13 +162,13 @@ WHERE NOT EXISTS (
 }
 elseif($requestType=='loadSearchCombo'){
   
-$id=$_REQUEST['id'];
+ $id=$_REQUEST['id'];
    $sql="SELECT
        ins_application_id,
 institute_reg_id,
 reg_no
 FROM
-institute_registration where ins_is_deleted='0' and ins_type_id='3' and ins_created_by=$userId  and institute_reg_id='$id'
+institute_registration where ins_is_deleted='0' and ins_type_id='3' /*and ins_created_by=$userId*/  and institute_reg_id='$id'
           order by ins_application_id asc";
 		 
 	$result=$db->singleQuery($sql);

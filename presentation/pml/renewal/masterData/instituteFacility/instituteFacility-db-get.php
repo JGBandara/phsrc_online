@@ -66,12 +66,12 @@ if($requestType=='loadDetails'){
 }
 elseif($requestType=='loadSearchCombo'){
   $id=$_REQUEST['id'];
-   $sql="SELECT
+    $sql="SELECT
        ins_application_id,
 institute_reg_id,
 reg_no
 FROM
-institute_registration where ins_is_deleted='0' and ins_type_id='3' and ins_created_by=$userId  and institute_reg_id='$id'
+institute_registration where ins_is_deleted='0' and ins_type_id='3' /*and ins_created_by=$userId*/  and institute_reg_id='$id'
           order by ins_application_id asc";
 		 
 	$result=$db->singleQuery($sql);
