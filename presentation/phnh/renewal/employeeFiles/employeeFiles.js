@@ -127,11 +127,13 @@ $( document ).ready( function () {
   var divDropzone = new Dropzone("#abc-efg", {
         paramName: "file",
         maxFilesize: 10,
+        acceptedFiles: "application/pdf",
         url: backwardSeparator+'presentation/dms/file/file-db-set.php?requestType=upload',
         previewsContainer: "#dropzone-previews",
         autoProcessQueue: false,
         uploadMultiple: false,
         parallelUploads: 5,
+        
 //                  clickable: inputClick[0],
         maxFiles: 20,
         init: function() {
