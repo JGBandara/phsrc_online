@@ -67,7 +67,58 @@
 				  </ul>
 				</nav>
 			</div>
-      <div class="rows_count">Showing 11 to 20 of 91 entries</div>
+      <div class="rows_count d-flex justify-content-start">Showing 11 to 20 of 91 entries</div>
+
+<div class="d-flex justify-content-end mb-3">
+  <form action="export_excel.php" method="post" class="me-2">
+    <button id="btnExportExcel" class="btn btn-success">
+      <i class="fas fa-file-excel"></i> Download Excel
+    </button> &nbsp;&nbsp;&nbsp;
+  </form>
+
+  <button id="btnPrint" class="btn btn-primary" onclick="printTable()">
+    <i class="fas fa-print"></i> Print
+  </button>
+</div>
+
+<script>
+function printTable() {
+    // Clone the table to avoid modifying the original
+    var table = document.querySelector('table').cloneNode(true);
+
+    // Remove last column (Action) from thead
+    table.querySelectorAll('thead tr th:last-child').forEach(th => th.remove());
+
+    // Remove last column from each row in tbody
+    table.querySelectorAll('tbody tr').forEach(tr => {
+        tr.querySelectorAll('td:last-child').forEach(td => td.remove());
+    });
+
+    // Open new window and print
+    var newWin = window.open('', '', 'width=1200,height=800');
+    newWin.document.write('<html><head><title>Print</title>');
+    newWin.document.write('<style>');
+    newWin.document.write(`
+        @media print {
+            @page { margin: 0; }
+            body { margin: 0; font-family: Arial, sans-serif; }
+            table { width: 100%; border-collapse: collapse; }
+            th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+            th { background-color: #343a40 !important; color: #fff !important; }
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+        th { background-color: #343a40; color: #fff; }
+    `);
+    newWin.document.write('</style></head><body>');
+    newWin.document.write(table.outerHTML); // print only the modified table
+    newWin.document.write('</body></html>');
+    newWin.document.close();
+    newWin.focus();
+    newWin.print();
+    newWin.close();
+}
+</script>
 
 </div> <!-- 		End of Container -->
 
