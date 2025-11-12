@@ -3,77 +3,68 @@ $(document).ready(function () {
     $('#staffInfo,#instituteInfo,#facilityInfo,#documentList,#paymentInfo,#checkList').hide();
 
     load_detail();
+function load_detail() {
+    $("#table-id tbody").remove(); // remove old rows
+    $.ajax({
+        url: "list-db-get.php",
+        dataType: 'json',
+        data: 'requestType=loadDetails',
+        async: false,
+        success: function(json) {
+            var $id = json.id;
+            var $name = json.ownerName;
+            var $payType = json.paymentType;
+            var $cat_name = json.cat_name;
+            var $regAmount = json.regAmount;
+            var $date = json.crDate;
+            var $approveStatus = json.approveStatus;
 
+            $('#table-id').append("<tbody></tbody>");
 
-    function load_detail() {
-        $('#lblAcction').text('')
-        $('#btnReject,#btnApprove').show();
+            for (var i = 0; i < $id.length; i++) {
+                var rowColor = "";
+                var approveText = "";
 
-        $("#table-id").find("tr:gt(0)").remove();
-        var url = "list-db-get.php";
-
-        var httpobj = $.ajax({
-            url: url,
-            dataType: 'json',
-            data: 'requestType=loadDetails',
-            async: false,
-            success: function (json) {
-
-                $id = json.id;
-                $name = json.ownerName;
-                $date = json.crDate;
-                $payType = json.paymentType;
-                $regAmount = json.regAmount;
-                $approveStatus = json.approveStatus;
-                $cat_name = json.cat_name
-
-                $('#table-id').append("<tbody>");
-
-
-                for ($i = 0; $id.length > $i; $i++) {
-                    var rowColor = "";
-                    var approveText = "";
-                    if ($approveStatus[$i] === "Approved") {
-                        rowColor = "background-color: rgba(33, 99, 47, 1); color: white;";
-                        approveText = "Recommended By The PDHS";
-                    } else if ($approveStatus[$i] === "Rejected") {
-                        rowColor = "background-color: rgba(173, 10, 26, 1); color: white;";
-                        approveText = "Rejected";
-                    } else if ($approveStatus[$i] === "Checked") {
-                        rowColor = "background-color: rgba(216, 166, 15, 1); color: black;";
-                        approveText = "Officer Checked";
-                    } else if ($approveStatus[$i] === "Recommended") {
-                        rowColor = "background-color: rgba(33, 137, 153, 1); color: white;";
-                        approveText = "Inspection Officer Checked";
-                    } else {
-                        approveText = "Pending";
-                    }
-                    $('#table-id').append("<tr style='" + rowColor + "'>" +
-                        "<td>" + $name[$i] + "</td>" +
-                        "<td>" + $payType[$i] + "</td>" +
-
-                        "<td>" + $cat_name[$i] + "</td>" +
-                        "<td>" + $regAmount[$i] + "</td>" +
-                        "<td>" + $date[$i] + "</td>" +
-                        "<td>" + approveText + "</td>" +
-                        "<td><center><button type='button' class='btn btn-success btn-md' data-toggle='modal' data-target='#myModal' id='" + $id[$i] + "'>View</button></center></td>" +
-                        "</tr>");
-
-
-                    /*$('#frmItemCount #sheetSize'+$i).hide();
-                    $('#frmItemCount #paperSize'+$i).hide();
-                    $('#frmItemCount #singleSide'+$i).hide();
-                    $('#frmItemCount #doubleSide'+$i).hide();*/
-
-                    /*$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$name[$i]+"</td><td>"+$name[$i]+"</td><td><button type='button' class='btn btn-info btn-lg' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Approved</button></td></tr>" );*/
-
+                if ($approveStatus[i] === "Approved") {
+                    rowColor = "background-color: rgba(33, 99, 47, 1); color: white;";
+                    approveText = "Recommended By The PDHS";
+                } else if ($approveStatus[i] === "Rejected") {
+                    rowColor = "background-color: rgba(173, 10, 26, 1); color: white;";
+                    approveText = "Rejected";
+                } else if ($approveStatus[i] === "Checked") {
+                    rowColor = "background-color: rgba(216, 166, 15, 1); color: black;";
+                    approveText = "Officer Checked";
+                } else if ($approveStatus[i] === "Recommended") {
+                    rowColor = "background-color: rgba(33, 137, 153, 1); color: white;";
+                    approveText = "Inspection Officer Checked";
+                } else {
+                    approveText = "Pending";
                 }
-                $('#table-id').append("</tbody>");
+
+                $('#table-id tbody').append("<tr style='" + rowColor + "'>" +
+                    "<td>" + $name[i] + "</td>" +
+                    "<td>" + $payType[i] + "</td>" +
+                    "<td>" + $cat_name[i] + "</td>" +
+                    "<td>" + $regAmount[i] + "</td>" +
+                    "<td>" + $date[i] + "</td>" +
+                    "<td>" + approveText + "</td>" +
+                    "<td><center><button type='button' class='btn btn-success btn-md' data-toggle='modal' data-target='#myModal' id='" + $id[i] + "'>View</button></center></td>" +
+                    "</tr>");
             }
-        });
-        /*<img src='../../../../img/but_rejected.png' style='width:100px' data-target='#myModal'/>
-    */
-    }
+
+            var totalRows = $id.length;
+            var rowsPerPage = 10; 
+            var currentPage = 1; 
+            var start = (currentPage - 1) * rowsPerPage + 1;
+            var end = currentPage * rowsPerPage;
+            // if (end > totalRows) end = totalRows;
+
+            $('.rows_count').text("Showing " + start + " to " + end + " of " + totalRows + " entries");
+        }
+    });
+}23
+
+
 
     $('#butBasicInfo').click(function () {
         $('#basicInfo').show();

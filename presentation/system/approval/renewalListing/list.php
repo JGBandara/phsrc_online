@@ -39,6 +39,7 @@
 <input type="text" id="search_input_all" onKeyUp="FilterkeyWord_all_table()" placeholder="Search.." class="form-control">
         </div>
       </div>
+      
 <table class="table table-striped table-class" id= "table-id">
   
 	
@@ -62,12 +63,11 @@
 <!--		Start Pagination -->
 			<div class='pagination-container'>
 				<nav>
-				  <ul class="pagination">
-				   <!--	Here the JS Function Will Add the Rows -->
-				  </ul>
+				  
 				</nav>
 			</div>
-      <div class="rows_count d-flex justify-content-start">Showing 11 to 20 of 91 entries</div>
+      <div class="rows_count d-flex justify-content-start"></div>
+      <!-- <div class="rows_count d-flex justify-content-start">Showing 11 to 20 of 91 entries</div> -->
 
 <div class="d-flex justify-content-end mb-3">
   <form action="export_excel.php" method="post" class="me-2">
@@ -614,6 +614,7 @@ Technicians
   </div>
 <!--  Developed By Yasser Mas -->
 <!-- partial -->
+
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
  <script src="<?php echo $backwardSeparator;?>js/dms.js"></script>
