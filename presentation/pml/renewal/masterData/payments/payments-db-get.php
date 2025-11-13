@@ -55,7 +55,7 @@ if($requestType=='loadDetails'){
                     $response['board_type']=$row['board_type'];
         }
                 
-      $sqlAm="SELECT
+       $sqlAm="SELECT
 institute_information.ins_info_institute_id,
 institute_information.ins_type,
 man_institute_sub.reg_amount,
@@ -68,7 +68,7 @@ Inner Join man_institute_sub ON institute_information.ins_type = man_institute_s
            
                $response['totAmount']=$row1['reg_amount'];
                $response['stampFee']=$row1['stamp_fee'];
-               $type =$row1['ins_type'];
+           $response['type'] =$row1['ins_type'];
              
       }
      
