@@ -217,7 +217,7 @@ $modelOwner= new cls_ins_owner($db);
                     <div class="form-row hideOnline">
                       <div class="form-group col-sm-6">
                         <label for="txtRelIns" class="col-form-label-sm">Upload Institute Profile</label>
-                        <input type="file" onchange="readURL(this);" accept="image/*" class="form-control form-input col-sm-6 Profile-input-file" id="fileProfileImage" name="fileProfileImage" required>
+                        <input type="file" onchange="readURL(this);" accept="image/*" class="form-control form-input col-sm-6 Profile-input-file" id="fileProfileImage" name="fileProfileImage">
                       </div>
                     </div>
                         
