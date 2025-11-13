@@ -296,7 +296,7 @@ $(document).ready(function () {
                     $stampFee = parseFloat(json.stampFee);
                     $payarreas = parseFloat(json.payarreas);
                     var type = json.type;
-                    console.log(json.type);
+
                     if (type.trim() === "Large Labs") {
                         $('#cboBoardType').empty().append(`
      <option value=""></option>
