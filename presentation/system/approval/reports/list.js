@@ -40,15 +40,16 @@ function load_detail() {
                     approveText = "Pending";
                 }
 
-                $('#table-id tbody').append("<tr style='" + rowColor + "'>" +
-                    "<td>" + $name[i] + "</td>" +
-                    "<td>" + $payType[i] + "</td>" +
-                    "<td>" + $cat_name[i] + "</td>" +
-                    "<td>" + $regAmount[i] + "</td>" +
-                    "<td>" + $date[i] + "</td>" +
-                    "<td>" + approveText + "</td>" +
-                    "<td><center><button type='button' class='btn btn-success btn-md' data-toggle='modal' data-target='#myModal' id='" + $id[i] + "'>View</button></center></td>" +
-                    "</tr>");
+              $('#table-id tbody').append("<tr style='" + rowColor + "'>" +
+                "<td>" + $name[i] + "</td>" +
+                "<td>" + $payType[i] + "</td>" +
+                "<td>" + $cat_name[i] + "</td>" +
+                "<td class='date-column'>" + $date[i] + "</td>" +
+                "<td>" + $regAmount[i] + "</td>" +
+                "<td>" + approveText + "</td>" +
+                "<td><center><button type='button' class='btn btn-success btn-md' data-toggle='modal' data-target='#myModal' id='" + $id[i] + "'>View</button></center></td>" +
+              "</tr>");
+
             }
 
             var totalRows = $id.length;
@@ -62,6 +63,28 @@ function load_detail() {
         }
     });
 }
+document.getElementById("btnExportExcel").addEventListener("click", function () {
+
+    let rows = [];
+
+    document.querySelectorAll("#table-id tbody tr").forEach(tr => {
+        if (tr.style.display !== "none") {   // Only export filtered rows
+            let rowData = [];
+            tr.querySelectorAll("td").forEach(td => {
+                rowData.push(td.innerText.trim());
+            });
+            rows.push(rowData);
+        }
+    });
+
+    if (rows.length === 0) {
+        alert("No records to export!");
+        return;
+    }
+
+    document.getElementById("excelData").value = JSON.stringify(rows);
+    document.getElementById("excelForm").submit();
+});
 
 
    
