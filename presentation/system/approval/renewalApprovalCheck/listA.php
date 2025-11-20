@@ -41,10 +41,109 @@
     background: #f9f9f9;
     border-top: 1px solid #ddd;
   }
-</style>
+ @media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .modal-content, .modal-content * {
+    visibility: visible;
+  }
+
+  .modal-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .modal-footer, .btn, select, textarea {
+    display: none !important; /* Hide controls during print */
+  }
+
+  .modal-body {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+
+  th, td {
+    border: 1px solid #999;
+    padding: 6px;
+    font-size: 13px;
+  }
+
+  h4.modal-title {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* Ensure multi-page printing */
+  .form-group, table, .card {
+    page-break-inside: avoid;
+  }
+
+  .modal-dialog {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+}
+
 
 </style>
+<style>
+#printArea {
+    font-size: 10px;
+    line-height: 1.2;
+    font-family: Arial, sans-serif;
+}
+
+#printArea table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#printArea th, #printArea td {
+    border: 1px solid #555;
+    padding: 4px;
+    text-align: left;
+}
+
+#printArea th {
+    background:#333;
+    color:#fff;
+}
+
+h2 {
+    font-size: 14px;
+}
+</style>
+
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+
+<script>
+  $(document).ready(function () {
+    $('#btnPrint').click(function () {
+      // Show all hidden sections before printing
+      $('#basicInfo, #staffInfo, #instituteInfo, #facilityInfo, #documentList, #paymentInfo, #checkList').show();
+
+      // Print the full modal content
+      window.print();
+    });
+  });
+</script>
+
 
 <body>
   <!-- partial:index.partial.html -->
@@ -96,7 +195,6 @@
       </nav>
     </div>
     <div class="rows_count">Showing 11 to 20 of 91 entries</div>
-
   </div> 
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -262,7 +360,7 @@
               </div>
               <div class="form-group col-md-3">
                 &nbsp; </div>
-              <div class="form-group col-md-3">&nbsp;</div>
+              <div class="form-group col-md-3" style="display:none" id="regNo">&nbsp;</div>
             </div>
           </div>
            <div id="facilityInfo">
@@ -446,13 +544,74 @@
       &nbsp;
       <button type="button" class="btn btn-danger" id="btnReject">Reject</button>
       &nbsp;
+      <button type="button" class="btn btn-primary" id="btnPrint">Print</button>
+      &nbsp;
       <button type="button" class="btn btn-warning" data-dismiss="modal" id="btnClose">Close</button>
+      &nbsp;&nbsp;
+      <button id="btnDownloadPDF" class="btn btn-primary"> <i class="fa fa-file-pdf"></i> Download PDF
+</button>
     </center>
   </div>
 </div>
+<script>
+$("#btnDownloadPDF").click(function () {
+    var sections = [
+        { id: "basicInfo", title: "Basic Information" },
+        { id: "staffInfo", title: "Staff Information" },
+        { id: "instituteInfo", title: "Institute Information" },
+        { id: "facilityInfo", title: "Facilities Information" },
+        { id: "paymentInfo", title: "Payment Information" },
+        { id: "documentList", title: "Documents" }
+    ];
 
+    var pdfContent = $("<div></div>");
+
+    pdfContent.append("<style>" +
+        "body { font-family: Arial, sans-serif; font-size: 10px; line-height:1.2; }" +
+        "h1 { font-size: 14px; margin-bottom: 5px; text-align:center; }" +
+        "h2 { color: #0d6efd; font-size: 12px; margin-top: 15px; margin-bottom:5px; }" +
+        "table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }" +
+        "th, td { border: 1px solid #555; padding: 4px; text-align: left; font-size:10px; }" +
+        "th { background-color: #343a40; color: #fff; }" +
+        "</style>");
+
+    var regNo = $("#regNo").text() || "-";
+    var instituteName = $("#lblInsName").text() || "-";
+    pdfContent.append("<h1>Registration No: " + regNo + " | Institute Name: " + instituteName + "</h1>");
+
+    sections.forEach(function(section) {
+        var sec = $("#" + section.id);
+        var wasHidden = sec.css("display") === "none";
+        if (wasHidden) sec.show();
+
+        var clonedSec = sec.clone();
+
+        if (section.id === "paymentInfo") {
+            clonedSec.find("table tr").each(function() {
+                $(this).find("th:last-child, td:last-child").remove();
+            });
+        }
+
+        pdfContent.append("<h2>" + section.title + "</h2>");
+        pdfContent.append(clonedSec);
+
+        if (wasHidden) sec.hide();
+    });
+
+    var opt = {
+        margin:       10,
+        filename:     'Institute_Details.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(pdfContent[0]).save();
+});
+
+</script>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-  <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
-  <script src="<?php echo $backwardSeparator; ?>js/dms.js"></script>
-  <script src="../../../../js/grid_js/script.js"></script>
-  <script src="list.js"></script>
+<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+ <script src="<?php echo $backwardSeparator;?>js/dms.js"></script>
+<script  src="../../../../js/grid_js/script.js"></script>
+<script  src="list.js"></script>

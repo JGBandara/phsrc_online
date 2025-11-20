@@ -26,7 +26,6 @@ $companyId           = isset($userCompanyId) ? $userCompanyId : null;
 $createdBy           = isset($userId) ? $userId : null;
 $lastModifiedBy           = isset($userId) ? $userId : null;
 $deletedBy           = isset($userId) ? $userId : null;
-//$details = json_decode($_REQUEST['detailList'], true);
 
 if ($requestType == 'approve') {
     $id = $_REQUEST['id'];

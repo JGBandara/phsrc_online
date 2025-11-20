@@ -10,16 +10,9 @@ $userLocationId = $_SESSION['locationId'];
 require "{$backwardSeparator}autoLoad.php";
 
 require_once $backwardSeparator.'dataAccess/connector.php';
-
-//use presentation\hrm\masterData\classes\cls_hrm_employee_information;
-
-//$model = new cls_hrm_employee_information($db);
   
 $requestType 	= $_REQUEST['requestType'];
 
-// =======================================================
-//         Load Details
-// =======================================================
 if($requestType=='loadDetails'){
   $id = $_REQUEST['id'];
  $sql="SELECT 
@@ -57,7 +50,6 @@ Inner Join
 where sys_users.syu_id='$userId' and sys_user_location.syo_is_deleted='0'
 ORDER BY 
     institute_payment_detail.payment_date DESC;";
-		//  where institute_registration.ins_province_id=$userLocationId
 	$result=$db->singleQuery($sql);
 	while($row=mysqli_fetch_array($result)){
 			
@@ -95,7 +87,7 @@ ORDER BY
    Inner Join sys_province ON institute_registration.ins_province_id = sys_province.syv_id
    Inner Join sys_district ON institute_registration.ins_district_id = sys_district.syd_id
    Inner Join institute_payment_detail ON institute_registration.ins_application_id = institute_payment_detail.payment_detail_institute_id
-where institute_registration.ins_application_id=$id
+where institute_registration.ins_application_id='$id'
 ";
 	$result=$db->singleQuery($sql);
 	while($row=mysqli_fetch_array($result)){
@@ -105,20 +97,15 @@ where institute_registration.ins_application_id=$id
 		$response['owAddress']=$row['ins_owner_address'];
 		$response['insName']=$row['ins_institute_name'];
 		$response['insAddress']=$row['ins_institute_address'];
-                $response['ins_telephone']= $row['ins_telephone'];
+        $response['ins_telephone']= $row['ins_telephone'];
 		$response['ins_mobile']= $row['ins_mobile'];
-                $response['ins_email']= $row['ins_email'];
+        $response['ins_email']= $row['ins_email'];
 		$response['ins_website']= $row['ins_website'];
 		$response['province']= $row['pro_name'];
 		$response['district']= $row['dis_name'];
 		$response['approvalStatus']=$row['payment_is_approval'];
-
-		
-		//------------------------------------------------------------------------------------------------
-		$response['approval']	=$row['payment_is_approval'];
-		//------------------------------------------------------------------------------------------------
+        $response['approval']	=$row['payment_is_approval'];
 		}
-                //----------------------- staff information----------------------------------------------------
                 $sqlStfIn="SELECT
 institute_staff_information.st_info_institute_id,
 institute_staff_information.st_info_hours_of_practice,
@@ -148,7 +135,7 @@ institute_staff_information_stf_detail.speciality,
 institute_staff_information_stf_detail.Register_id
 FROM
 institute_staff_information_stf_detail
-where institute_staff_information_stf_detail.institute_id=$id
+where institute_staff_information_stf_detail.institute_id='$id'
 				";
 		$resultsft = $db->singleQuery($sqlsft);
 		$arrDetail1;
@@ -177,7 +164,7 @@ tbl_position.position_name
 FROM
 institute_staff_information_managment_detail
 Inner Join tbl_position ON institute_staff_information_managment_detail.position_id = tbl_position.position_id
-where institute_staff_information_managment_detail.institute_id=$id
+where institute_staff_information_managment_detail.institute_id='$id'
 				";
 		$resultMgt = $db->singleQuery($sqlMgt);
 		$arrDetail2;
@@ -191,9 +178,6 @@ where institute_staff_information_managment_detail.institute_id=$id
 			$arrDetail2[] = $val2;
 		}
 		$response['detailVal2'] = $arrDetail2;
-//-----------------------------------------------------------------------------
-                
-//----------------------------- Institute Information -------------------------
                 
                 $sqlins="SELECT
 				institute_information.ins_info_institute_id,
@@ -202,12 +186,13 @@ where institute_staff_information_managment_detail.institute_id=$id
 				institute_registration.ins_profile,
 				tbl_owner.ownership,
 				institute_information.ins_type,
-				institute_information.ins_boi_registration
+				institute_information.ins_boi_registration,
+				institute_registration.reg_no
 				FROM
 				institute_information
 				left Join tbl_owner ON institute_information.ins_ownership = tbl_owner.ownership_id
 				inner Join institute_registration ON institute_information.ins_info_institute_id = institute_registration.ins_application_id 
-				where institute_information.ins_info_institute_id=$id
+				where institute_information.ins_info_institute_id='$id'
 ";
 	$resultins=$db->singleQuery($sqlins);
 	while($row=mysqli_fetch_array($resultins)){
@@ -217,11 +202,9 @@ where institute_staff_information_managment_detail.institute_id=$id
 		$response['ins_type']=$row['ins_type'];
 		$response['ownership']=$row['ownership'];
 		$response['ins_profile']	=$row['ins_profile'];
-//echo $response['ins_profile'];
-		
+		$response['reg_no']	=$row['reg_no'];
 		}
- //-------------Institute facility -----------------------------------------------------------------
-    $sqlfaci= "select ins_faci_institute_id,ins_no_of_bed,ins_no_of_room,ins_no_of_ward,ins_radio_service,ins_no_of_license,ins_waste_disposal,ins_inst_dress,ins_emergency_kit from institute_facility where ins_faci_institute_id= $id";
+    $sqlfaci= "select ins_faci_institute_id,ins_no_of_bed,ins_no_of_room,ins_no_of_ward,ins_radio_service,ins_no_of_license,ins_waste_disposal,ins_inst_dress,ins_emergency_kit from institute_facility where ins_faci_institute_id= '$id'";
   
   $resultfaci=$db->singleQuery($sqlfaci);
   while($row=mysqli_fetch_array($resultfaci)){
@@ -235,7 +218,6 @@ where institute_staff_information_managment_detail.institute_id=$id
 	  $response['emgKit'] = $row['ins_emergency_kit'];
 	  
 	  }  
-    //------------------------------------Institute facility list------------------------------------- 
           $sqlfdet = "SELECT
 institute_facility_detail.facility_id,
 institute_facility_detail.facility_detail_value,
@@ -244,7 +226,7 @@ tbl_facility.facility_name
 FROM
 institute_facility_detail
 Inner Join tbl_facility ON institute_facility_detail.facility_id = tbl_facility.facility_id
-				where institute_facility_detail.facility_detail_institute_id=$id order by institute_facility_detail.facility_detail_id
+				where institute_facility_detail.facility_detail_institute_id='$id' order by institute_facility_detail.facility_detail_id
 				";
 		$resultfdet = $db->singleQuery($sqlfdet);
 		$arrDetail3;
@@ -273,7 +255,6 @@ Inner Join tbl_facility ON institute_facility_detail.facility_id = tbl_facility.
   while($row = mysqli_fetch_assoc($result)){
     $arr[] = $row;
   }
-    //--------------------------------------Payment --------------------------------------------------
                 
                 $sqlpay="SELECT
 pd.payment_reg_year,
@@ -290,7 +271,7 @@ r.receipt_payment_order_id,
 r.receipt_path
 FROM
 institute_payment_detail pd LEFT JOIN receipts r ON pd.payment_detail_institute_id = r.receipt_institute_id AND pd.payment_reg_year = r.receipt_payment_reg_year
-where pd.payment_detail_institute_id=$id
+where pd.payment_detail_institute_id='$id'
           order by pd.payment_detail_institute_id asc";
 	$resultpay=$db->singleQuery($sqlpay);
 	while($row=mysqli_fetch_array($resultpay)){
@@ -305,14 +286,9 @@ where pd.payment_detail_institute_id=$id
 		$response['payment_arrears']	=$row['payment_arrears'];
 		$response['reject_remark']	=$row['reject_remark'];
 		$response['receipt_path']	=$row['receipt_path'];
-
-
-
-
 		}
                 
   echo json_encode($response);
- // echo json_encode($arr);
 	}
         
 if($requestType=='loadDocDetails'){

@@ -123,6 +123,7 @@ $(document).ready(function() {
 					  $('#textBoi').text(json.boiReg);
 					  $('#txtInsType').text(json.txtInsType);
 					  $('#txtOwnerShip').text(json.ownership);
+					  $('#regNo').text(json.reg_no);
 					  //-------------------------------------------------------------------------
 			  $('#textRecKeep').text('Manual');
 			  $('#textVisitSpeciality').text('Yes');

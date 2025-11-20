@@ -307,7 +307,7 @@ $sql="update reg_ins_comm set
 			}
 		
 		mysqli_close($conn);
-              $sqlFaci="SELECT
+  $sqlFaci="SELECT
 institute_facility_detail.facility_detail_institute_id,
 institute_facility_detail.facility_id,
 institute_facility_detail.facility_detail_value,
@@ -332,9 +332,9 @@ institute_facility_detail where institute_facility_detail.facility_detail_instit
                                         mysqli_close($conn);
             
         }
-        
-        
-        
+
+
+		
  $sqlSt="SELECT
 institute_staff_information_stf_detail.institute_id,
 institute_staff_information_stf_detail.Name,

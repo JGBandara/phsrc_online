@@ -175,10 +175,12 @@ institute_information.ins_date_of_stablishment,
 institute_information.ins_br_no,
 tbl_owner.ownership,
 institute_information.ins_type,
-institute_information.ins_boi_registration
+institute_information.ins_boi_registration,
+institute_registration.reg_no
 FROM
 institute_information
 left Join tbl_owner ON institute_information.ins_ownership = tbl_owner.ownership_id
+inner Join institute_registration ON institute_information.ins_info_institute_id = institute_registration.ins_application_id 
 where institute_information.ins_info_institute_id=$id
 ";
 	$resultins=$db->singleQuery($sqlins);
@@ -188,6 +190,7 @@ where institute_information.ins_info_institute_id=$id
 		$response['boiReg']=$row['ins_boi_registration'];
 		$response['txtInsType']=$row['ins_type'];
 		$response['ownership']=$row['ownership'];
+		$response['reg_no']	=$row['reg_no'];
 		
 		}
  //-------------Institute facility -----------------------------------------------------------------
