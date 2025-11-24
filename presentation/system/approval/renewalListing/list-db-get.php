@@ -19,7 +19,7 @@ if($requestType=='loadDetails'){
     institute_registration.ins_application_id,   
     institute_registration.ins_type_id,   
     institute_registration.reg_no,   
-    institute_payment_detail.payment_date,   
+    DATE(institute_payment_detail.payment_detail_created_on) AS payment_date,   
     institute_payment_detail.payment_type,   
     institute_payment_detail.payment_reg_fee,   
     CASE 
@@ -54,6 +54,7 @@ ORDER BY
 	while($row=mysqli_fetch_array($result)){
 			
 		$response['id'][]=$row['ins_application_id'];
+		$response['regNo'][]=$row['reg_no'];
 		$response['ownerName'][]=$row['ins_institute_name'];
 		$response['crDate'][]=$row['payment_date'];
 		$response['paymentType'][]=$row['payment_type'];

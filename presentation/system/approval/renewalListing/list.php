@@ -75,6 +75,7 @@ h2 {
 <thead class="bg-gradient-dark">
 <tr>
 		<th>Institute Name</th>
+    <th>Reg No</th>
 		<th>Reg Type</th>
     <th>Category</th>
     <th>Registration Fee</th>

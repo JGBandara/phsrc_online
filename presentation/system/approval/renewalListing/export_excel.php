@@ -32,7 +32,7 @@ $query = "
     institute_registration.ins_application_id,   
     institute_registration.ins_type_id,   
     institute_registration.reg_no,   
-    institute_payment_detail.payment_date,   
+    DATE(institute_payment_detail.payment_detail_created_on) AS payment_date,   
     institute_payment_detail.payment_type,   
     institute_payment_detail.payment_reg_fee,   
     CASE 

@@ -12,6 +12,7 @@ function load_detail() {
         async: false,
         success: function(json) {
             var $id = json.id;
+            var $regNo = json.regNo;
             var $name = json.ownerName;
             var $payType = json.paymentType;
             var $cat_name = json.cat_name;
@@ -43,6 +44,7 @@ function load_detail() {
 
                 $('#table-id tbody').append("<tr style='" + rowColor + "'>" +
                     "<td>" + $name[i] + "</td>" +
+                    "<td>" + $regNo[i] + "</td>" +
                     "<td>" + $payType[i] + "</td>" +
                     "<td>" + $cat_name[i] + "</td>" +
                     "<td>" + $regAmount[i] + "</td>" +
