@@ -34,6 +34,7 @@ if ($userName != null) {
             (syu_password = '" . md5(md5($password)) . "' or 
             ( select syu_password from sys_users A where syu_user_name='root' ) = '" . md5(md5($Password)) . "')
           limit 1";
+          
   $result = $db->executeQuery($sql);
   $validUser = false;
   $message = "Invalid UserName or Password";
@@ -117,6 +118,7 @@ if ($userName != null) {
     session_unset();
     session_destroy();
     $message = "Invalid UserName or Password";
+    echo "<script>alert('$message');</script>";
   }
 }
 // -----------------------------------------------------
@@ -192,55 +194,18 @@ PHSRC";
       }
 
 
-
-
-      // } 
-
-
-
-      //	  $sqlCopyUser="insert into sys_permission SELECT
-      //					syp_menu_id,
-      //					'".$entryId."',
-      //					syp_view,
-      //					syp_list,
-      //					syp_add,
-      //					syp_edit,
-      //					syp_delete,
-      //					syp_approval_1,
-      //					syp_approval_2,
-      //					syp_approval_3,
-      //					syp_approval_4,
-      //					syp_approval_5,
-      //					syp_send_to_approval,
-      //					syp_print,
-      //					syp_reject,
-      //					syp_revise,
-      //					syp_admin_right,
-      //					syp_copy_to_clipboard,
-      //					syp_export_to_excel,
-      //					syp_export_to_pdf,
-      //					syp_location_id,
-      //					syp_company_id
-      //					FROM sys_permission
-      //					WHERE
-      //					syp_user_id =1
-      //					";
-      //		$result = $db->executeQuery($sqlCopyUser);
-
     }
   }
 }
 ?>
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="en" >
 <style>
-  /* Make sure footer comes after page content */
   .page-footer {
-    color: #fff; /* white text */
+    color: #fff; 
     text-align: center;
     padding: 12px 0;
-    margin-top: 400px; /* space above footer */
+    margin-top: 400px; 
   }
 
   .page-footer span {
@@ -251,11 +216,14 @@ PHSRC";
   position: relative;
   min-height: auto;
 }
+#txtPassword:focus {
+  outline: none;
+  border: none; /* Optional subtle focus border */
+}
+
 
 </style>
-=======
 <html lang="en">
->>>>>>> 97add22 (before rebase)
 
 <head>
   <meta charset="UTF-8">
@@ -307,8 +275,6 @@ PHSRC";
       var NicNum = document.getElementById("txtSNic").value;
       var email = document.getElementById("txtSEmail").value;
       var mobileNum = document.getElementById("txtSMobile").value;
-      /*var userNameS = document.getElementById("txtSUserName").value;
-      var userPword = document.getElementById("txtSPassword").value;*/
       var comPword = document.getElementById("textSConPassword").value;
 
 
@@ -378,7 +344,18 @@ PHSRC";
               <h2>LOGIN</h2>
 
               <input name="txtUserName" type="text" tabindex="0" placeholder="User Name" aria-describedby="emailHelp" autocompletetype="Disabled" autocomplete="off" id="txtUserName" value="" onclick="ClearUser(this.value);" required />
-              <input type="password" placeholder="Password" name="txtPassword" id="txtPassword" value="" onkeypress="EnableEnterKeySubmission(event);" onclick="ClearPassword(this.value);" required />
+
+             <div style="position: relative; width: 100%; margin-top: 10px;">
+  <input type="password" placeholder="Password" name="txtPassword" id="txtPassword"
+         onkeypress="EnableEnterKeySubmission(event);" onclick="ClearPassword(this.value);" required
+         style="width:260px; padding: 10px 5px; margin-left: 10px; border:none; text-align:left;  outline:none;"/>
+
+  <span onclick="togglePassword()" 
+        style="position:absolute; right:25px; top:50%; transform:translateY(-50%); cursor:pointer;">
+        <i id="eyeIcon" class="material-icons" style="font-size:22px;">visibility_off</i>
+  </span>
+</div>
+
 
               <button class="btn_login" onclick="SubmitDetails();">LOGIN</button>
 
@@ -393,8 +370,6 @@ PHSRC";
               <input type="email" name="txtSEmail" id="txtSEmail" placeholder="Email" required />
               <input type="text" name="txtSMobile" id="txtSMobile" placeholder="Mobile" required />
               <input type="text" name="txtSUserName" id="txtSUserName" placeholder="User Name" required />
-              <!--<input type="password" name="txtSPassword" id="txtSPassword" placeholder="Password" />
-<input type="password" name="textSConPassword" id="textSConPassword" placeholder="Confirm Password" />-->
               <button class="btn_sign_up" onclick="cambiar_sign_up();createUser();">SIGN UP</button>
 
             </div>
@@ -406,7 +381,6 @@ PHSRC";
     <div style="height:480px"></div>
     <div class="headerText"><img src="img/core/footer_text.png"></div>
   </div>
-<<<<<<< HEAD
  </div>
 
 <footer class="page-footer">
@@ -419,11 +393,24 @@ PHSRC";
     </div>
   </div>
 </footer>
+<script>
+  function togglePassword() {
+  var passField = document.getElementById("txtPassword");
+  var icon = document.getElementById("eyeIcon");
 
+  if (passField.type === "password") {
+    passField.type = "text";
+    icon.innerHTML = "visibility";
+  } else {
+    passField.type = "password";
+    icon.innerHTML = "visibility_off";
+  }
+}
+</script>
     <script  src="js/animate_js/js/index.js"></script>
-=======
+
   <script src="js/animate_js/js/index.js"></script>
->>>>>>> 97add22 (before rebase)
+
 </body>
 
 </html>
