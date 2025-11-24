@@ -58,7 +58,6 @@
 		<th>Date</th>
     <th>Registration Fee</th>
     <th>Status</th>
-		<th>Action</th>
 	</tr>
 </thead>
 
@@ -92,26 +91,20 @@
 
 <script>
 function printTable() {
-    // Clone the table to avoid modifying the original
     var table = document.querySelector('table').cloneNode(true);
 
-    // Remove last column (Action) from thead
-    table.querySelectorAll('thead tr th:last-child').forEach(th => th.remove());
+    // Remove last column if exists (Action column)
+    table.querySelectorAll('thead tr th:last-child, tbody tr td:last-child').forEach(el => el.remove());
 
-    // Remove last column from each row in tbody
-    table.querySelectorAll('tbody tr').forEach(tr => {
-        tr.querySelectorAll('td:last-child').forEach(td => td.remove());
-    });
-    
-    // Remove hidden rows before printing
+    // Remove hidden rows
     table.querySelectorAll("tbody tr").forEach(tr => {
       if (tr.style.display === "none") tr.remove();
     });
 
-    // Calculate total Registration Fee
+    // Calculate total Registration Fee (5th column = index 4)
     let total = 0;
     table.querySelectorAll("tbody tr").forEach(tr => {
-        let fee = parseFloat(tr.children[3].innerText.replace(/,/g, '')); // 4th column = fee
+        let fee = parseFloat(tr.children[4].innerText.replace(/,/g, ''));
         if (!isNaN(fee)) total += fee;
     });
 
@@ -122,14 +115,13 @@ function printTable() {
     totalRow.style.backgroundColor = '#333';
     totalRow.style.color = 'white';
     totalRow.innerHTML = `
-        <td colspan="3" style="text-align:right;">Total Fees:</td>
-        <td style="text-align:right;">${total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2})}</td>
-        <td colspan="2"></td>
+        <td colspan="4" style="text-align:right;">Total Fees:</td>
+        <td style="text-align:left;">${total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2})}</td>
+        <td></td>
     `;
     tfoot.appendChild(totalRow);
     table.appendChild(tfoot);
 
-    // Open new window and print
     var newWin = window.open('', '', 'width=1200,height=800');
     newWin.document.write('<html><head><title>Print</title>');
     newWin.document.write('<style>');
@@ -153,6 +145,7 @@ function printTable() {
     newWin.print();
     newWin.close();
 }
+
 </script>
 
 

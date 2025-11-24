@@ -57,7 +57,6 @@ function load_detail() {
             var currentPage = 1; 
             var start = (currentPage - 1) * rowsPerPage + 1;
             var end = currentPage * rowsPerPage;
-            // if (end > totalRows) end = totalRows;
 
             $('.rows_count').text("Showing " + start + " to " + end + " of " + totalRows + " entries");
         }
@@ -140,6 +139,7 @@ function load_detail() {
                     $('#textBoi').text(json.boiReg);
                     $('#txtInsType').text(json.ins_type);
                     $('#txtOwnerShip').text(json.ownership);
+                    $('#regNo').text(json.reg_no);
                     //-------------------------------------------------------------------------
                     $('#textRecKeep').text('Manual');
                     $('#textVisitSpeciality').text('Yes');
@@ -341,13 +341,6 @@ function load_detail() {
     });
 
 
-    /*$('#slip').click(function(){
-        $imgLink=$('#txthidImg').val();
-        if($imgLink!='')
-        window.location = backwardSeparator+'img/BankSlip/'+$imgLink;
-
-    })	*/
-
     $('.btn').click(function () {
 
         var id = this.id;
@@ -394,39 +387,10 @@ function load_detail() {
         });
     });
 
-    /*$('.btnApprove').click(function(){
 
-        var txtRemark=$('#txtRemark').val();
-            var requestType="approve";
-            var id=$('#txtId').val();
 
-                    var url="list-db-set.php";
-                var obj=$.ajax({
-                    url:url,
-                    dataType:"json",
-                    type:'post',
-                    data:"requestType="+requestType+'&id='+id+'&txtRemark='+txtRemark,
-                    async:false,
 
-                    succuss:function(json){
-                        alert(json.type);
-                        if(json.type=='pass'){
 
-                        }
-                        else if(json.type=='fail'){
-                           modalMsgBox("Error", json.msg);
-                            return;
-                        }
-
-                    }
-
-                })
-                $('#lblAcction').text('Approved!')
-                $("#lblAcction").css("color", "#060");
-                $('#btnReject,#btnApprove').hide();
-                location.reload();
-
-        });*/
 
     $('#btnClose').click(function () {
 
@@ -434,45 +398,7 @@ function load_detail() {
 
     });
 
-    /*$('#btnReject').click(function(){
-
-        var txtRemark=$('#txtRemark').val();
-        var requestType="reject";
-        var id=$('#txtId').val();
-
-    //	}
-            var url="list-db-set.php";
-            var obj=$.ajax({
-                url:url,
-                dataType:"json",
-                type:'post',
-                data:"requestType="+requestType+'&id='+id+'&txtRemark='+txtRemark,
-                async:false,
-
-                succuss:function(json){
-
-                    if(json.type=='pass'){
-
-                    }
-                    else if(json.type=='fail'){
-                        modalMsgBox("Error", json.msg);
-                        return;
-                    }
-
-                }
-
-
-
-            })
-            $('#lblAcction').text('Rejected!')
-            $("#lblAcction").css("color", "#C00");
-            $('#btnReject,#btnApprove').hide();
-        //$("#btnClose").click();
-        //$('#modal').modal('hide')
-        //load_detail();
-        location.reload();
-    });*/
-
+   
 
     $('#frmItemCount .btnSave').click(function () {
 
@@ -515,19 +441,12 @@ function load_detail() {
 
         $('#frmItemCount #btnSave' + a).click(function () {
 
-            //alert();
-
             $id = a;
             $sheetName = $('#frmItemCount #sheetName' + a).val();
             $sheetSize = $('#frmItemCount #sheetSize' + a).val();
             $paperSize = $('#frmItemCount #paperSize' + a).val();
             $singleSide = $('#frmItemCount #singleSide' + a).val();
             $doubleSide = $('#frmItemCount #doubleSide' + a).val();
-
-            //if(updated==1){
-            //var requestType="edit";
-
-            //}else{
 
             var requestType = "edit";
             //	}
@@ -545,7 +464,6 @@ function load_detail() {
 
 
             });
-            //alert(id);
 
 
         })
