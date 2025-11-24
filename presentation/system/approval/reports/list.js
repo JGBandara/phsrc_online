@@ -47,7 +47,6 @@ function load_detail() {
                 "<td class='date-column'>" + $date[i] + "</td>" +
                 "<td>" + $regAmount[i] + "</td>" +
                 "<td>" + approveText + "</td>" +
-                "<td><center><button type='button' class='btn btn-success btn-md' data-toggle='modal' data-target='#myModal' id='" + $id[i] + "'>View</button></center></td>" +
               "</tr>");
 
             }

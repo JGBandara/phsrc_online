@@ -81,6 +81,19 @@ if (!empty($excelData)) {
             <td  style='font-weight:bold; background-color:#333; color:white; text-align:right;'></td>
           </tr>";
 }
+// Provincial fee 50%
+$provincialFee = $totalFee * 0.50;
+
+
+
+// Provincial 50% fee row
+echo "<tr>
+        <td style='font-weight:bold; background-color:#555; color:white; text-align:right;' colspan='4'>Provincial Fees (50%):</td>
+        <td style='font-weight:bold; background-color:#555; color:white; text-align:right;'>".number_format($provincialFee, 2)."</td>
+        <td style='font-weight:bold; background-color:#555; color:white; text-align:right;'></td>
+      </tr>";
+
+
 
 echo "</table>";
 exit;
