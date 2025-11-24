@@ -61,14 +61,14 @@ where ins_info_institute_id=$id ";
   $result=$db->singleQuery($sql);
   while($row=  mysqli_fetch_array($result)){
       
-       $insTypeId=$row['ins_type'];
-      if($insTypeId==3){
+       $insTypeId=trim($row['ins_type']);
+      if($insTypeId=='Large Labs'){
           $where="where dms_file_category.dfc_file_group_id =12 and dms_file_category.dfc_status = 1 and dms_file_category.dfc_is_deleted = 0 and dms_file_category.dfc_id in(16,17,18,19,20)";
-      }elseif($insTypeId==4){
+      }elseif($insTypeId=='Medium Labs'){
           $where="where dms_file_category.dfc_file_group_id =12 and dms_file_category.dfc_status = 1 and dms_file_category.dfc_is_deleted = 0 and dms_file_category.dfc_id in(16,17,18,19,20)";
-      }elseif($insTypeId==5){
+      }elseif($insTypeId=='Small Labs'){
           $where="where dms_file_category.dfc_file_group_id =12 and dms_file_category.dfc_status = 1 and dms_file_category.dfc_is_deleted = 0 and dms_file_category.dfc_id in(14,15)";
-      }elseif($insTypeId==6){
+      }elseif($insTypeId=='Collecting Centres'){
           $where="where dms_file_category.dfc_file_group_id =12 and dms_file_category.dfc_status = 1 and dms_file_category.dfc_is_deleted = 0 ";
       }
       $sql = "SELECT
@@ -123,7 +123,7 @@ institute_information
 where ins_info_institute_id=$id";
   $result=$db->singleQuery($sql);
   while($row=  mysqli_fetch_array($result)){
-      
+
        $insTypeId=$row['ins_type'];
       if($insTypeId==3){
           $where="and dms_file_category.dfc_id in(16,17,18,19,20)";
