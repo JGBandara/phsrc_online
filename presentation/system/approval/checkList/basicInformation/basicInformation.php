@@ -83,7 +83,7 @@ $modelOwner= new cls_ins_owner($db);
                 <div class="card-body">
                   <div class="form-group row">
                     <div class="col-sm-12">
-                      <select class="form-control form-control-sm" id="cboSearch" name="cboSearch" placeholder="">
+                      <select class="form-control form-control-sm" onkeyup="filterSelect()" id="cboSearch" name="cboSearch" placeholder="Search..">
                       </select>
                     </div>
                 </div>
@@ -2100,6 +2100,31 @@ $modelOwner= new cls_ins_owner($db);
           }
 
           //    =================================== ends here ============================================ //
+        </script>
+        <script>
+   var originalOptions = [];
+
+window.onload = function () {
+  var select = document.getElementById("cboSearch");
+  originalOptions = Array.from(select.options).map(opt => opt.text);
+};
+
+function filterSelect() {
+  var text = document.getElementById("txtSearch").value.toLowerCase();
+  var select = document.getElementById("cboSearch");
+
+  select.innerHTML = "";
+
+  originalOptions.forEach(function(item) {
+    if (item.toLowerCase().startsWith(text)) {
+      var option = document.createElement("option");
+      option.text = item;
+      select.add(option);
+    }
+  });
+}
+
+
         </script>
   </body>
 </html>

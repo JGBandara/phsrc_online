@@ -67,7 +67,7 @@ $modelStatus = new cls_sys_status($db);
                 <div class="card-body">
                   <div class="form-group row">
                     <div class="col-sm-12">
-                      <select class="form-control form-control-sm" id="cboSearch" name="cboSearch" placeholder="">
+                      <select class="form-control form-control-sm" onkeyup="filterSelect()" id="cboSearch" name="cboSearch" placeholder="Search..">
                       </select>
                     </div>
                 </div>
@@ -81,7 +81,7 @@ $modelStatus = new cls_sys_status($db);
                     <div class="form-row">
                       <div class="form-group col-sm-12">
                         <label for="cboCategoryId" class="col-form-label-sm">Document Category</label>
-                        <select class="form-control form-control-sm" id="cboCategoryId" name="cboCategoryId" placeholder="">
+                        <select class="form-control form-control-sm" onkeyup="filterSelect()" id="cboCategoryId" name="cboCategoryId" placeholder="">
                           <?php 
                           $modelCategory = new cls_dms_file_category($db);
                           $modelCategory->dfc_file_group_id =13;
@@ -151,7 +151,32 @@ $modelStatus = new cls_sys_status($db);
     </script>    
  
     <!-- Custom scripts for This page-->
-    <script src="employeeFiles.js"></script>  </body>
+    <script src="employeeFiles.js"></script>
+        <script>
+   var originalOptions = [];
+
+window.onload = function () {
+  var select = document.getElementById("cboSearch");
+  originalOptions = Array.from(select.options).map(opt => opt.text);
+};
+
+function filterSelect() {
+  var text = document.getElementById("txtSearch").value.toLowerCase();
+  var select = document.getElementById("cboSearch");
+
+  select.innerHTML = "";
+
+  originalOptions.forEach(function(item) {
+    if (item.toLowerCase().startsWith(text)) {
+      var option = document.createElement("option");
+      option.text = item;
+      select.add(option);
+    }
+  });
+}
+
+
+        </script>  </body>
 </html>
 
 

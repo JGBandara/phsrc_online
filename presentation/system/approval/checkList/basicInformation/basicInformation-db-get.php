@@ -483,13 +483,14 @@ if($requestType=='loadDetails'){
   
 }
 elseif($requestType=='loadSearchCombo'){
-  $sql="SELECT
+$sql="SELECT
 ins_application_id,
 ins_institute_name,
 ins_is_deleted
 FROM
-institute_registration
-where ins_is_deleted='0' 
+institute_registration i
+left join sys_user_location l on i.ins_province_id= l.syo_location_id
+where ins_is_deleted='0' and l.syo_company_id='$userCompanyId' and l.syo_user_id='$userId'    
           order by ins_application_id asc";
 		  $html = "<option vlaue=\"\"></option>";
 	$result=$db->singleQuery($sql);
