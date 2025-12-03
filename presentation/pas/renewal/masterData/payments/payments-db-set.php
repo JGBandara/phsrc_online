@@ -43,34 +43,56 @@ $deletedBy           = isset($userId)?$userId:null;
 //$details = json_decode($_REQUEST['detailList'], true);
 
 if($requestType=='edit'){
+
   try{
     $db->begin();  
     if(!$intEditx){
       throw new exception('Permission is Denied ...');
     }
+    $sql="SELECT
+  institute_registration.ins_application_id,
+  institute_registration.ins_mobile
+  FROM
+  institute_registration
+  where institute_registration.institute_reg_id=$id";
+  $result=$db->singleQuery($sql);
+  while($row=mysqli_fetch_array($result)){
+    $newMobile=$row['ins_mobile'];
+  }
+    
+  $msg="Your application has been submitted successfully..
+     
+  More information please contact PDHS office.";
+  
+  require_once $backwardSeparator.'classes/ESMSWS.php';
+  $session=createSession('','esmsusr_1f7m','3esotc9','');
+  sendMessages($session,'PHSRC',$msg,array($newMobile),1); // 1 for promotional messages, 0 for normal message 
+  closeSession($session);
+
     $sql = "select ins_application_id from institute_registration where institute_reg_id='$id' ";
-    $result = $db->batchQuery($sql);
+    $result = $db->singleQuery($sql);
     while($row=  mysqli_fetch_array($result)){
         $id=$row['ins_application_id'];
     }
-    $sql = "select * from institute_payment_detail where payment_detail_institute_id='$id' and payment_detail_company_id='$userCompanyId'";
-    $result = $db->batchQuery($sql);
-    if($row = mysqli_fetch_row($result)){
-      //Update data to transaction header*******************************************
-      $sql="update `institute_payment_detail`
+$sql = "select * from institute_payment_detail where payment_detail_institute_id='$id' and payment_detail_company_id='$userCompanyId'";
+    $result = $db->singleQuery($sql);
+    if($row = mysqli_fetch_row($result))
+      {
+  $sql="update institute_payment_detail
             set
 					payment_reg_year	='$txtYear',
 					payment_reg_fee		='$txtRegFee',
 					payment_stamp_fee   ='$txtStampFee',
 					payment_amount      ='$txtAmount',
           board_type='$cboBoardType',
-                                        payment_arrears     ='$txtArrears',
+          payment_arrears     ='$txtArrears',
 					payment_date     	='$txtPaymentDate',
 					payment_branch      ='$txtPaymentBranch',
 					payment_type		='$paymentType',
           is_renew='1'
             where payment_detail_institute_id='$id' and payment_detail_company_id='$userCompanyId'";
-
+ 
+    $result = $db->singleQuery($sql);
     }
     else{
 		//payment_reg_type_id=1(New Registration)
@@ -79,11 +101,11 @@ if($requestType=='edit'){
             ( payment_detail_institute_id,payment_reg_year,payment_reg_fee,payment_stamp_fee,payment_amount,payment_arrears,board_type,payment_date,payment_branch,payment_type,payment_reg_type_id, payment_detail_company_id, payment_detail_created_by, payment_detail_created_on,is_renew)
               values 
                 ('$id','$txtYear','$txtRegFee','$txtStampFee','$txtAmount','$txtArrears','$cboBoardType','$txtPaymentDate','$txtPaymentBranch','$paymentType','1','$userCompanyId', '$userCompanyId', now(),'1')";
-
+  $result = $db->singleQuery($sql);
+    $entryId = $id;  
     }
     
-    $finalResult = $db->batchQuery($sql);
-    $entryId = $id;   
+   
 	
      // Upload Image
     if($_FILES['fileProfileImage']['size'] <> 0)
@@ -91,37 +113,25 @@ if($requestType=='edit'){
 		$uploadPath = $_FILES['fileProfileImage']['name'];
         $newImgName = saveFile($txtYear,$_FILES['fileProfileImage'], $entryId);
 	}
-    // ============================   Approval Entry    ================
-//    $clsApprove = new cls_approval($db, $userCompanyId, $userLocationId, $userId);
-//    $clsApprove->newApprovalEntry($autoNoType, $entryId, $noReference, true);
-    if($finalResult){                    
+    if($result){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Your application has been submitted successfully.';
         $response['no'] 	= $noReference; 
         $response['id'] 	= $entryId;
-		$response['payType']= $paymentType;
-        $db->commit();
-        // commit auto number
-//        $clsAutoNo->setAutoNoCommit($autoNoType, $autoNo);
+		  $response['payType']= $paymentType;
     }
     else{                    
+      
         $response['type'] 		= 'fail';
         $response['msg'] 		= $db->errormsg;
         $response['q'] 			= $sql;
-        $db->rollback();//roalback
-        // rollback auto number
-//        $clsAutoNo->setAutoNoRollback($autoNoType, $autoNo);
     }
             
   }catch(Exception $e){
 
-    $db->rollback();//roalback
-    // rollback auto number
-//    $clsAutoNo->setAutoNoRollback($autoNoType, $autoNo);
-
     $response['type'] 		= 'fail';
     $response['msg'] 		= $e->getMessage().$noReference;
-    $response['q'] 			= $sql;                
+    $response['q'] 			= $sql;            
   }
   
 }  // End If - Update
