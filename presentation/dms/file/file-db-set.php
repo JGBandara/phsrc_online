@@ -64,7 +64,7 @@ if($requestType=='upload'){
     $divisionId = 1;
     
     $response1 = $clsDms->upload($file, $divisionId, $category, $refNo, $refId, $metaData, $backwardSeparator);  
-   $sqla = "update institute_payment_detail set payment_is_approval='0' where payment_detail_institute_id='$refId' ";
+   $sqla = "update institute_payment_detail set payment_is_approval='0' where payment_detail_institute_id='$refId' and payment_is_approval IN (2,12,9) ";
     $db->singleQuery($sqla);
 
     if($finalResult && $response1['url'] != ""){                    
