@@ -65,4 +65,28 @@ function fileAccess($id){
   }
 }
 
+function deleteAttachment($id){
+ if($id){
+    var url = backwardSeparator+"presentation/dms/file/file-db-set.php";
+    var obj = $.ajax({
+          url:url,
+          dataType: "json",
+          type:'post', 
+          data:'requestType=deleteAttachment'+'&id='+$id,
+          async:false,			
+          success:function(json){
+                if(json.type=='pass'){
+                   modalMsgBox("success", "Attachment Delete Successfully!");
+                  return ;
+                }
+          },
+          error:function(xhr,status){
+            modalMsgBox("Error", xhr.responseText);
+            return false;
+          }		
+    });
+  }
+
+}
+
 

@@ -19,7 +19,7 @@ $requestType 	= $_REQUEST['requestType'];
 // =======================================================
 if($requestType=='loadDetails'){
   $id = $_REQUEST['id'];
-  $sql = "select dfi_id, dfi_file_name, dfi_file_extension, dfi_store_location, dfi_url, dfi_reference_no, dfi_reference_id, 
+  $sql = "select payment_is_approval,dfi_id, dfi_file_name, dfi_file_extension, dfi_store_location, dfi_url, dfi_reference_no, dfi_reference_id, 
 		dfg_name, dfc_name, dfi_file_version, dfi_meta_data, dfi_remarks, ifnull(stat_name,'') as `status`, 
 		if(dfi_is_deleted='1','Yes','No') as `is deleted`/*, ifnull(dfp_id,0) as `permission`*/
         from dms_trn_file
@@ -27,6 +27,7 @@ if($requestType=='loadDetails'){
           inner join dms_file_group on dfc_file_group_id=dfg_id
           left join sys_status on dfi_status=stat_id
       /*    left join dms_file_permission on dfp_file_category_id=dfi_file_category_id and dfp_user_id='$userId' and dfp_status='1' and dfp_is_deleted='0'*/
+        LEFT JOIN institute_payment_detail ON dfi_reference_id = payment_detail_institute_id 
         where 1=1 and dfi_company_id='$userCompanyId' and dfi_reference_id='$id' and dfg_id='1' and dfi_is_deleted='0'
         order by dfc_name asc, dfi_file_name asc, dfi_file_version asc ";
   $result = $db->singleQuery($sql);

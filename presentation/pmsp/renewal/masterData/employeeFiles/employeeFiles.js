@@ -247,6 +247,28 @@ $( document ).ready( function () {
                 $('.action', $newRow).show();
               }
               
+              if (
+              json[i].payment_is_approval == 0 ||
+              json[i].payment_is_approval == 2 ||
+              json[i].payment_is_approval == 12 ||
+              json[i].payment_is_approval == 9
+            ) {
+              var $deleteBtn = $(
+                '<a href="#" class="deleteBtn text-danger" style="margin-left:10px"><i class="fas fa-trash"></i></a>'
+              );
+              $deleteBtn.attr("data_file_id", json[i].dfi_id);
+
+              $deleteBtn.on("click", function (e) {
+                e.preventDefault();
+                var fileId = $(this).attr("data_file_id");
+                deleteAttachment(fileId);
+                location.reload();
+              });
+
+              $(".action", $newRow).append($deleteBtn);
+            }
+
+            
               $('#tblEmpExistingDocuments tbody').append($newRow);
             }
             loadFileList($id);
