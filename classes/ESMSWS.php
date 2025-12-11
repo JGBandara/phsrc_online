@@ -107,7 +107,7 @@ function sendMessages($session,$alias,$message,$recipients,$messageType)
 	$smsMessage= new stdClass();
 	$smsMessage->message=$message;
 	$smsMessage->messageId="";
-	$smsMessage->recipients='0756188681';
+	$smsMessage->recipients=$recipients;
 	$smsMessage->retries="";
 	$smsMessage->sender=$alias;
 	$smsMessage->messageType=$messageType;
