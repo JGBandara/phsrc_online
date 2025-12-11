@@ -19,11 +19,11 @@ $requestType 	= $_REQUEST['requestType'];
 // =======================================================
 if($requestType=='loadDetails'){
   $id = $_REQUEST['id'];
-  $sql = "select ins_application_id from institute_registration where institute_reg_id='$id' ";
+ /*  $sql = "select ins_application_id from institute_registration where institute_reg_id='$id' ";
     $result = $db->singleQuery($sql);
     while($row= mysqli_fetch_array($result)){
         $id=$row['ins_application_id'];
-    }
+    } */
   $sql = "select payment_is_approval,dfi_id, dfi_file_name, dfi_file_extension, dfi_store_location, dfi_url, dfi_reference_no, dfi_reference_id, 
 		dfg_name, dfc_name, dfi_file_version, dfi_meta_data, dfi_remarks, ifnull(stat_name,'') as `status`, 
 		if(dfi_is_deleted='1','Yes','No') as `is deleted` /*, ifnull(dfp_id,0) as `permission`*/
