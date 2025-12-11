@@ -144,7 +144,7 @@ elseif($requestType=='edit'){
             ins_company_id='$companyId',
             ins_last_modified_by='$userId',
             ins_last_modified_on='".time()."'
-          where ins_application_id='$id'";
+          where institute_reg_id='$id'";
                 
     $finalResult = $db->batchQuery($sql);
     $entryId = $id;           
