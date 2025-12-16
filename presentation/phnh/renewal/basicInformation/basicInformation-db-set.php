@@ -8,14 +8,14 @@ $userCompanyId = $_SESSION['companyId'];
 $userLocationId = $_SESSION['locationId'];
 
 require "{$backwardSeparator}autoLoad.php";
+require "{$backwardSeparator}classes/cls_reject.php";
 
 include "{$backwardSeparator}dataAccess/serverAccessController.php";
 include "{$backwardSeparator}vendor/php-image-resize-master/lib/ImageResize.php";
 
-//require_once $backwardSeparator.'dataAccess/connector.php';
-
 use classes\cls_auto_number;
 use classes\cls_approval;
+use classes\cls_reject;
 
 $response = [];
 //$autoNoType = "employeeInformation";   
@@ -58,42 +58,30 @@ if($requestType=='edit'){
             ins_last_modified_by='$lastModifiedBy',
             ins_last_modified_on='". time()."'
           where ins_application_id='$id'";
-                
-    $finalResult = $db->batchQuery($sql);
-    $entryId = $id;           
-    // Upload Image
-    /*if($_FILES['fileProfileImage']['size'] <> 0)
-	{
-		$uploadPath = $_FILES['fileProfileImage']['name'];
-        $newImgName = saveFile($_FILES['fileProfileImage'], $entryId);
-	}*/
     
-    // ============================   Approval Entry    ================
-//    $clsApprove = new cls_approval($db, $userCompanyId, $userLocationId, $userId);
-//    $clsApprove->newApprovalEntry($autoNoType, $entryId, $noReference, true);
+    $result = $db->batchQuery($sql);
+    $entryId = $id; 
+    echo $referenceId = $id;
+    $clsApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    $clsApprove->reject($referenceId);
+
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Basic Information saved successfully! Proceed to Staff Information...';
-        $response['no'] 	= $noReference; 
+        $response['no'] 	= $referenceId; 
         $response['id'] 	= $entryId;
         $db->commit();
-        // commit auto number
-//        $clsAutoNo->setAutoNoCommit($autoNoType, $autoNo);
     }
     else{                    
         $response['type'] 		= 'fail';
         $response['msg'] 		= $db->errormsg;
         $response['q'] 			= $sql;
-        $db->rollback();//roalback
-        // rollback auto number
-//        $clsAutoNo->setAutoNoRollback($autoNoType, $autoNo);
+        $db->rollback();
     }
             
   }catch(Exception $e){
 
-    $db->rollback();//roalback
-    // rollback auto number
-//    $clsAutoNo->setAutoNoRollback($autoNoType, $autoNo);
+    $db->rollback();
 
     $response['type'] 		= 'fail';
     $response['msg'] 		= $e->getMessage().$noReference;

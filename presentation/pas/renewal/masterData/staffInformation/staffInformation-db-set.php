@@ -9,7 +9,7 @@ $userCompanyId = $_SESSION['companyId'];
 $userLocationId = $_SESSION['locationId'];
 
 require "{$backwardSeparator}autoLoad.php";
-
+require "{$backwardSeparator}classes/cls_reject.php";
 include  "{$backwardSeparator}dataAccess/serverAccessController.php";
 //require_once $backwardSeparator.'dataAccess/connector.php';
 
@@ -53,6 +53,7 @@ if($requestType=='edit'){
     $result = $db->batchQuery($sql);
     while($row=  mysqli_fetch_array($result)){
         $id=$row['ins_application_id'];
+        $referenceId=$row['ins_application_id'];
     }
     
     $sql = "select * from institute_staff_information where st_info_institute_id='$id' ";
@@ -122,7 +123,8 @@ if(count($staffDetail)&&$entryId&&$finalResult )
 				}
 			}
     
-
+$classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+$classApprove->reject($referenceId);
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Staff Information saved successfully! Proceed to Institution Information...';

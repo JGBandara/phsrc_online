@@ -8,7 +8,7 @@ $userCompanyId = $_SESSION['companyId'];
 $userLocationId = $_SESSION['locationId'];
 
 require "{$backwardSeparator}autoLoad.php";
-
+require_once "{$backwardSeparator}classes/cls_reject.php";
 include "{$backwardSeparator}dataAccess/serverAccessController.php";
 include "{$backwardSeparator}vendor/php-image-resize-master/lib/ImageResize.php";
 
@@ -64,6 +64,7 @@ if($requestType=='edit'){
 
         $insId      = $result['ins_application_id'];
         $newMobile  = $result['ins_mobile'];
+        $referenceId =$result['ins_application_id'];
 
         if(empty($newMobile)){
             throw new Exception("Mobile number empty.");
@@ -107,7 +108,8 @@ if($requestType=='edit'){
                     '$cboBoardType','$txtPaymentDate','$txtPaymentBranch','$paymentType','1',
                     '$userCompanyId','$userId',NOW(),'1')";
         }
-
+    $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    $classApprove->reject($referenceId);
         $finalResult = $db->batchQuery($sql);
         if(!$finalResult){
             throw new Exception("Database error: ".$db->errormsg);

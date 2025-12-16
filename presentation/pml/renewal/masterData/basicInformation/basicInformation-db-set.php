@@ -8,7 +8,7 @@ $userCompanyId = $_SESSION['companyId'];
 $userLocationId = $_SESSION['locationId'];
 
 require "{$backwardSeparator}autoLoad.php";
-
+require "{$backwardSeparator}classes/cls_reject.php";
 include "{$backwardSeparator}dataAccess/serverAccessController.php";
 include "{$backwardSeparator}vendor/php-image-resize-master/lib/ImageResize.php";
 
@@ -103,7 +103,8 @@ elseif($requestType=='edit'){
     $sql = "select * from institute_registration where institute_reg_id='$id' ";
     $result = $db->batchQuery($sql);
         //Update data to transaction header*******************************************
-    if($row = mysqli_fetch_row($result)){
+    if($row = mysqli_fetch_array($result)){
+      $referenceId=$row['ins_application_id'];
    $sql="update `institute_registration`
           set
             ins_owner_name='$txtName',
@@ -140,7 +141,8 @@ if($_FILES['fileProfileImage']['size'] <> 0)
       $newImgName = saveFile($_FILES['fileProfileImage'], $entryId);
 }
 
-
+$classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+$classApprove->reject($referenceId);
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Basic Information saved successfully! Proceed to Staff Information...';

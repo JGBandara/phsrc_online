@@ -9,7 +9,7 @@ $userCompanyId = $_SESSION['companyId'];
 $userLocationId = $_SESSION['locationId'];
 
 require "{$backwardSeparator}autoLoad.php";
-
+require "{$backwardSeparator}classes/cls_reject.php";
 include  "{$backwardSeparator}dataAccess/serverAccessController.php";
 //require_once $backwardSeparator.'dataAccess/connector.php';
 
@@ -58,6 +58,7 @@ if($requestType=='edit'){
     $result = $db->batchQuery($sql);
     while($row=  mysqli_fetch_array($result)){
         $id=$row['ins_application_id'];
+        $referenceId=$row['ins_application_id'];
     }
     $sql = "select * from institute_information where ins_info_institute_id='$id' ";
     $result = $db->batchQuery($sql);
@@ -69,7 +70,7 @@ if($requestType=='edit'){
 					ins_date_of_stablishment        	='$txtEstDate',
 					ins_br_no    						='$txtBR',
 					ins_boi_registration      			='$txtBOI',
-                                        ins_type='$cboInsType',
+          ins_type='$cboInsType',
 					ins_other							='$txtInsOther',
 					ins_ownership='$cboOwnership',
 					ins_own_other        ='$txtOwnOther'
@@ -87,9 +88,8 @@ if($requestType=='edit'){
     $finalResult = $db->batchQuery($sql);
 	$entryId=$id;
     
-    // ============================   Approval Entry    ================
-//    $clsApprove = new cls_approval($db, $userCompanyId, $userLocationId, $userId);
-//    $clsApprove->newApprovalEntry($autoNoType, $entryId, $noReference, true);
+    $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    $classApprove->reject($referenceId);
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Institution Information saved successfully! Proceed to Facilities....';

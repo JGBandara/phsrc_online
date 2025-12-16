@@ -1,4 +1,3 @@
-
 <?php
 
 session_start();
@@ -9,7 +8,7 @@ $userCompanyId = $_SESSION['companyId'];
 $userLocationId = $_SESSION['locationId'];
 
 require "{$backwardSeparator}autoLoad.php";
-
+require "{$backwardSeparator}classes/cls_reject.php";
 include  "{$backwardSeparator}dataAccess/serverAccessController.php";
 //require_once $backwardSeparator.'dataAccess/connector.php';
 
@@ -21,13 +20,10 @@ $model = new cls_hrm_employee_residential($db);
 
 $response = [];
 $autoNoType = "employeeResidential";   
-  
 $requestType 	= $_REQUEST['requestType'];
 $anStatus       = $_REQUEST['anStatus'];
 $id             = $_REQUEST['cboSearch'];
 $instituteId             = $_REQUEST['cboSearch'];
-//--------------------------------------------
-
 $txtEstDate           = isset($_REQUEST['txtEstDate'])?trim($_REQUEST['txtEstDate']):null;
 $txtBR           = isset($_REQUEST['txtBR'])?trim($_REQUEST['txtBR']):null;
 $txtBOI           = isset($_REQUEST['txtBOI'])?trim($_REQUEST['txtBOI']):null;
@@ -43,12 +39,7 @@ $companyId           = isset($userCompanyId)?$userCompanyId:null;
 $createdBy           = isset($userId)?$userId:null;
 $lastModifiedBy           = isset($userId)?$userId:null;
 $deletedBy           = isset($userId)?$userId:null;
-//$details = json_decode($_REQUEST['detailList'], true);
 
-
-// =======================================================
-//         Insert
-// =======================================================
 if($requestType=='edit'){
   try{
     $db->begin();  
@@ -59,12 +50,12 @@ if($requestType=='edit'){
     $result = $db->batchQuery($sql);
     while($row=  mysqli_fetch_array($result)){
         $id=$row['ins_application_id'];
+        $referenceId=$row['ins_application_id'];
     }
     $sql = "select * from institute_information where ins_info_institute_id='$id' ";
     $result = $db->batchQuery($sql);
     if($row = mysqli_fetch_row($result)){
 			
-      //Update data to transaction header*******************************************
       $sql="update `institute_information`
             set
 					ins_date_of_stablishment        	='$txtEstDate',
@@ -81,52 +72,41 @@ if($requestType=='edit'){
 
     }
     else{
-      //Add data to transaction header*******************************************
       $sql="insert into `institute_information`
             ( ins_info_institute_id,ins_date_of_stablishment,ins_br_no,ins_boi_registration,ins_is_group,ins_is_individual,ins_other,ins_is_com_base,ins_is_manual,ins_own_other,ins_practice_hr, ins_info_company_id,ins_info_created_by, ins_info_created_on)
-              values              ('$id','$txtEstDate','$txtBR','$txtBOI','$checkGroup','$checkIndividual','$txtInsOther','$checkRecSystem','$checkRecKeeping','$txtOwnOther','$txtHrPractice', '$companyId', '$createdBy', '". time()."')";
+              values ('$id','$txtEstDate','$txtBR','$txtBOI','$checkGroup','$checkIndividual','$txtInsOther','$checkRecSystem','$checkRecKeeping','$txtOwnOther','$txtHrPractice', '$companyId', '$createdBy', '". time()."')";
 
     }
     
     $finalResult = $db->batchQuery($sql);
 	$entryId=$id;
     
-    // ============================   Approval Entry    ================
-//    $clsApprove = new cls_approval($db, $userCompanyId, $userLocationId, $userId);
-//    $clsApprove->newApprovalEntry($autoNoType, $entryId, $noReference, true);
+    $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    $classApprove->reject($referenceId);
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Institution Information saved successfully! Proceed to Facilities....';
         $response['no'] 	= $noReference; 
         $response['id'] 	= $instituteId;
         $db->commit();
-        // commit auto number
-//        $clsAutoNo->setAutoNoCommit($autoNoType, $autoNo);
     }
     else{                    
         $response['type'] 		= 'fail';
         $response['msg'] 		= $db->errormsg;
         $response['q'] 			= $sql;
-        $db->rollback();//roalback
-        // rollback auto number
-//        $clsAutoNo->setAutoNoRollback($autoNoType, $autoNo);
+        $db->rollback();
     }
             
   }catch(Exception $e){
 
-    $db->rollback();//roalback
-    // rollback auto number
-//    $clsAutoNo->setAutoNoRollback($autoNoType, $autoNo);
+    $db->rollback();
 
     $response['type'] 		= 'fail';
     $response['msg'] 		= $e->getMessage().$noReference;
     $response['q'] 			= $sql;                
   }
   
-} // End If - Update
-// =======================================================
-//         Delete
-// =======================================================
+}
 elseif($requestType=='delete'){
   try{
     $db->begin();      
@@ -154,24 +134,19 @@ elseif($requestType=='delete'){
         $response['type'] 		= 'fail';
         $response['msg'] 		= $db->errormsg;
         $response['q'] 			= $sql;
-        $db->rollback();//roalback
+        $db->rollback();
     }
             
   }catch(Exception $e){
 
-    $db->rollback();//roalback
+    $db->rollback();
 
     $response['type'] 	= 'fail';
     $response['msg'] 		= $e->getMessage().$noReference;
     $response['q'] 		= $sql;                
   }
   
-} // End If - Delete
+}
 
 echo json_encode($response);    
 ?>
-
-
-
-
-

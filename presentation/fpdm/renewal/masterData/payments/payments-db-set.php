@@ -8,7 +8,7 @@ $userCompanyId = $_SESSION['companyId'];
 $userLocationId = $_SESSION['locationId'];
 
 require "{$backwardSeparator}autoLoad.php";
-
+require "{$backwardSeparator}classes/cls_reject.php";
 include "{$backwardSeparator}dataAccess/serverAccessController.php";
 include "{$backwardSeparator}vendor/php-image-resize-master/lib/ImageResize.php";
 
@@ -72,6 +72,7 @@ if($requestType=='edit'){
         $result = $db->singleQuery($sql);
     while($row=  mysqli_fetch_array($result)){
         $id=$row['ins_application_id'];
+        $referenceId=$row['ins_application_id'];
     }
     $sql = "select * from institute_payment_detail where payment_detail_institute_id='$id' and payment_detail_company_id='$userCompanyId'";
      $result = $db->singleQuery($sql);
@@ -114,9 +115,8 @@ if($requestType=='edit'){
 		$uploadPath = $_FILES['fileProfileImage']['name'];
         $newImgName = saveFile($txtYear,$_FILES['fileProfileImage'], $entryId);
 	}
-    // ============================   Approval Entry    ================
-//    $clsApprove = new cls_approval($db, $userCompanyId, $userLocationId, $userId);
-//    $clsApprove->newApprovalEntry($autoNoType, $entryId, $noReference, true);
+    $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    $classApprove->reject($referenceId);
     if($result){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Your application has been submitted successfully.';

@@ -13,11 +13,7 @@ $userLocationId = $_SESSION['locationId'];
 
 include  "dataAccess/accessController.php";
 
-if($_REQUEST['submit']=="Test"){
-  echo "janaka";
-  session_unset(); 
-        session_destroy(); 
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

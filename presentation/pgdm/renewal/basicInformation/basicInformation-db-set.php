@@ -8,7 +8,7 @@ $userCompanyId = $_SESSION['companyId'];
 $userLocationId = $_SESSION['locationId'];
 
 require "{$backwardSeparator}autoLoad.php";
-
+require "{$backwardSeparator}classes/cls_reject.php";
 include "{$backwardSeparator}dataAccess/serverAccessController.php";
 include "{$backwardSeparator}vendor/php-image-resize-master/lib/ImageResize.php";
 
@@ -23,6 +23,7 @@ $response = [];
 $requestType 	= $_REQUEST['requestType'];
 $anStatus       = $_REQUEST['anStatus'];
 $id             = $_REQUEST['cboSearch'];
+$referenceId             = $_REQUEST['cboSearch'];
 //--------------------------------------------
 $txtName           = isset($_REQUEST['txtName'])?trim($_REQUEST['txtName']):null;
 $txtRelIns         = isset($_REQUEST['txtRelIns'])?trim($_REQUEST['txtRelIns']):null;
@@ -68,9 +69,8 @@ if($requestType=='edit'){
         $newImgName = saveFile($_FILES['fileProfileImage'], $entryId);
 	}*/
     
-    // ============================   Approval Entry    ================
-//    $clsApprove = new cls_approval($db, $userCompanyId, $userLocationId, $userId);
-//    $clsApprove->newApprovalEntry($autoNoType, $entryId, $noReference, true);
+    $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    $classApprove->reject($referenceId);
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Saved successfully.';

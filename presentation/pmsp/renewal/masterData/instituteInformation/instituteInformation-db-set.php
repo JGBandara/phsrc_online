@@ -9,7 +9,7 @@ $userCompanyId = $_SESSION['companyId'];
 $userLocationId = $_SESSION['locationId'];
 
 require "{$backwardSeparator}autoLoad.php";
-
+require "{$backwardSeparator}classes/cls_reject.php";
 include  "{$backwardSeparator}dataAccess/serverAccessController.php";
 //require_once $backwardSeparator.'dataAccess/connector.php';
 
@@ -87,9 +87,8 @@ if($requestType=='edit'){
     $finalResult = $db->batchQuery($sql);
 	$entryId=$id;
     
-    // ============================   Approval Entry    ================
-//    $clsApprove = new cls_approval($db, $userCompanyId, $userLocationId, $userId);
-//    $clsApprove->newApprovalEntry($autoNoType, $entryId, $noReference, true);
+    $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    $classApprove->reject($id);
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Institution Information saved successfully! Proceed to Facilities....';

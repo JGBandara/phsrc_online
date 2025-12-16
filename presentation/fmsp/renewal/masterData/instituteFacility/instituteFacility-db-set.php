@@ -7,7 +7,7 @@ $userCompanyId = $_SESSION['companyId'];
 $userLocationId = $_SESSION['locationId'];
 
 require "{$backwardSeparator}autoLoad.php";
-
+require "{$backwardSeparator}classes/cls_reject.php";
 include  "{$backwardSeparator}dataAccess/serverAccessController.php";
 //require_once $backwardSeparator.'dataAccess/connector.php';
 
@@ -45,6 +45,7 @@ if($requestType=='edit'){
     $result = $db->batchQuery($sql);
     while($row=  mysqli_fetch_array($result)){
         $id=$row['ins_application_id'];
+        $referenceId=$row['ins_application_id'];
     }
       
      $sql = "select * from institute_facility where ins_faci_institute_id='$id' ";
@@ -99,9 +100,8 @@ if($requestType=='edit'){
 		
   }
     
-    // ============================   Approval Entry    ================
-//    $clsApprove = new cls_approval($db, $userCompanyId, $userLocationId, $userId);
-//    $clsApprove->newApprovalEntry($autoNoType, $entryId, $noReference, true);
+    $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    $classApprove->reject($referenceId);
     if($detailResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Facilities saved successfully! Proceed to Documents...';

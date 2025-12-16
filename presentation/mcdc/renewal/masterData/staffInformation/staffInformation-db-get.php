@@ -111,7 +111,7 @@ where institute_id=$id
 elseif($requestType=='loadSearchCombo'){
   
     $id=$_REQUEST['id'];
-   echo $sql="SELECT
+   $sql="SELECT
        ins_application_id,
 institute_reg_id,
 reg_no

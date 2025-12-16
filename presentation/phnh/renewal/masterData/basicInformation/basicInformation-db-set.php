@@ -8,7 +8,7 @@ $userCompanyId = $_SESSION['companyId'];
 $userLocationId = $_SESSION['locationId'];
 
 require "{$backwardSeparator}autoLoad.php";
-
+require "{$backwardSeparator}classes/cls_reject.php";
 include "{$backwardSeparator}dataAccess/serverAccessController.php";
 include "{$backwardSeparator}vendor/php-image-resize-master/lib/ImageResize.php";
 
@@ -17,7 +17,6 @@ include "{$backwardSeparator}vendor/php-image-resize-master/lib/ImageResize.php"
 use classes\cls_auto_number;
 use classes\cls_approval;
 use presentation\hrm\masterData\classes\cls_hrm_employee_information;
-
 $model = new cls_hrm_employee_information($db);
 
 $response = [];
@@ -124,11 +123,13 @@ elseif($requestType=='edit'){
 //    }
 //    
 //    
-$sql = "select * from institute_registration where institute_reg_id='$id' ";
+ $sql = "select * from institute_registration where institute_reg_id='$id' ";
     $result = $db->batchQuery($sql);
-    if($row = mysqli_fetch_row($result)){
+    if($row = mysqli_fetch_array($result)){
+     $referenceId = $row['ins_application_id'];
+
         //Update data to transaction header*******************************************
-   $sql="update `institute_registration`
+ $sql="update `institute_registration`
           set
             reg_no='$regNo',
             ins_owner_name='$txtName',
@@ -151,7 +152,6 @@ $sql = "select * from institute_registration where institute_reg_id='$id' ";
           //$lastId=$db->insertId; 
 
           $entryId = $id;
-
           
     }else{
         $sql="insert into `institute_registration`(reg_no,institute_reg_id,ins_type_id,ins_owner_name,ins_owner_relationship,ins_owner_offic_address,ins_owner_address,ins_institute_name,ins_institute_address,ins_telephone,ins_mobile,ins_email,ins_website,ins_province_id,ins_district_id,ins_company_id,ins_created_by,ins_created_on)
@@ -170,10 +170,11 @@ $sql = "select * from institute_registration where institute_reg_id='$id' ";
            $newImgName = saveFile($_FILES['fileProfileImage'], $entryId);
      }
     
-    
-    // ============================   Approval Entry    ================
-//    $clsApprove = new cls_approval($db, $userCompanyId, $userLocationId, $userId);
-//    $clsApprove->newApprovalEntry($autoNoType, $entryId, $noReference, true);
+    $finalResult = $db->batchQuery($sql);
+    $entryId = $id; 
+    $clsApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    $clsApprove->reject($referenceId);
+
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Basic Information saved successfully! Proceed to Staff Information...';

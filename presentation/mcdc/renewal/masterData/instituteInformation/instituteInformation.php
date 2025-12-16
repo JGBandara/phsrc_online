@@ -118,7 +118,7 @@ $modelOwner= new cls_ins_owner($db);
                 <option value="Medical Center">Medical Center</option>
                 <option value="Screening Center">Screening Center</option>
                 <option value="Day care Medical Center">Day care Medical Center</option>
-                 <option value="Day care Medical Center">Channel Consultation</option>
+                 <option value="Channel Consultation">Channel Consultation</option>
                 <option value="Other">Other</option>
             </select></td></tr>
    

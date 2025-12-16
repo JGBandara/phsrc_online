@@ -8,7 +8,7 @@ $userCompanyId = $_SESSION['companyId'];
 $userLocationId = $_SESSION['locationId'];
 
 require "{$backwardSeparator}autoLoad.php";
-
+require "{$backwardSeparator}classes/cls_reject.php";
 include "{$backwardSeparator}dataAccess/serverAccessController.php";
 include "{$backwardSeparator}vendor/php-image-resize-master/lib/ImageResize.php";
 
@@ -58,6 +58,7 @@ if($requestType=='edit'){
   $result=$db->singleQuery($sql);
   while($row=mysqli_fetch_array($result)){
     $newMobile=$row['ins_mobile'];
+    $id=$row['ins_application_id'];
   }
     
   $msg="Your application has been submitted successfully..
@@ -113,6 +114,8 @@ $sql = "select * from institute_payment_detail where payment_detail_institute_id
 		$uploadPath = $_FILES['fileProfileImage']['name'];
         $newImgName = saveFile($txtYear,$_FILES['fileProfileImage'], $entryId);
 	}
+  $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+$classApprove->reject($referenceId);
     if($result){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Your application has been submitted successfully.';

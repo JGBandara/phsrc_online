@@ -7,7 +7,7 @@ $userCompanyId = $_SESSION['companyId'];
 $userLocationId = $_SESSION['locationId'];
 
 require "{$backwardSeparator}autoLoad.php";
-
+require "{$backwardSeparator}classes/cls_reject.php";
 include  "{$backwardSeparator}dataAccess/serverAccessController.php";
 
 
@@ -136,9 +136,16 @@ if($requestType=='edit'){
 			}
 		//=================================================================================
   }
+    $sql = "select ins_application_id from institute_registration where institute_reg_id='$id' ";
+    $result = $db->batchQuery($sql);
+    while($row=  mysqli_fetch_array($result)){
+        $referenceId=$row['ins_application_id'];
+    }
+    
     
 
-
+    $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    $classApprove->reject($referenceId);
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Saved successfully.';

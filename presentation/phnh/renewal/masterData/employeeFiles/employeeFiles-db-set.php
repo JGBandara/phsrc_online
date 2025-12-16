@@ -61,7 +61,7 @@ if($requestType=='add'){
       $noReference	= $no;
     }
         //Add data to transaction header*******************************************
-    $sql="insert into `hrm_employee_bank_account`
+ $sql="insert into `hrm_employee_bank_account`
             (ema_employee_id, ema_bank_id, ema_branch_id, ema_account_type, ema_account_no, ema_account_holder, ema_amount, ema_remarks, ema_status, ema_company_id, ema_created_by, ema_created_on)
               values 
                 ('$employeeId', '$bankId', '$branchId', '$accountType', '$accountNo', '$accountHolder', '$amount', '$remarks', '$status', '$companyId', '$createdBy', '". time()."')";
@@ -117,6 +117,8 @@ elseif($requestType=='edit'){
     while($row=  mysqli_fetch_array($result)){
         $id=$row['ins_application_id'];
     }
+
+
         //Update data to transaction header*******************************************
     $sql="update `hrm_employee_bank_account`
           set

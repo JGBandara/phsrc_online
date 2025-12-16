@@ -126,7 +126,7 @@ $( document ).ready( function () {
   Dropzone.autoDiscover = false;
   var divDropzone = new Dropzone("#abc-efg", {
         paramName: "file",
-        maxFilesize: 10,
+        maxFilesize: 20,
         acceptedFiles: "application/pdf",
         url: backwardSeparator+'presentation/dms/file/file-db-set.php?requestType=upload',
         previewsContainer: "#dropzone-previews",
