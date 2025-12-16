@@ -123,8 +123,8 @@ if(count($staffDetail)&&$entryId&&$finalResult )
 				}
 			}
     
-    $clsApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
-    $clsApprove->reject($referenceId);
+    // $clsApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    // $clsApprove->reject($referenceId);
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Staff Information saved successfully! Proceed to Institution Information...';

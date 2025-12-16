@@ -87,8 +87,8 @@ if($requestType=='edit'){
     $finalResult = $db->batchQuery($sql);
 	$entryId=$id;
     
- $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
-      $classApprove->reject($id);
+//  $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+//       $classApprove->reject($id);
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Institution Information saved successfully! Proceed to Facilities....';

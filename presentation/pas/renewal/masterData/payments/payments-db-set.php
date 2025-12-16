@@ -114,8 +114,8 @@ $sql = "select * from institute_payment_detail where payment_detail_institute_id
 		$uploadPath = $_FILES['fileProfileImage']['name'];
         $newImgName = saveFile($txtYear,$_FILES['fileProfileImage'], $entryId);
 	}
-  $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
-$classApprove->reject($referenceId);
+//   $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+// $classApprove->reject($referenceId);
     if($result){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Your application has been submitted successfully.';

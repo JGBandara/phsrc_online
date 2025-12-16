@@ -98,8 +98,8 @@ if($requestType=='edit'){
 		
   }
     
-    $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
-    $classApprove->reject($id);
+    // $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    // $classApprove->reject($id);
     if($detailResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Facilities saved successfully! Proceed to Documents...';

@@ -172,8 +172,8 @@ elseif($requestType=='edit'){
     
     $finalResult = $db->batchQuery($sql);
     $entryId = $id; 
-    $clsApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
-    $clsApprove->reject($referenceId);
+    // $clsApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    // $clsApprove->reject($referenceId);
 
     if($finalResult){                    
         $response['type'] 	= 'pass';

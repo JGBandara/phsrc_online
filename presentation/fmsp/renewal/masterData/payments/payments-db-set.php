@@ -108,8 +108,8 @@ if($requestType=='edit'){
                     '$cboBoardType','$txtPaymentDate','$txtPaymentBranch','$paymentType','1',
                     '$userCompanyId','$userId',NOW(),'1')";
         }
-    $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
-    $classApprove->reject($referenceId);
+    // $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    // $classApprove->reject($referenceId);
         $finalResult = $db->batchQuery($sql);
         if(!$finalResult){
             throw new Exception("Database error: ".$db->errormsg);

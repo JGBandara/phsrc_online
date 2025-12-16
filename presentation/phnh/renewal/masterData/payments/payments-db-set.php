@@ -93,8 +93,8 @@ if($requestType=='edit'){
 		$uploadPath = $_FILES['fileProfileImage']['name'];
         $newImgName = saveFile($txtYear,$_FILES['fileProfileImage'], $entryId);
 	}
-    $clsApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
-    $clsApprove->reject($referenceId);
+    // $clsApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    // $clsApprove->reject($referenceId);
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Your application has been submitted successfully.';

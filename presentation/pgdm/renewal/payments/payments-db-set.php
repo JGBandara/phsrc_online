@@ -87,8 +87,8 @@ if($requestType=='edit'){
           $result =  $result && $clsAlert->newAlert();
 	
 	
-    $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
-    $classApprove->reject($referenceId);
+    // $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    // $classApprove->reject($referenceId);
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Saved successfully.';
