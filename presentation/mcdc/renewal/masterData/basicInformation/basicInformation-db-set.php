@@ -164,8 +164,8 @@ elseif($requestType=='edit'){
 	}
     
       
-    $clsApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
-    $clsApprove->reject($referenceId);
+    // $clsApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    // $clsApprove->reject($referenceId);
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Basic Information saved successfully! Proceed to Staff Information...';
