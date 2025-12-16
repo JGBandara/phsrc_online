@@ -93,53 +93,80 @@
 function printTable() {
     var table = document.querySelector('table').cloneNode(true);
 
-    // Remove last column if exists (Action column)
-    table.querySelectorAll('thead tr th:last-child, tbody tr td:last-child').forEach(el => el.remove());
+    // Remove last column (actions)
+    table.querySelectorAll('thead tr th:last-child, tbody tr td:last-child')
+        .forEach(el => el.remove());
+
+    // Add sequence numbers
+    let seq = 1;
+    let headerRow = table.querySelector("thead tr");
+    let thSeq = document.createElement("th");
+    thSeq.innerHTML = "#";
+    headerRow.insertBefore(thSeq, headerRow.firstChild);
+
+    table.querySelectorAll("tbody tr").forEach(tr => {
+        let td = document.createElement("td");
+        td.innerText = seq++;
+        tr.insertBefore(td, tr.firstChild);
+    });
 
     // Remove hidden rows
     table.querySelectorAll("tbody tr").forEach(tr => {
-      if (tr.style.display === "none") tr.remove();
+        if (tr.style.display === "none") tr.remove();
     });
 
-    // Calculate total Registration Fee (5th column = index 4)
+    // Calculate total
     let total = 0;
     table.querySelectorAll("tbody tr").forEach(tr => {
-        let fee = parseFloat(tr.children[4].innerText.replace(/,/g, ''));
+        let fee = parseFloat(tr.children[5].innerText.replace(/,/g, ''));
         if (!isNaN(fee)) total += fee;
     });
 
-    // Append total row
-    let tfoot = document.createElement('tfoot');
-    let totalRow = document.createElement('tr');
-    totalRow.style.fontWeight = 'bold';
-    totalRow.style.backgroundColor = '#333';
-    totalRow.style.color = 'white';
+    let provincialFee = total * 0.50;
+
+    // Create footer section shown only once
+    let tfoot = document.createElement("tfoot");
+
+    let totalRow = document.createElement("tr");
+    totalRow.style.fontWeight = "bold";
+    totalRow.style.backgroundColor = "#343a40";
+    totalRow.style.color = "white";
     totalRow.innerHTML = `
-        <td colspan="4" style="text-align:right;">Total Fees:</td>
-        <td style="text-align:left;">${total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2})}</td>
-        <td></td>
+        <td colspan="5" style="text-align:right;">Total Registration Fees:</td>
+        <td>${total.toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
     `;
+
+    let provRow = document.createElement("tr");
+    provRow.style.fontWeight = "bold";
+    provRow.style.backgroundColor = "#343a40";
+    provRow.style.color = "white";
+    provRow.innerHTML = `
+        <td colspan="5" style="text-align:right;">Provincial Fees (50%):</td>
+        <td>${provincialFee.toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
+    `;
+
     tfoot.appendChild(totalRow);
+    tfoot.appendChild(provRow);
     table.appendChild(tfoot);
 
-    var newWin = window.open('', '', 'width=1200,height=800');
-    newWin.document.write('<html><head><title>Print</title>');
-    newWin.document.write('<style>');
-    newWin.document.write(`
-        @media print {
-            @page { margin: 0; }
-            body { margin: 0; font-family: Arial, sans-serif; }
-            table { width: 100%; border-collapse: collapse; }
-            th, td { border: 1px solid #000; padding: 8px; text-align: left; }
-            th { background-color: #343a40 !important; color: #fff !important; }
-        }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #000; padding: 8px; text-align: left; }
-        th { background-color: #343a40; color: #fff; }
-    `);
-    newWin.document.write('</style></head><body>');
+    // PRINT WINDOW
+    var newWin = window.open("", "", "width=1200,height=800");
+    newWin.document.write(`<html><head><title>Print</title>
+        <style>
+            @media print {
+                @page { margin: 10mm; }
+                body { font-family: Arial, sans-serif; }
+                table { width: 100%; border-collapse: collapse; page-break-inside: auto; }
+                tr { page-break-inside: avoid; }
+                th, td { border: 1px solid #000; padding: 6px; }
+                th { background-color: #343a40; color: white; }
+                tfoot { display: table-row-group; page-break-inside: avoid; page-break-after: auto; }
+            }
+        </style>
+    </head><body>`);
+
     newWin.document.write(table.outerHTML);
-    newWin.document.write('</body></html>');
+    newWin.document.write("</body></html>");
     newWin.document.close();
     newWin.focus();
     newWin.print();

@@ -20,7 +20,8 @@ if($requestType=='loadDetails'){
     institute_registration.ins_type_id,   
     institute_registration.reg_no,   
     DATE(institute_payment_detail.payment_detail_created_on) AS payment_date,   
-    institute_payment_detail.payment_type,   
+    institute_payment_detail.payment_type, 
+	institute_payment_detail.reject_remark,  
     institute_payment_detail.payment_reg_fee,   
     CASE 
         WHEN institute_payment_detail.payment_is_approval IN (1) THEN 'Approved'
@@ -60,6 +61,7 @@ ORDER BY
 		$response['paymentType'][]=$row['payment_type'];
 		$response['regAmount'][]=$row['payment_reg_fee'];
 		$response['cat_name'][]=$row['cat_name'];
+		$response['remark'][]=$row['reject_remark'];
 		$response['approveStatus'][]=$row['payment_is_approval'];
 		
 		}

@@ -205,7 +205,7 @@ PHSRC";
     color: #fff; 
     text-align: center;
     padding: 12px 0;
-    margin-top: 400px; 
+    margin-top: 0px; 
   }
 
   .page-footer span {
@@ -220,7 +220,16 @@ PHSRC";
   outline: none;
   border: none; /* Optional subtle focus border */
 }
-
+.copyright {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+}
 
 </style>
 <html lang="en">
@@ -379,7 +388,12 @@ PHSRC";
       </div>
     </div>
     <div style="height:480px"></div>
-    <div class="headerText"><img src="img/core/footer_text.png"></div>
+     <div class="copyright">
+      <span>
+        &copy; <?php echo date('Y'); ?> Private Health Services Regulatory Council - Ministry of Health. 
+        All Rights Reserved.
+      </span>
+    </div>
   </div>
  </div>
 

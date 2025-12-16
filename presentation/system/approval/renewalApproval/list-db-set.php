@@ -433,9 +433,9 @@ while($row=mysqli_fetch_array($result)){
 	$newMobile=$row['ins_mobile'];
 }
 	
-$msg="Your application Rejected by PDHS.
+$msg="Your application Rejected by Provincial Director of Health Services.
 	 
-More information please contact PDHS office.";
+More information please contact relevant Provincial Director of Health Services.";
 
 	 require_once $backwardSeparator.'classes/ESMSWS.php';
 $session=createSession('','esmsusr_1f7m','3esotc9','');

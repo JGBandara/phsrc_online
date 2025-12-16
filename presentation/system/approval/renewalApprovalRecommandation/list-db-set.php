@@ -81,9 +81,9 @@ if($requestType=='approve'){
     $newMobile=$row['ins_mobile'];
   }
     
-  $msg="Your application Rejected by PDHS.
-     
-  More information please contact PDHS office.";
+  $msg="Your application Rejected by Provincial Director of Health Services.
+	 
+More information please contact relevant Provincial Director of Health Services.";
   
      require_once $backwardSeparator.'classes/ESMSWS.php';
   $session=createSession('','esmsusr_1f7m','3esotc9','');

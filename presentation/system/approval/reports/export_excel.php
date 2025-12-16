@@ -67,8 +67,8 @@ if (!empty($excelData)) {
                 <td style='text-align:left;'>{$row[0]}</td>
                 <td>{$row[1]}</td>
                 <td>{$row[2]}</td>
-                <td style='text-align:right;'>{$regFee}</td>
-                <td>{$row[4]}</td>
+                <td style='text-align:right;'>{$row[3]}</td>
+                <td>{$regFee}</td>
                 <td style='color:white; background-color:{$statusColor}; font-weight:bold;'>{$row[5]}</td>
               </tr>";
         $rowCount++;

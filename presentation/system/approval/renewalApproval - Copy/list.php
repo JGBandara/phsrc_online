@@ -133,7 +133,8 @@ Government officer or not (If yes name of the institution and the post held by t
   <!-- ------------------------------------------------------------------------------------------------------------------------------------- -->      
         <div id="instituteInfo">
           <div class="form-row"><div class="form-group col-md-3">Method of record keeping</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="textRecKeep"></label></div><div class="form-group col-md-3">
- Availability of visiting specialists </div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="textVisitSpeciality"></label></div></div>
+ Availability of visiting specialists </div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="textVisitSpeciality"></label></div>
+</div>
         
         <div class="form-row"><div class="form-group col-md-3">Dental laboratory facilities</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="textLabFacility"></label></div><div class="form-group col-md-3">
 X-ray facilities(The number of licence issued by the Atomic Energy Authority) </div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="textXrayFacility"></label></div></div>
@@ -156,6 +157,7 @@ Method of sterilization of instruments & dressings</div><div class="form-group c
         <div class="form-row"><div class="form-group col-md-12"><table width="100%" ><tr><td bgcolor="#99FFFF">Facility</td><td bgcolor="#99FFFF">Value</td><td bgcolor="#99FFFF">Discription</td></tr></table></div></div>
         
         </div>
+  
   <!-- ------------------------------------------------------------------------------------------------------------------------------------- -->
   <!-- ------------------------------------------------------------------------------------------------------------------------------------- -->      <div id="documentList">
            <div class="card">

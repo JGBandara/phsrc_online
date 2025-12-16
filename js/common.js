@@ -1,13 +1,4 @@
-/* 
- * Sethsiri IT Soultion
- * Janaka Rajapaksha
- * 2019-05-26
- */
-/*
- * Message Display Modal
- * $type : Success / Error
- * $message : custom Message
- */
+
 function modalMsgBox($type, $message){
   $('#msgBoxModal #msgBoxModalTitle').html($type);
   $('#msgBoxModal .modal-body').html($message);

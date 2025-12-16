@@ -150,7 +150,7 @@ $('.btn').click(function(){
 		  $('#textPayType').text(json.payType);
 		    var imageName=json.payImageName;
 			
-		   $('.avatar1-pic').attr('href','../../../../img/BankSlip/'+imageName); 
+		  $('.avatar1-pic').attr('href','../../../../img/BankSlip/'+imageName); 
 		  //-----------------------------------------------------------------------
                   //----------------------------- Staff Information -----------------------
                   if(json.detailVal1!=null){
