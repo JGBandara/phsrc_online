@@ -72,7 +72,10 @@ if($requestType=='edit'){
 					payment_type		='$paymentType',
           is_renew='1'
             where payment_detail_institute_id='$id' and payment_detail_company_id='$userCompanyId'";
-
+    $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    $classApprove->reject($referenceId);
+    $finalResult = $db->batchQuery($sql);
+    $entryId = $id; 
     }
     else{
 		//payment_reg_type_id=1(New Registration)
@@ -81,11 +84,11 @@ if($requestType=='edit'){
             ( payment_detail_institute_id,payment_reg_year,payment_reg_fee,payment_stamp_fee,payment_amount,payment_arrears,board_type,payment_date,payment_branch,payment_type,payment_reg_type_id, payment_detail_company_id, payment_detail_created_by, payment_detail_created_on,is_renew)
               values 
                 ('$id','$txtYear','$txtRegFee','$txtStampFee','$txtAmount','$txtArrears','$cboBoardType','$txtPaymentDate','$txtPaymentBranch','$paymentType','1','$userCompanyId', '$userCompanyId', now(),'1')";
-
+    $finalResult = $db->batchQuery($sql);
+    $entryId = $id;
     }
     
-    $finalResult = $db->batchQuery($sql);
-    $entryId = $id;   
+   
 	
      // Upload Image
     if($_FILES['fileProfileImage']['size'] <> 0)
@@ -93,8 +96,7 @@ if($requestType=='edit'){
 		$uploadPath = $_FILES['fileProfileImage']['name'];
         $newImgName = saveFile($txtYear,$_FILES['fileProfileImage'], $entryId);
 	}
-// $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
-// $classApprove->reject($referenceId);
+
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Your application has been submitted successfully.';

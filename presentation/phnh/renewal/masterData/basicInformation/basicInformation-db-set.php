@@ -129,7 +129,7 @@ elseif($requestType=='edit'){
      $referenceId = $row['ins_application_id'];
 
         //Update data to transaction header*******************************************
- $sql="update `institute_registration`
+  $sql="update `institute_registration`
           set
             reg_no='$regNo',
             ins_owner_name='$txtName',
@@ -148,10 +148,11 @@ elseif($requestType=='edit'){
             ins_last_modified_by='$userId',
             ins_last_modified_on='".time()."'
           where institute_reg_id='$id'";
-          $finalResult = $db->batchQuery($sql);
-          //$lastId=$db->insertId; 
 
-          $entryId = $id;
+    $clsApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+    $clsApprove->reject($referenceId);
+    $finalResult = $db->batchQuery($sql);
+    $entryId = $id; 
           
     }else{
         $sql="insert into `institute_registration`(reg_no,institute_reg_id,ins_type_id,ins_owner_name,ins_owner_relationship,ins_owner_offic_address,ins_owner_address,ins_institute_name,ins_institute_address,ins_telephone,ins_mobile,ins_email,ins_website,ins_province_id,ins_district_id,ins_company_id,ins_created_by,ins_created_on)
@@ -170,8 +171,8 @@ elseif($requestType=='edit'){
            $newImgName = saveFile($_FILES['fileProfileImage'], $entryId);
      }
     
-    $finalResult = $db->batchQuery($sql);
-    $entryId = $id; 
+    // $finalResult = $db->batchQuery($sql);
+    // $entryId = $id; 
     // $clsApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
     // $clsApprove->reject($referenceId);
 
