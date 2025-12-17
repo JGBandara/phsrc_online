@@ -41,7 +41,7 @@
 <tr>
 		<th>Institute Reg No</th>
 		<th>Institute Name</th>
-        <th>Category</th>
+    <th>Category</th>
 		<th>Date</th>
 		<th>Action</th>
 	</tr>

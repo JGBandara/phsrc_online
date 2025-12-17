@@ -42,8 +42,8 @@ if ($requestType == 'loadDetails') {
   Inner Join man_institute_main ON institute_registration.ins_type_id = man_institute_main.main_cat_id 
   inner Join sys_user_location ON institute_registration.ins_province_id = sys_user_location.syo_location_id
   Inner Join sys_users ON sys_user_location.syo_user_id = sys_users.syu_id
-  where sys_users.syu_id='$userId' and sys_user_location.syo_is_deleted='0' and payment_is_approval='1' and Inspection_user=$userId order by ins_application_id asc";
-	//  where institute_registration.ins_province_id=$userLocationId
+  where sys_users.syu_id='$userId' and sys_user_location.syo_is_deleted='0' and payment_is_approval='19' order by ins_application_id asc";
+
 	$result = $db->singleQuery($sql);
 	while ($row = mysqli_fetch_array($result)) {
 
@@ -245,7 +245,6 @@ Inner Join tbl_facility ON institute_facility_detail.facility_id = tbl_facility.
 	while ($row = mysqli_fetch_assoc($result)) {
 		$arr[] = $row;
 	}
-	//--------------------------------------Payment --------------------------------------------------
 
 	$sqlpay = "SELECT
 institute_payment_detail.payment_reg_year,
@@ -277,7 +276,6 @@ where payment_detail_institute_id=$id
 	}
 
 	echo json_encode($response);
-	// echo json_encode($arr);
 }
 
 if ($requestType == 'loadDocDetails') {

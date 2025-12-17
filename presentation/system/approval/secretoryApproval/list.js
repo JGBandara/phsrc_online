@@ -26,18 +26,18 @@ function load_detail(){
 				$approveStatus=json.approveStatus;
 				$cat_name=json.cat_name
 				
-									$('#table-id').append( "<tbody>" );
+	
+			$('#table-id').append( "<tbody>" );
 				for($i=0;$id.length>$i;$i++){
 				
-				// if($approveStatus[$i]==11){
+				if($approveStatus[$i]==1){
 					
-				// 	$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button type='button' class='btn btn-success btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Approved</button></center></td></tr>" );
+					$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button type='button' class='btn btn-success btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Approved</button></center></td></tr>" );
 					
-				// 	}else if($approveStatus[$i]==12){
-				// 		$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button type='button' class='btn btn-danger btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Rejected</button></center></td></tr>" );
+					}else if($approveStatus[$i]==2){
+						$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button type='button' class='btn btn-danger btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Rejected</button></center></td></tr>" );
 						
-				// 		}else 
-						if($approveStatus[$i]==10){
+						}else{
 							$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button type='button' class='btn btn-warning btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Pending&nbsp;</button></center></td></tr>" );
 
 							}
@@ -113,7 +113,7 @@ $('.btn').click(function(){
 		  $('#lblAddress').text(json.owAddress);
 		  $('#lblInsName').text(json.insName);
 		  $('#lblInsAddress').text(json.insAddress);
-                  $('#lblTelephone').text(json.ins_telephone);
+          $('#lblTelephone').text(json.ins_telephone);
 		  $('#lblMobile').text(json.ins_mobile);
 		  $('#lblWeb').text(json.ins_website);
 		  $('#lblMail').text(json.ins_email);
@@ -165,7 +165,7 @@ $('.btn').click(function(){
 					$speciality   =json.detailVal1[j].speciality;
 					$Register_id  =json.detailVal1[j].Register_id; 
                                         
-                                                                               $('#tblEmpExistingDocuments1').append("<tbody><tr><td align='center' class='p-1'>"+$Name+"</td><td class='p-1'>"+$Qulification+"</td><td class='p-1'>"+$institute+"</td><td class='p-1'>"+$country+"</td><td class='p-1'>"+$post_gradu+"</td><td class='p-1'>"+$speciality+"</td><td class='p-1'>"+$Register_id+"</td></tr></tbody>");
+                $('#tblEmpExistingDocuments1').append("<tbody><tr><td align='center' class='p-1'>"+$Name+"</td><td class='p-1'>"+$Qulification+"</td><td class='p-1'>"+$institute+"</td><td class='p-1'>"+$country+"</td><td class='p-1'>"+$post_gradu+"</td><td class='p-1'>"+$speciality+"</td><td class='p-1'>"+$Register_id+"</td></tr></tbody>");
                                         
                                         
                                 }
