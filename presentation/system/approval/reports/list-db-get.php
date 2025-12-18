@@ -54,7 +54,7 @@ Inner Join
 Inner Join 
 	sys_users 
 	ON sys_user_location.syo_user_id = sys_users.syu_id
-where sys_users.syu_id='$userId' and institute_payment_detail.payment_is_approval='1' and sys_user_location.syo_is_deleted='0'
+where sys_users.syu_id='$userId' and sys_user_location.syo_is_deleted='0'
 ORDER BY 
     institute_payment_detail.payment_date DESC;";
 		//  where institute_registration.ins_province_id=$userLocationId
