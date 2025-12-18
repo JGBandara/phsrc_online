@@ -15,7 +15,7 @@ $requestType 	= $_REQUEST['requestType'];
 
 if($requestType=='loadDetails'){
   $id = $_REQUEST['id'];
- $sql="SELECT 
+  $sql="SELECT 
     institute_registration.ins_application_id,   
     institute_registration.ins_type_id,   
     institute_registration.reg_no,   
@@ -48,7 +48,7 @@ Inner Join
 Inner Join 
 	sys_users 
 	ON sys_user_location.syo_user_id = sys_users.syu_id
-where sys_users.syu_id='$userId' and sys_user_location.syo_is_deleted='0' and institute_registration.ins_created_by = '$userId'
+where /* sys_users.syu_id='$userId' and */ sys_user_location.syo_is_deleted='0' and institute_registration.ins_created_by = '$userId'
 ORDER BY 
     institute_payment_detail.payment_date DESC;";
 	$result=$db->singleQuery($sql);
