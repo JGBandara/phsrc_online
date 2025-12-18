@@ -259,14 +259,14 @@ $('.btn').click(function(){
 					$value	   = json.detailVal3[j].value;
 					$description   = json.detailVal3[j].description;
                                         
-                                                                               $('#tblinsFacility').append("<tbody><tr><td align='center' class='p-1'>"+$facility+"</td><td class='p-1'>"+$value+"</td><td class='p-1'>"+$description +"</td></tr></tbody>");
+        $('#tblinsFacility').append("<tbody><tr><td align='center' class='p-1'>"+$facility+"</td><td class='p-1'>"+$value+"</td><td class='p-1'>"+$description +"</td></tr></tbody>");
                                         
                                         
-                                }
+	}
                                 
                 }
                 
-                
+                    
                 
                 
                 
