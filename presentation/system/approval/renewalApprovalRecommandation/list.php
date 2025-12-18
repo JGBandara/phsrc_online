@@ -545,8 +545,22 @@ Technicians
         <div><center><textarea style="width:90%" placeholder="Please enter the reason for the rejection.." name="txtRemark" id="txtRemark"></textarea></center></div>
         <div class="modal-footer">
           
-         <div style=""><b><label id="lblAcction" style="font-size:36px;"></label></b></div><div class="col-md-5">&nbsp;</div> <center><button type="button" class="btn btn-success" id="btnApprove">OK</button>&nbsp;<button type="button" class="btn btn-danger" id="btnReject">BACK</button>&nbsp;<button type="button" class="btn btn-warning" data-dismiss="modal" id="btnClose">Close</button></center>
-        </div>
+        <div class="modal-footer">
+    <div><b><label id="lblAcction" style="font-size:36px;"></label></b></div>
+    <div class="col-md-5">&nbsp;</div>
+    <center>
+      <button type="button" class="btn btn-success btnApprove" id="btnApprove">Approve</button>
+      &nbsp;
+      <button type="button" class="btn btn-danger" id="btnReject">Reject</button>
+      &nbsp;
+      <button type="button" class="btn btn-primary" id="btnPrint">Print</button>
+      &nbsp;
+      <button type="button" class="btn btn-warning" data-dismiss="modal" id="btnClose">Close</button>
+      &nbsp;&nbsp;
+      <button id="btnDownloadPDF" class="btn btn-primary"> <i class="fa fa-file-pdf"></i> Download PDF
+</button>
+    </center>
+  </div>
       </div>
       
     </div>
