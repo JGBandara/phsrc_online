@@ -37,7 +37,7 @@ if($requestType=='approve'){
     
    $sql="update `institute_payment_detail`
           set
-            payment_is_approval = '20'
+            payment_is_approval = '21'
           where payment_detail_institute_id='$id'";
                 
     $finalResult = $db->singleQuery($sql);

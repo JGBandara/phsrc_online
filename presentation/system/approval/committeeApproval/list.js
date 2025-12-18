@@ -26,18 +26,18 @@ function load_detail(){
 				$approveStatus=json.approveStatus;
 				$cat_name=json.cat_name
 				
-									$('#table-id').append( "<tbody>" );
+	
+			$('#table-id').append( "<tbody>" );
 				for($i=0;$id.length>$i;$i++){
 				
-				// if($approveStatus[$i]==11){
+				if($approveStatus[$i]==1){
 					
-				// 	$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button type='button' class='btn btn-success btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Approved</button></center></td></tr>" );
+					$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button type='button' class='btn btn-success btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Approved</button></center></td></tr>" );
 					
-				// 	}else if($approveStatus[$i]==12){
-				// 		$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button type='button' class='btn btn-danger btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Rejected</button></center></td></tr>" );
+					}else if($approveStatus[$i]==2){
+						$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button type='button' class='btn btn-danger btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Rejected</button></center></td></tr>" );
 						
-				// 		}else 
-						if($approveStatus[$i]==10){
+						}else{
 							$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button type='button' class='btn btn-warning btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Pending&nbsp;</button></center></td></tr>" );
 
 							}
@@ -56,6 +56,7 @@ function load_detail(){
 	/*<img src='../../../../img/but_rejected.png' style='width:100px' data-target='#myModal'/>	
 */
 	}
+	
 	
 $('#butBasicInfo').click(function(){
 	$('#basicInfo').show();
