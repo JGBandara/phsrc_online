@@ -449,8 +449,8 @@ h2 {
             </div>
 
             <div class="form-row">
-              <div class="form-group col-md-3">Board Payment</div>
-              <div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtArras"></label></div>
+              <!-- <div class="form-group col-md-3">Board Payment</div>
+              <div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtArras"></label></div> -->
               <div class="form-group col-md-3">
                 Payment Amount</div>
               <div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtAmount"></label></div>
