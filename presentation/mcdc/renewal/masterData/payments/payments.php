@@ -139,7 +139,7 @@ $_SESSION['institute_id']=$insId;
                             <label for="txtPayAmount" class="col-form-label-sm required">Board Type</label>
                             <select class="form-control form-control-sm" id="cboBoardType" name="cboBoardType">
                             <option>&nbsp;</option>
-                            <option value="Medium">With Main Board</option>
+                            <!-- <option value="Medium">With Main Board</option> -->
                             <option value="Reg_board">Registration Board Only</option>
                             </select>
                           </div>

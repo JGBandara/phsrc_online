@@ -300,19 +300,19 @@ $(document).ready(function () {
                     if (type.trim() === "Large Labs") {
                         $('#cboBoardType').empty().append(`
      <option value=""></option>
-    <option value="Large">With Main Board (Large)</option>
+   
     <option value="LargeRg">Registration Board Only (Large)</option>
   `);
                     } else if (type.trim() === "Medium Labs") {
                         $('#cboBoardType').empty().append(`
     <option value=""></option>
-    <option value="Medium">With Main Board (Medium)</option>
+  
     <option value="MediumRg">Registration Board Only (Medium)</option>
   `);
                     } else {
                         $('#cboBoardType').empty().append(`
     <option value=""></option>
-    <option value="Small">With Main Board (Small)</option>
+  
     <option value="SmallRg">Registration Board Only (Small)</option>
   `);
                     }
