@@ -151,7 +151,6 @@ $searchId = (isset($_REQUEST['id']))?$_REQUEST['id']:'';
                       <div class="col-sm-8">
                         <div class="form-row">
                           <div class="form-group col-sm-12">
-                            <label for="txtName" class="col-form-label-sm">How do you want to receive the code to reset your password?</label>
                             
                       
                           </div>
