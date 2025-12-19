@@ -365,8 +365,8 @@ h2 {
           </div>
            <div id="facilityInfo">
             <div class="form-row">
-              <div class="form-group col-md-3">Total no: of inpatient beds</div>
-              <div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtNoBed"></label></div>
+              <!-- <div class="form-group col-md-3">Total no: of inpatient beds</div>
+              <div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtNoBed"></label></div> -->
               <div class="form-group col-md-3">
                 Total No. of rooms </div>
               <div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtNoRoom"></label></div>
