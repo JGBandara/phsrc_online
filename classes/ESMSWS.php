@@ -107,7 +107,7 @@ function sendMessages($session,$alias,$message,$recipients,$messageType)
 	$smsMessage= new stdClass();
 	$smsMessage->message=$message;
 	$smsMessage->messageId="";
-	$smsMessage->recipients='0756188681';
+	$smsMessage->recipients=$recipients;
 	$smsMessage->retries="";
 	$smsMessage->sender=$alias;
 	$smsMessage->messageType=$messageType;
@@ -135,7 +135,7 @@ function sendMessagesMultiLang($session,$alias,$message,$recipients,$messageType
 	$smsMessageMultiLang = new stdClass();
 	$smsMessageMultiLang->message=$message;
 	$smsMessageMultiLang->messageId="";
-	$smsMessageMultiLang->recipients='0756188681';
+	$smsMessageMultiLang->recipients=$recipients;
 	$smsMessageMultiLang->retries="";
 	$smsMessageMultiLang->sender=$alias;
 	$smsMessageMultiLang->messageType=$messageType;
@@ -163,7 +163,7 @@ function sendCampaignMessages($session,$alias,$message,$recipients,$datetime,$mu
 	$smsCampaignMessage = new stdClass();
 	$smsCampaignMessage->message = $message;
 	$smsCampaignMessage->messageId = "";
-	$smsCampaignMessage->recipients = '0756188681';
+	$smsCampaignMessage->recipients = $recipients;
 	$smsCampaignMessage->retries = "";
 	$smsCampaignMessage->sender = $alias;
 	$smsCampaignMessage->messageType=$messageType;
