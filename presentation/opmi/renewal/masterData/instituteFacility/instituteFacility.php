@@ -132,7 +132,7 @@ $modelBank = new cls_sys_bank($db);
                     </div> 
                     
                     
-                      <div class="form-row">
+                      <!-- <div class="form-row">
                           <div class="form-group col-sm-6">
                             <label for="lblOfficeAddr" class="col-form-label-sm">License obtained from the Atomic Energy Authority for Radiology Service</label>
                             <select name="cboAtomicEnergy" id="cboAtomicEnergy" class="form-control form-control-sm">
@@ -171,7 +171,7 @@ $modelBank = new cls_sys_bank($db);
                             <option value="No">No</option>
                             </select>
                           </div>
-                        </div>
+                        </div> -->
          
                 <div class="card-footer">
                   <div class="form-group row">

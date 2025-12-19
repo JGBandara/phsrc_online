@@ -54,7 +54,7 @@ if($requestType=='edit'){
     if(!$intEditx){
       throw new exception('Permission is Denied ...');
     }
-    $sql = "select ins_application_id from institute_registration where institute_reg_id='$id' ";
+     $sql = "select ins_application_id from institute_registration where institute_reg_id='$id' ";
     $result = $db->batchQuery($sql);
     while($row=  mysqli_fetch_array($result)){
         $id=$row['ins_application_id'];
@@ -65,7 +65,7 @@ if($requestType=='edit'){
     if($row = mysqli_fetch_row($result)){
 			
       //Update data to transaction header*******************************************
-      $sql="update `institute_information`
+        $sql="update `institute_information`
             set
 					ins_date_of_stablishment        	='$txtEstDate',
 					ins_br_no    						='$txtBR',
@@ -88,8 +88,8 @@ if($requestType=='edit'){
     $finalResult = $db->batchQuery($sql);
 	$entryId=$id;
     
-    // $clsApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
-    // $clsApprove->reject($referenceId);
+//    $classApprove = new cls_reject($db, $userCompanyId, $userLocationId, $userId);
+// $classApprove->reject($referenceId);
     if($finalResult){                    
         $response['type'] 	= 'pass';
         $response['msg'] 	= 'Institution Information saved successfully! Proceed to Facilities....';
