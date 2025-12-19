@@ -71,7 +71,7 @@ $modelStatus = new cls_sys_status($db);
 
           <!-- Begin Page Content -->
           <div class="container-fluid">
-            <form class="needs-validation" novalidate id="frmsys_birth_type">
+            <form class="needs-validation" novalidate id="frmsys_data_collection">
               <div class="card">
                 <div class="card-header">
                  Monthly Data Collection
