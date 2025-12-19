@@ -49,8 +49,8 @@ Inner Join
 	sys_users 
 	ON sys_user_location.syo_user_id = sys_users.syu_id
 where /* sys_users.syu_id='$userId' and */ sys_user_location.syo_is_deleted='0' and institute_registration.ins_created_by = '$userId'
-ORDER BY 
-    institute_payment_detail.payment_date DESC;";
+GROUP BY 
+    institute_registration.ins_application_id;";
 	$result=$db->singleQuery($sql);
 	while($row=mysqli_fetch_array($result)){
 			

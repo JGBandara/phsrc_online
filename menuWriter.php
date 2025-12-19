@@ -164,9 +164,13 @@ echo '<?php if($menu['.$parentId.'] || '.($withoutPermission?'true':'false'). $p
   echo '<?php $_SESSION[\'header\']= ob_get_clean();echo  $_SESSION[\'header\'];  ?>';
   $value = ob_get_clean();
 //            echo $value;
+
   switch ($moduleName) {
     case "system":
       $fileName = "presentation/system/menu.php";
+      break;
+      case "fbds":    
+      $fileName = "presentation/fbds/menu.php";
       break;
     case "hrm":
       $fileName = "presentation/hrm/menu.php";

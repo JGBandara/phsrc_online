@@ -56,7 +56,7 @@ while($row=mysqli_fetch_array($result)){
 <div class="sidebar-heading">
   transaction</div>
 <!-- Nav Item - Pages Collapse Menu -->
-<?php if($menu[40] || false || $menu[50] || $menu[51] || $menu[52] || $menu[53] || $menu[54] || $menu[55] || $menu[56] || $menu[42]){ ?><li class="nav-item">
+<?php if($menu[40] || false || $menu[41] || $menu[57] || $menu[56] || $menu[54] || $menu[53] || $menu[52] || $menu[51] || $menu[50] || $menu[60] || $menu[42]){ ?><li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseApproval" aria-expanded="true" aria-controls="collapseApproval">
     <i class="fas fa-fw fa-list"></i>
     <span>Approval</span>
@@ -65,25 +65,31 @@ while($row=mysqli_fetch_array($result)){
     <div class="bg-white py-2 collapse-inner rounded">
       <!--<h6 class="collapse-header">Approval:</h6>-->
       
-      <?php if($menu[50] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/checkList/basicInformation/basicInformation.php">Check List</a>
+      <?php if($menu[41] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/newRegistrationApproval/index.php">New Registration Approval</a>
       <?php } ?> 
             
-      <?php if($menu[51] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/checkList/employeeFiles/employeeFiles.php">Check List Upload</a>
+      <?php if($menu[57] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/secretoryApproval/index.php">Secretory Approval</a>
       <?php } ?> 
             
-      <?php if($menu[52] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalCheck/index.php">Approval Check</a>
-      <?php } ?> 
-            
-      <?php if($menu[53] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalRecommandation/index.php">Approval Inspection</a>
+      <?php if($menu[56] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/reports/index.php">Revenue Report</a>
       <?php } ?> 
             
       <?php if($menu[54] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalListing/index.php">Approval Progress</a>
       <?php } ?> 
             
-      <?php if($menu[55] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/secretoryApproval/index.php">Secretory Approval</a>
+      <?php if($menu[53] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalRecommandation/index.php">Renewal Inspection</a>
       <?php } ?> 
             
-      <?php if($menu[56] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/reports/index.php">Revenue Report</a>
+      <?php if($menu[52] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApprovalCheck/index.php">Renewal Check</a>
+      <?php } ?> 
+            
+      <?php if($menu[51] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/checkList/employeeFiles/employeeFiles.php">Check List Upload</a>
+      <?php } ?> 
+            
+      <?php if($menu[50] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/checkList/basicInformation/basicInformation.php">Check List</a>
+      <?php } ?> 
+            
+      <?php if($menu[60] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/managerApproval/index.php">Manager Approval</a>
       <?php } ?> 
             
       <?php if($menu[42] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/approval/renewalApproval/index.php">Renewal Recommendation</a>
@@ -149,7 +155,7 @@ while($row=mysqli_fetch_array($result)){
   </div>
 </li>
 <?php } ?><!-- Nav Item - Pages Collapse Menu -->
-<?php if($menu[4] || true || $menu[5] || $menu[6] || $menu[7] || $menu[8] || $menu[26]){ ?><li class="nav-item">
+<?php if($menu[4] || false || $menu[5] || $menu[6] || $menu[7] || $menu[8] || $menu[26]){ ?><li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
     <i class="fas fa-fw fa-users"></i>
     <span>Users</span>
@@ -171,45 +177,6 @@ while($row=mysqli_fetch_array($result)){
       <?php } ?> 
             
       <?php if($menu[26] || true){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/masterData/progress/index.php">Application Progress</a>
-      <?php } ?> 
-      </div>
-  </div>
-</li>
-<?php } ?><!-- Nav Item - Pages Collapse Menu -->
-<?php if($menu[57] || false || $menu[58] || $menu[64] || $menu[65] || $menu[45] || $menu[59] || $menu[60] || $menu[61] || $menu[62] || $menu[63]){ ?><li class="nav-item">
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDataCollection" aria-expanded="true" aria-controls="collapseDataCollection">
-    <i class="fas fa-fw fa-users"></i>
-    <span>Data Collection</span>
-  </a>
-  <div id="collapseDataCollection" class="collapse" aria-labelledby="headingDataCollection" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-      <!--<h6 class="collapse-header">Data Collection:</h6>-->
-      
-      <?php if($menu[58] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/dataCollection/masterData/notifiableDiseases/notifiableDiseases.php">Notifiable Diseases</a>
-      <?php } ?> 
-            
-      <?php if($menu[64] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/dataCollection/masterData/familyPlanning/familyPlanning.php">Family Planning Method</a>
-      <?php } ?> 
-            
-      <?php if($menu[65] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/dataCollection/dataCollect/dataCollect.php">Collecting</a>
-      <?php } ?> 
-            
-      <?php if($menu[45] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/dataCollection/masterData/laboratoryTest/laboratoryTest.php">Laboratory Tests</a>
-      <?php } ?> 
-            
-      <?php if($menu[59] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/dataCollection/masterData/vaccines/vaccines.php">Vaccines/Immunizations</a>
-      <?php } ?> 
-            
-      <?php if($menu[60] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/dataCollection/masterData/channelConsultation/channelConsultation.php">Channel Consultation</a>
-      <?php } ?> 
-            
-      <?php if($menu[61] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/dataCollection/masterData/deliveries/deliveries.php">Delivery Types</a>
-      <?php } ?> 
-            
-      <?php if($menu[62] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/dataCollection/masterData/birthType/birthType.php">Birth Types</a>
-      <?php } ?> 
-            
-      <?php if($menu[63] || false){ ?>      <a class="collapse-item" href="<?php echo $mainPath;?>presentation/system/dataCollection/masterData/radiology/radiology.php">Radiology</a>
       <?php } ?> 
       </div>
   </div>
