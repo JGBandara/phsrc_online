@@ -117,7 +117,7 @@ $_SESSION['institute_id']=$insId;
                           </div>
                           <div class="form-group col-sm-6">
                             <label for="txtPayAmount" class="col-form-label-sm required">Registration Year</label>
-                            <input type="text" class="form-control form-control-sm" id="txtYear" name="txtYear" placeholder="" value="2026" readonly>
+                            <input type="text" class="form-control form-control-sm" id="txtYear" name="txtYear" value="2026" readonly>
                           </div>
                           
                         </div>

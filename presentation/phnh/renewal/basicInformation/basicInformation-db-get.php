@@ -71,7 +71,7 @@ institute_registration where ins_is_deleted='0' and ins_type_id='7'
 elseif($requestType=='loadPartial'){
   try{
     $recordId = $_REQUEST['record_id'];
-    $model->emi_id = $recordId;'/'
+    $model->emi_id = $recordId;
     $model->emi_company_id = $userCompanyId;
     $model = $model->findModel();
     ob_start();
