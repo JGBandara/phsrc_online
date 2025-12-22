@@ -117,16 +117,13 @@ institute_staff_information.st_info_gov_ins_name
 FROM
 institute_staff_information
 where
-institute_staff_information.st_info_institute_id=$id";
+institute_staff_information.st_info_institute_id='$id'";
                 $resultStfIn=$db->singleQuery($sqlStfIn);
-                while($row=  mysqli_fetch_array($resultStfIn)){
+                while($row=mysqli_fetch_array($resultStfIn)){
                     $response['st_info_hours_of_practice']=$row['st_info_hours_of_practice'];
                     $response['st_info_is_gov_officer']=$row['st_info_is_gov_officer'];
                     $response['st_info_gov_ins_name']=$row['st_info_gov_ins_name'];
                 }
-                
-                
-                
                 $sqlsft = "SELECT
 institute_staff_information_stf_detail.institute_id,
 institute_staff_information_stf_detail.Name,
@@ -255,7 +252,7 @@ Inner Join tbl_facility ON institute_facility_detail.facility_id = tbl_facility.
         order by dfc_name asc, dfi_file_name asc, dfi_file_version asc ";
   $result = $db->singleQuery($sql);
   $arr = [];
-  while($row = mysqli_fetch_assoc($result)){
+  while ($row = mysql_fetch_assoc($result)){
     $arr[] = $row;
   }
                 
@@ -307,7 +304,7 @@ from dms_trn_file
         order by dfc_name asc, dfi_file_name asc, dfi_file_version asc";
   $result = $db->singleQuery($sql);
   $arr = [];
-  while($row = mysqli_fetch_assoc($result)){
+while ($row = mysql_fetch_assoc($result)) {
     $arr[] = $row;
   }
   echo json_encode($arr);
