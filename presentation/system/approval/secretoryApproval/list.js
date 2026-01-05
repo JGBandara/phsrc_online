@@ -298,11 +298,14 @@ $('.btn').click(function(){
 						}
                $imageName=json.payImageName;
 
-			   $('#txthidImg').val($imageName);
-              // alert($src);
-              //$('#slip').attr("src", $src);
-              $('#slip').attr('href',backwardSeparator+'img/BankSlip/'+$imageName); 
-      
+			    $('#txthidImg').val($imageName);
+                    // alert($src);
+                    //$('#slip').attr("src", $src);
+                    if (json.paymentType == 'Card Payment') {
+                        $('#slip').attr('href', backwardSeparator + json.receipt_path);
+                    } else {
+                        $('#slip').attr('href', backwardSeparator + 'img/BankSlip/' + $imageName);
+                    }
 		 
 		  
           }

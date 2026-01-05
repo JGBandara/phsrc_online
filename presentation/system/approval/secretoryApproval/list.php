@@ -9,6 +9,10 @@
 		height:20px
       }
 </style>
+  <script type="application/javascript" >
+      
+      var backwardSeparator = '../../../../';
+    </script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -533,8 +537,7 @@ Technicians
                    &nbsp;</div><div class="form-group col-md-3">&nbsp;<button type="button" class="btn btn-success" id="btnApprove">Save</button></div></div>-->
 
  
- 
-<!-- <div class="form-row"><div class="form-group col-md-4">&nbsp;</div><div class="form-group col-md-4"><img src="" class="avatar1-pic" alt="Bank Slip" height="20px"></div><div class="form-group col-md-4">&nbsp;</div></div>-->
+
         
         </div>
   <!-- ------------------------------------------------------------------------------------------------------------------------------------- -->
