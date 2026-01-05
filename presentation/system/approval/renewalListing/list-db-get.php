@@ -25,12 +25,16 @@ if($requestType=='loadDetails'){
     institute_payment_detail.payment_reg_fee,   
     CASE 
         WHEN institute_payment_detail.payment_is_approval IN (1) THEN 'Approved'
-        WHEN institute_payment_detail.payment_is_approval IN (2, 12, 9) THEN 'Rejected'
+        WHEN institute_payment_detail.payment_is_approval IN (2, 12, 9, 30, 31) THEN 'Rejected'
         WHEN institute_payment_detail.payment_is_approval IN (10) THEN 'Checked'
 		WHEN institute_payment_detail.payment_is_approval IN (11) THEN 'Recommended'
 		WHEN institute_payment_detail.payment_is_approval IN (0) THEN 'Pending'
+		WHEN institute_payment_detail.payment_is_approval IN (18) THEN 'Approved by PHSRC Officer'
 		WHEN institute_payment_detail.payment_is_approval IN (19) THEN 'Approved by Manager'
 		WHEN institute_payment_detail.payment_is_approval IN (20) THEN 'Approved by Secretary'
+		WHEN institute_payment_detail.payment_is_approval IN (21) THEN 'Approved by First Committee Member'
+		WHEN institute_payment_detail.payment_is_approval IN (22) THEN 'Approved by Second Committee Member'
+		WHEN institute_payment_detail.payment_is_approval IN (23) THEN 'Approved by Third Committee Member'
         ELSE 'Unknown'
     END AS payment_is_approval,   
     institute_registration.ins_institute_name,   

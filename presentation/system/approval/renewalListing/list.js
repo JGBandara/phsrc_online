@@ -45,7 +45,20 @@ function load_detail() {
                 } else if ($approveStatus[i] === "Approved by Secretary") {
                     rowColor = "background-color: rgba(102, 0, 204, 1); color: white;";
                     approveText = "Approved by Secretary";
-                }else {
+                } else if ($approveStatus[i] === "Approved by PHSRC Officer") {
+                    rowColor = "background-color: rgba(101, 235, 168, 1); color: white;";
+                    approveText = "Approved by PHSRC Officer";
+                } else if ($approveStatus[i] === "Approved by First Committee Member") {
+                    rowColor = "background-color: rgba(120, 180, 124, 1); color: white;";
+                    approveText = "Approved by First Committee Member";
+                } else if ($approveStatus[i] === "Approved by Second Committee Member") {
+                    rowColor = "background-color: rgba(68, 220, 78, 1); color: white;";
+                    approveText = "Approved by Second Committee Member";
+                } else if ($approveStatus[i] === "Approved by Third Committee Member") {
+                    rowColor = "background-color: rgba(6, 72, 29, 1); color: white;";
+                    approveText = "Approved by Third Committee Member";
+                }
+                else {
                     approveText = "Pending";
                 }
                 if($remark[i] == null){
@@ -73,7 +86,7 @@ function load_detail() {
             $('.rows_count').text("Showing " + start + " to " + end + " of " + totalRows + " entries");
         }
     });
-}23
+}
 
 
 
