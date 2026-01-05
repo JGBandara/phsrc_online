@@ -394,7 +394,7 @@ $('#btnApprove').click(function(){
 			$('#lblAcction').text('Approved!')
 			$("#lblAcction").css("color", "#060");
 			$('#btnReject,#btnApprove').hide();
-			location.reload(); 
+			// location.reload(); 
 		
 	});
 	
@@ -448,7 +448,7 @@ $('#btnApprove').click(function(){
 	
 	$('#frmItemCount .btnSave').click(function(){
 		
-		location.reload(); 
+		// location.reload(); 
 		
 		})
 	
@@ -477,7 +477,7 @@ $('#btnApprove').click(function(){
            
 			});
 		
-		location.reload(); 
+		// location.reload(); 
 		
 		})
 

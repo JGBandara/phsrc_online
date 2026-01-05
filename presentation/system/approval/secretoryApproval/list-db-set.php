@@ -14,8 +14,6 @@ require_once $backwardSeparator.'dataAccess/connector.php';
 
 
 $response = array('type'=>'', 'msg'=>'');
-
-  
 $requestType 	= $_REQUEST['requestType'];
 $anStatus       = $_REQUEST['anStatus'];
 
@@ -33,15 +31,37 @@ if($requestType=='approve'){
 
   try{
     $db->begin();      
-    
-    
-   $sql="update `institute_payment_detail`
-          set
+  $sql = "SELECT
+  man_institute_main.cat_name,
+  man_institute_main.main_cat_id,
+  man_institute_sub.sub_cat_id
+  FROM
+  institute_registration
+  Inner Join man_institute_main ON institute_registration.ins_type_id = man_institute_main.main_cat_id
+ left Join man_institute_sub ON man_institute_main.main_cat_id = man_institute_sub.main_cat_id
+  where institute_registration.ins_application_id=$id";
+   
+    $result=$db->singleQuery($sql);
+    while($row=mysqli_fetch_array($result)){
+      $mainCatId=$row['main_cat_id'];
+      $subCatId=$row['sub_cat_id'];
+    } 
+    if($mainCatId==1 || $subCatId==3){
+  $sql="update `institute_payment_detail`
+         set
             payment_is_approval = '20'
           where payment_detail_institute_id='$id'";
-                
+      
     $finalResult = $db->singleQuery($sql);
-              
+  }
+  else{
+    $sql="update `institute_payment_detail`
+          set
+            payment_is_approval = '21'
+          where payment_detail_institute_id='$id'";
+      
+    $finalResult = $db->singleQuery($sql);
+  }       
     
     if($finalResult){ 
 	$response['type'] 	= 'pass';
@@ -96,7 +116,7 @@ if($requestType=='approve'){
     
     $sql="update `institute_payment_detail`
           set
-            payment_is_approval = '21',
+            payment_is_approval = '30',
 			reject_remark='$txtRemark'
           where payment_detail_institute_id='$id'";
                 
