@@ -39,7 +39,13 @@ function load_detail() {
                 } else if ($approveStatus[i] === "Recommended") {
                     rowColor = "background-color: rgba(33, 137, 153, 1); color: white;";
                     approveText = "Inspection Officer Checked";
-                } else {
+                } else if ($approveStatus[i] === "Approved by Manager") {
+                    rowColor = "background-color: rgba(0, 102, 204, 1); color: white;";
+                    approveText = "Approved by Manager";
+                } else if ($approveStatus[i] === "Approved by Secretary") {
+                    rowColor = "background-color: rgba(102, 0, 204, 1); color: white;";
+                    approveText = "Approved by Secretary";
+                }else {
                     approveText = "Pending";
                 }
                 if($remark[i] == null){
@@ -54,7 +60,7 @@ function load_detail() {
                     "<td>" + $date[i] + "</td>" +
                     "<td>" + $remark[i] + "</td>" +
                     "<td>" + approveText + "</td>" +
-                    "<td><center><button type='button' class='btn btn-success btn-md' data-toggle='modal' data-target='#myModal' id='" + $id[i] + "'>View</button></center></td>" +
+                    "<td><center><button type='button' class='btn btn-success btn-md btnView' data-toggle='modal' data-target='#myModal' id='" + $id[i] + "'>View</button></center></td>" +
                     "</tr>");
             }
 
@@ -106,7 +112,7 @@ function load_detail() {
     })
 
 
-    $('.btn').click(function () {
+    $('.btnView').click(function () {
 
         var id = this.id;
 
@@ -309,7 +315,7 @@ function load_detail() {
                     $('#txthidImg').val($imageName);
                     // alert($src);
                     //$('#slip').attr("src", $src);
-                    if (json.paymentType === 'Card Payment') {
+                    if (json.paymentType == 'Card Payment') {
                         $('#slip').attr('href', backwardSeparator + json.receipt_path);
                     } else {
                         $('#slip').attr('href', backwardSeparator + 'img/BankSlip/' + $imageName);

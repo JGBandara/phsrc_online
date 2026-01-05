@@ -29,6 +29,8 @@ if($requestType=='loadDetails'){
         WHEN institute_payment_detail.payment_is_approval IN (10) THEN 'Checked'
 		WHEN institute_payment_detail.payment_is_approval IN (11) THEN 'Recommended'
 		WHEN institute_payment_detail.payment_is_approval IN (0) THEN 'Pending'
+		WHEN institute_payment_detail.payment_is_approval IN (19) THEN 'Approved by Manager'
+		WHEN institute_payment_detail.payment_is_approval IN (20) THEN 'Approved by Secretary'
         ELSE 'Unknown'
     END AS payment_is_approval,   
     institute_registration.ins_institute_name,   
@@ -304,7 +306,7 @@ from dms_trn_file
         order by dfc_name asc, dfi_file_name asc, dfi_file_version asc";
   $result = $db->singleQuery($sql);
   $arr = [];
-while ($row = mysql_fetch_assoc($result)) {
+while ($row = mysqli_fetch_array($result)) {
     $arr[] = $row;
   }
   echo json_encode($arr);
