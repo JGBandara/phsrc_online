@@ -300,7 +300,8 @@ $('.btn').click(function(){
 			  if(json.userId==json.first_approval_by || json.userId==json.second_approval_by || json.userId==json.third_approval_by || json.userId==json.fourth_approval_by){
 				$('#lblAcction').text('Approved!')
 			  $("#lblAcction").css("color", "#060");
-			  $('#btnReject,#btnApprove').hide();
+			  $('#btnReject,#btnApprove,#txtRemark').hide();
+
 				
 				}else if(json.approval=='31'){
 					$('#lblAcction').text('Rejected!')

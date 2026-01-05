@@ -47,7 +47,7 @@ if($requestType=='approve'){
           set
             payment_is_approval = '21',
             payment_com_first_approval_by='$userId',
-            payment_com_first_approval_date=NOW()
+            payment_com_first_approval_date=NOW()0
           where payment_detail_institute_id='$id'";
                 
     $finalResult = $db->singleQuery($sql);

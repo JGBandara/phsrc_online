@@ -9,6 +9,10 @@
 		height:20px
       }
 </style>
+  <script type="application/javascript" >
+      
+      var backwardSeparator = '../../../../';
+    </script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -298,7 +302,244 @@ Payment Amount</div><div class="form-group col-md-3">:&nbsp;<label class="textSt
       <div class="form-row"><div class="form-group col-md-3">Bank Slip</div><div class="form-group col-md-3">:&nbsp;<a style ="display:contents" target="_blank" id ="slip">View</a></div><div class="form-group col-md-3">&nbsp;</div><div class="form-group col-md-3">&nbsp;</div></div>
         
         </div>
+  <!-- ------------------------------------------------------------------------------------------------------------------------------------- -->
+       <!-- ------------------------------------------------------------------------------------------------------------------------------------- -->      <div id="checkList">
+ <!---------------------------------------------------------------------------------------------------------------->          
+<!--  
+<div style="" id="denLab"><div class="form-row"><div class="form-group col-md-3">Name of the person operating the Ambulance Service</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtambName" class="form-group" name="txtambName"/></div><div class="form-group col-md-3">Number of Doctors available </div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtNoDoctor" class="form-group" name="txtNoDoctor"/></div></div>
+        
+         <div class="form-row"><div class="form-group col-md-3">Number of Nurses available </div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtNoNurs" class="form-group" name="txtNoNurs"/></div><div class="form-group col-md-3">
+ Number of Ambulances </div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtnoAmbulance" class="form-group" name="txtnoAmbulance"/></div></div>
  
+ <div class="form-row"><div class="form-group col-md-3">Model</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtnoModel" class="form-group" name="txtnoModel"/></div><div class="form-group col-md-3">
+&nbsp;</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtPaymentDate"></label></div></div>
+
+ <div class="form-row"><div class="form-group col-md-3">Facilities available</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtfacility" class="form-group" name="txtfacility"/></div><div class="form-group col-md-3">
+Equipment available </div><div class="form-group col-md-3">&nbsp;<input type="text" id="txtequipment" class="form-group" name="txtfacility"/></div></div>
+
+<div class="form-row"><div class="form-group col-md-3">Number of Drivers available</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtDriverAv" class="form-group" name="txtDriverAv"/></div><div class="form-group col-md-3">
+Extracts of the RMV registration</div><div class="form-group col-md-3">&nbsp;<input type="text" id="txtRMVreg" class="form-group" name="txtRMVreg"/></div></div>
+</div>-->
+           
+<!---------------------------------------------dental Lab--------------------------------------------------------------------->     
+
+<!--<div style="" id="denLab"><div class="form-row"><div class="form-group col-md-3">Name of the person operating the Dental Laboratory </div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtdlName" class="form-group" name="txtdlName"/></div><div class="form-group col-md-3">
+ Name of the Dental Laboratory Technician</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtdlTName" class="form-group" name="txtdlTName"/></div></div>
+        
+         <div class="form-row"><div class="form-group col-md-3">Qualifications </div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtQlifications" class="form-group" name="txtQlifications"/></div><div class="form-group col-md-3">
+ Facilities available</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtfaciAv" class="form-group" name="txtfaciAv"/></div></div>
+ 
+ <div class="form-row"><div class="form-group col-md-3">Method of Clinical Waste Disposal</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtwastDisposal" class="form-group" name="txtwastDisposal"/></div><div class="form-group col-md-3">
+Business registration no</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtbusinessReg" class="form-group" name="txtbusinessReg"/></div></div>
+    </div>-->
+
+
+<!-------------------------------------------------------------------------------------------------------------------->
+<!--<div style="height:200px;overflow: auto" id="mdLab">
+<div class="form-row"><div class="form-group col-md-3">Name of the person operating the Laboratory </div><div class="form-group col-md-3">&nbsp;</div><div class="form-group col-md-3">
+&nbsp;</div><div class="form-group col-md-3">&nbsp;<input type="text" id="txtNoDoctor" class="form-group" name="txtNoDoctor"/></div></div>
+        
+         <div class="form-row"><div class="form-group col-md-3">Name of the Pathologist </div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtNamePath" class="form-group" name="txtNamePath"/></div><div class="form-group col-md-3">
+ Sri Lanka Medical Council (SLMC) registration no </div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtpathSLMC" class="form-group" name="txtpathSLMC"/></div></div>
+ 
+ <div class="form-row"><div class="form-group col-md-3">Whether Full Time/ Part Time </div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtpathWh" class="form-group" name="txtpathWh"/></div><div class="form-group col-md-3">
+&nbsp;</div><div class="form-group col-md-3">:&nbsp;<label class="textStyle" id="txtPaymentDate"></label></div></div>
+
+ <div class="form-row"><div class="form-group col-md-3">Name of the Microbiologist</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtNameMicro" class="form-group" name="txtNameMicro"/></div><div class="form-group col-md-3">
+Sri Lanka Medical Council (SLMC) registration no</div><div class="form-group col-md-3">&nbsp;<input type="text" id="txtmicSlmc" class="form-group" name="txtmicSlmc"/></div></div>
+
+<div class="form-row"><div class="form-group col-md-3">Whether Full Time/ Part Time</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtmicWh" class="form-group" name="txtmicWh"/></div><div class="form-group col-md-3">
+&nbsp</div><div class="form-group col-md-3">&nbsp;</div></div>
+
+ <div class="form-row"><div class="form-group col-md-3">Name of the Chemical Pathologist</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtNameChemi" class="form-group" name="txtNameChemi"/></div><div class="form-group col-md-3">
+Sri Lanka Medical Council (SLMC) registration no</div><div class="form-group col-md-3">&nbsp;<input type="text" id="txtcemSlmc" class="form-group" name="txtcemSlmc"/></div></div>
+
+<div class="form-row"><div class="form-group col-md-3">Whether Full Time/ Part Time</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtcemWh" class="form-group" name="txtcemWh"/></div><div class="form-group col-md-3">
+&nbsp</div><div class="form-group col-md-3">&nbsp;</div></div>
+
+<div class="form-row"><div class="form-group col-md-3">Internal and External Quality Controlling</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtqtyControl" class="form-group" name="txtqtyControl"/></div><div class="form-group col-md-3">
+Facilities available </div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtfaciCemi" class="form-group" name="txtfaciCemi"/></div></div>
+
+<div class="form-row"><div class="form-group col-md-3">Method of Clinical Waste Disposal</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtcemWh" class="form-group" name="txtcemWh"/></div><div class="form-group col-md-3">
+&nbsp</div><div class="form-group col-md-3">&nbsp;</div></div>
+
+<div class="form-row"><div class="form-group col-md-3">Business registration no. </div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtcembisReg" class="form-group" name="txtcembisReg"/></div><div class="form-group col-md-3">
+&nbsp</div><div class="form-group col-md-3">&nbsp;</div></div>
+</div>-->
+<!--------------------------------------------------------------------------------------------------------------------->
+<!---------------------------------------------Hospital--------------------------------------------------------------->     
+<!--
+<div style="" id="denLab"><div class="form-row"><div class="form-group col-md-3">Name of the Owner </div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtdlName" class="form-group" name="txtdlName"/></div><div class="form-group col-md-3">
+ Name of the Chief Executive Officer</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtdlTName" class="form-group" name="txtdlTName"/></div></div>
+        
+         <div class="form-row"><div class="form-group col-md-3">Name of the Medical Director</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtQlifications" class="form-group" name="txtQlifications"/></div><div class="form-group col-md-3">
+ (SLMC) registration no</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtfaciAv" class="form-group" name="txtfaciAv"/></div></div>
+ 
+ <div class="form-row"><div class="form-group col-md-3">Number of Full Time Doctors </div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtwastDisposal" class="form-group" name="txtwastDisposal"/></div><div class="form-group col-md-3">
+Name of the Nursing Director</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtbusinessReg" class="form-group" name="txtbusinessReg"/></div></div>
+    </div>
+
+<div class="form-row"><div class="form-group col-md-3">Number of Nurses</div><div class="form-group col-md-3">:&nbsp;<input type="text" id="txtwastDisposal" class="form-group" name="txtwastDisposal"/></div>
+    
+     </div>
+    
+    <div class="form-row"><div class="form-group col-md-6">
+    <div class="card">
+                <div class="card-body">
+                  <table class="table table-hover table-bordered small" id="tblstaffManagemnt">
+                    <thead class="">
+                      <tr>
+                          <th style="width: 100%;" colspan="2">Consultation Rooms</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody><tr><td align='center' class='p-1'>Number of consultation rooms</td><td class='p-1'><input type="text" id="checkPvtHs" /></td></tr>
+                        <tr><td align='center' class='p-1'>Square area of the each room </td><td class='p-1'><input type="text" id="checkNursingHome" /></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>  
+                </div><div class="form-group col-md-6">
+<div class="card">
+                <div class="card-body">
+                  <table class="table table-hover table-bordered small" id="tblstaffManagemnt">
+                    <thead class="">
+                      <tr>
+                          <th style="width: 100%;" colspan="2">Equipments</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody><tr><td align='center' class='p-1'>Examination bed</td><td class='p-1'><input type="text" id="checkPubCompany"/></td></tr>
+                    <tr><td align='center' class='p-1'>Table and chairs</td><td class='p-1'><input type="text" id="checkPvtCompany" /></td></tr>
+                    <tr><td align='center' class='p-1'>Wash basin</td><td class='p-1'><input type="text" id="checkProHospital" /></td></tr>
+                    <tr><td align='center' class='p-1'>Weighing scale</td><td class='p-1'><input type="text" id="checkCoHospital" /></td></tr>
+                    <tr><td align='center' class='p-1'>Adequate ventilation and illumination</td><td class='p-1'><input type="text" id="checkEsHospital" /></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>  
+                </div></div>
+
+
+<div class="form-row"><div class="form-group col-md-6">
+    <div class="card">
+                <div class="card-body">
+                  <table class="table table-hover table-bordered small" id="tblstaffManagemnt">
+                    <thead class="">
+                      <tr>
+                          <th style="width: 100%;" colspan="2">Waiting Area</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody><tr><td align='center' class='p-1'>Seating facilities for minimum
+of 10 persons per consultation
+ room with sanitary facilities
+</td><td class='p-1'><input type="text" id="checkPvtHs" /></td></tr>
+                        <tr><td align='center' class='p-1'>Adequate ventilation and illumination </td><td class='p-1'><input type="text" id="checkNursingHome" /></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>  
+                </div><div class="form-group col-md-6">
+<div class="card">
+                <div class="card-body">
+                  <table class="table table-hover table-bordered small" id="tblstaffManagemnt">
+                    <thead class="">
+                      <tr>
+                          <th style="width: 100%;" colspan="2">Sample Collection Room</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody><tr><td align='center' class='p-1'>Examination bed</td><td class='p-1'><input type="text" id="checkPubCompany"/></td></tr>
+                    <tr><td align='center' class='p-1'>Floor area</td><td class='p-1'><input type="text" id="checkPvtCompany" /></td></tr>
+                    <tr><td align='center' class='p-1'>Adequate sanitary facilities</td><td class='p-1'><input type="text" id="checkProHospital" /></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>  
+                </div></div>
+
+
+<div class="form-row"><div class="form-group col-md-6">
+    <div class="card">
+                <div class="card-body">
+                  <table class="table table-hover table-bordered small" id="tblstaffManagemnt">
+                    <thead class="">
+                      <tr>
+                          <th style="width: 100%;" colspan="2">Equipments</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody><tr><td align='center' class='p-1'>Arm chair
+</td><td class='p-1'><input type="text" id="checkPvtHs" /></td></tr>
+                        <tr><td align='center' class='p-1'>Bed</td><td class='p-1'><input type="text" id="checkNursingHome" /></td></tr>
+                        <tr><td align='center' class='p-1'>Safe waste disposal</td><td class='p-1'><input type="text" id="checkNursingHome" /></td></tr>
+                        <tr><td align='center' class='p-1'>Toilet facilities</td><td class='p-1'><input type="text" id="checkNursingHome" /></td></tr>
+                        <tr><td align='center' class='p-1'>Adequate illumination</td><td class='p-1'><input type="text" id="checkNursingHome" /></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>  
+                </div><div class="form-group col-md-6">
+<div class="card">
+                <div class="card-body">
+                  <table class="table table-hover table-bordered small" id="tblstaffManagemnt">
+                    <thead class="">
+                      <tr>
+                          <th style="width: 100%;" colspan="2">Laboratory Facilities</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody><tr><td align='center' class='p-1'>Name of the Pathologist
+		Sri Lanka Medical Council (SLMC)
+registration no.
+Whether Full Time/ Part Time
+</td><td class='p-1'><input type="text" id="checkPubCompany"/></td></tr>
+                    <tr><td align='center' class='p-1'>Name of the Microbiologist
+		Sri Lanka Medical Council (SLMC)
+registration no.
+Whether Full Time/ Part Time
+</td><td class='p-1'><input type="text" id="checkPvtCompany" /></td></tr>
+                    <tr><td align='center' class='p-1'>Name of the Chemical Pathologist
+		Sri Lanka Medical Council (SLMC)
+registration no.
+Whether Full Time/ Part Time
+</td><td class='p-1'><input type="text" id="checkProHospital" /></td></tr>
+                    <tr><td align='center' class='p-1'>Name of the Chief Medical Laboratory
+		Technician 
+		Sri Lanka Medical Council (SLMC)
+registration no.
+Number of Medical Laboratory
+Technicians 
+</td><td class='p-1'><input type="text" id="checkProHospital" /></td></tr>
+                    </tr>
+                    <tr><td align='center' class='p-1'>Internal and external quality controlling
+</td><td class='p-1'><input type="text" id="checkProHospital" /></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>  
+                </div></div>-->
+    
+    
+   
+
+
+<!-------------------------------------------------------------------------------------------------------------------->
+
+           
+<!--           <div class="form-row"><div class="form-group col-md-3">Upload Check List</div><div class="form-group col-md-3">&nbsp;<input type="file"/></div><div class="form-group col-md-3">
+                   &nbsp;</div><div class="form-group col-md-3">&nbsp;<label class="textStyle" id=""></label></div></div>
+        
+           <div class="form-row"><div class="form-group col-md-3">Comments</div><div class="form-group col-md-9">&nbsp;<textarea class="form-group col-md-9" name="txtComment" name="txtComment"></textarea></div></div>
+ 
+           <div class="form-row"><div class="form-group col-md-3">&nbsp;</div><div class="form-group col-md-3">&nbsp;<label class="textStyle" id="txtPaymentBranch"></label></div><div class="form-group col-md-3">
+                   &nbsp;</div><div class="form-group col-md-3">&nbsp;<button type="button" class="btn btn-success" id="btnApprove">Save</button></div></div>-->
+
+ 
+ 
+<!-- <div class="form-row"><div class="form-group col-md-4">&nbsp;</div><div class="form-group col-md-4"><img src="" class="avatar1-pic" alt="Bank Slip" height="20px"></div><div class="form-group col-md-4">&nbsp;</div></div>-->
+        
         </div>
   <!-- ------------------------------------------------------------------------------------------------------------------------------------- -->
 
