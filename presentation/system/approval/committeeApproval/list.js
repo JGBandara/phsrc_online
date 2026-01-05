@@ -37,8 +37,22 @@ function load_detail(){
 					}else if($approveStatus[$i]==2){
 						$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button type='button' class='btn btn-danger btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Rejected</button></center></td></tr>" );
 						
-						}else{
-							$('#table-id').append( "<tr><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button type='button' class='btn btn-warning btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Pending&nbsp;</button></center></td></tr>" );
+						}
+					else if($approveStatus[$i]==21){
+							$('#table-id').append( "<tr style='background-color:#009900; color:black;'><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button style='background-color:#006622' type='button' class='btn btn-success btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Approved by First Committee Member&nbsp;</button></center></td></tr>" );
+							
+							}
+					else if($approveStatus[$i]==22){
+							$('#table-id').append( "<tr style='background-color:#53c653; color:black;'><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button style='background-color:#239023' type='button' class='btn btn-success btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Approved by Second Committee Member&nbsp;</button></center></td></tr>" );
+							}
+					else if($approveStatus[$i]==23){
+							$('#table-id').append( "<tr style='background-color:#00e600; color:black;'><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button style='background-color:#003311' type='button' class='btn btn-success btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Approved by Third Committee Member&nbsp;</button></center></td></tr>" );
+							}
+					else if($approveStatus[$i]==24){
+							$('#table-id').append( "<tr style='background-color:#008000; color:black;'><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button style='background-color:#003311' type='button' class='btn btn-success btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Approved by Fourth Committee Member&nbsp;</button></center></td></tr>" );
+							}
+					else{
+							$('#table-id').append( "<tr ><td>"+$name[$i]+"</td><td>"+$payType[$i]+"</td><td>"+$cat_name[$i]+"</td><td>"+$date[$i]+"</td><td><center><button type='button' class='btn btn-warning btn-md' data-toggle='modal'  data-target='#myModal' id='"+$id[$i]+"' >Pending&nbsp;</button></center></td></tr>" );
 
 							}
 					
@@ -282,12 +296,13 @@ $('.btn').click(function(){
               $('#txtStampAmount').text(json.payment_stamp_fee);
               $('#txtArras').text(json.payment_arrears);
 			  $('#txtRemark').text(json.reject_remark);
-			  if(json.approval=='11'){
-				$('#lblAcction').text('Recommended!')
+
+			  if(json.userId==json.first_approval_by || json.userId==json.second_approval_by || json.userId==json.third_approval_by || json.userId==json.fourth_approval_by){
+				$('#lblAcction').text('Approved!')
 			  $("#lblAcction").css("color", "#060");
 			  $('#btnReject,#btnApprove').hide();
 				
-				}else if(json.approval=='12'){
+				}else if(json.approval=='31'){
 					$('#lblAcction').text('Rejected!')
 			  $("#lblAcction").css("color", "#C00");
 			  $('#btnReject,#btnApprove').hide();
@@ -514,17 +529,7 @@ $('#btnApprove').click(function(){
 							
 							
 				}
-           
-
-
 			});
-		//alert(id);
-		
-		
 	})
-
-
 	}	
-
-
 });

@@ -42,7 +42,7 @@ if ($requestType == 'loadDetails') {
   Inner Join man_institute_main ON institute_registration.ins_type_id = man_institute_main.main_cat_id 
   inner Join sys_user_location ON institute_registration.ins_province_id = sys_user_location.syo_location_id
   Inner Join sys_users ON sys_user_location.syo_user_id = sys_users.syu_id
-  where sys_users.syu_id='$userId' and sys_user_location.syo_is_deleted='0' and payment_is_approval='20' order by ins_application_id asc";
+  where sys_users.syu_id='$userId' and sys_user_location.syo_is_deleted='0' and payment_is_approval='20' or payment_is_approval='21' or payment_is_approval='22' or payment_is_approval='23' or payment_is_approval='24' group by ins_application_id order by ins_application_id asc";
 
 	$result = $db->singleQuery($sql);
 	while ($row = mysqli_fetch_array($result)) {
@@ -72,7 +72,11 @@ if ($requestType == 'loadDetails') {
    sys_district.syd_name AS dis_name,
    sys_province.syv_name AS pro_name,
    institute_payment_detail.payment_detail_institute_id,
-   institute_payment_detail.payment_is_approval
+   institute_payment_detail.payment_is_approval,
+   institute_payment_detail.payment_com_first_approval_by,
+   institute_payment_detail.payment_com_second_approval_by,
+   institute_payment_detail.payment_com_third_approval_by,
+   institute_payment_detail.payment_com_fourth_approval_by
    FROM
    institute_registration
    Inner Join sys_province ON institute_registration.ins_province_id = sys_province.syv_id
@@ -95,9 +99,12 @@ where institute_registration.ins_application_id=$id
 		$response['province'] = $row['pro_name'];
 		$response['district'] = $row['dis_name'];
 		$response['approvalStatus'] = $row['payment_is_approval'];
-		//------------------------------------------------------------------------------------------------
 		$response['approval']	= $row['payment_is_approval'];
-		//------------------------------------------------------------------------------------------------
+		$response['first_approval_by'] = $row['payment_com_first_approval_by'];
+		$response['second_approval_by'] = $row['payment_com_second_approval_by'];
+		$response['third_approval_by'] = $row['payment_com_third_approval_by'];
+		$response['fourth_approval_by'] = $row['payment_com_fourth_approval_by'];
+		$response['userId'] = $userId;
 	}
 	//----------------------- staff information----------------------------------------------------
 	$sqlStfIn = "SELECT

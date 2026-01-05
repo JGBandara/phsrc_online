@@ -33,21 +33,56 @@ if($requestType=='approve'){
 
   try{
     $db->begin();      
-    
-    
+  $sql = "SELECT
+          payment_is_approval
+          FROM
+          institute_payment_detail
+          where payment_detail_institute_id='$id'";
+    $result=$db->singleQuery($sql);
+  while($row=mysqli_fetch_array($result)){
+    $status=$row['payment_is_approval'];
+  }
+  if( $status == '20'){
    $sql="update `institute_payment_detail`
           set
-            payment_is_approval = '21'
+            payment_is_approval = '21',
+            payment_com_first_approval_by='$userId',
+            payment_com_first_approval_date=NOW()
           where payment_detail_institute_id='$id'";
                 
     $finalResult = $db->singleQuery($sql);
-              
+  }else if( $status == '21'){
+   $sql="update `institute_payment_detail`
+          set
+            payment_is_approval = '22',
+            payment_com_second_approval_by='$userId',
+            payment_com_second_approval_date=NOW()
+      where payment_detail_institute_id='$id'";
+                
+    $finalResult = $db->singleQuery($sql);
+  } else if( $status == '22'){
+   $sql="update `institute_payment_detail`
+          set
+            payment_is_approval = '23',
+            payment_com_third_approval_by='$userId',
+            payment_com_third_approval_date=NOW()
+          where payment_detail_institute_id='$id'"; 
+    $finalResult = $db->singleQuery($sql);
+  } else if( $status == '23'){  
+    $sql="update `institute_payment_detail`
+            set
+              payment_is_approval = '24',
+              payment_com_fourth_approval_by='$userId',
+              payment_com_fourth_approval_date=NOW()
+          where payment_detail_institute_id='$id'";
+      $finalResult = $db->singleQuery($sql);
+  } 
     
     if($finalResult){ 
 	$response['type'] 	= 'pass';
         $response['msg'] 	= 'Saved successfully.';
         $db->commit();
-	//---------------------------------------------------------------------------------------------------------
+	//------------------------------------------------------- --------------------------------------------------
 	
         
     }
@@ -81,7 +116,7 @@ if($requestType=='approve'){
     $newMobile=$row['ins_mobile'];
   }
     
-  $msg="Your application Rejected by Secretory Officer.
+  $msg="Your application Rejected by Committee Member.
      
   More information please contact office.";
   
@@ -96,7 +131,7 @@ if($requestType=='approve'){
     
     $sql="update `institute_payment_detail`
           set
-            payment_is_approval = '21',
+            payment_is_approval = '31',
 			reject_remark='$txtRemark'
           where payment_detail_institute_id='$id'";
                 
