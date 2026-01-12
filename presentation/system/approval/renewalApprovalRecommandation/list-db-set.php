@@ -30,7 +30,24 @@ $deletedBy           = isset($userId)?$userId:null;
 
 if($requestType=='approve'){
 	$id=$_REQUEST['id'];
-
+$sql="SELECT
+  institute_registration.ins_application_id,
+  institute_registration.ins_mobile
+  FROM
+  institute_registration
+  where institute_registration.ins_application_id=$id";
+  $result=$db->singleQuery($sql);
+  while($row=mysqli_fetch_array($result)){
+    $newMobile=$row['ins_mobile'];
+  }
+    
+  $msg="Your renewal application for the year 2026 has been successfully submitted to the PDHS.";
+  
+     require_once $backwardSeparator.'classes/ESMSWS.php';
+  $session=createSession('','esmsusr_1f7m','3esotc9','');
+  sendMessages($session,'PHSRC',$msg,array($newMobile),1); // 1 for promotional messages, 0 for normal message 
+  closeSession($session);
+  
   try{
     $db->begin();      
     
@@ -81,9 +98,11 @@ if($requestType=='approve'){
     $newMobile=$row['ins_mobile'];
   }
     
-  $msg="Your application Rejected by Provincial Director of Health Services.
-	 
-More information please contact relevant Provincial Director of Health Services.";
+  $msg="Your renewal application has been returned due to incomplete information. 
+  
+  Please log in to your user account or contact the relevant PDHS office for details. 
+  
+  Resubmit the application with the requested information.";
   
      require_once $backwardSeparator.'classes/ESMSWS.php';
   $session=createSession('','esmsusr_1f7m','3esotc9','');

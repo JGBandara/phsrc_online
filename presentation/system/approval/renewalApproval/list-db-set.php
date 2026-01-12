@@ -44,6 +44,12 @@ while($row=mysqli_fetch_array($result)){
 	$lastId=$row['institute_reg_id'];
 }
 
+$msg="Your renewal application for the year 2026 has been recommended by the PDHS and forwarded to the PHSRC.";
+  
+     require_once $backwardSeparator.'classes/ESMSWS.php';
+  $session=createSession('','esmsusr_1f7m','3esotc9','');
+  sendMessages($session,'PHSRC',$msg,array($newMobile),1); // 1 for promotional messages, 0 for normal message 
+  closeSession($session);
 
 
 // 	 $msg="Your application Approved by PDHS.
@@ -59,7 +65,8 @@ while($row=mysqli_fetch_array($result)){
 
  $sql="update `institute_payment_detail`
           set
-            payment_is_approval = '1'
+            payment_is_approval = '1',
+			payment_approved_date=now()
           where payment_detail_institute_id='$id'";
                 
     $finalResult = $db->singleQuery($sql);
@@ -433,9 +440,11 @@ while($row=mysqli_fetch_array($result)){
 	$newMobile=$row['ins_mobile'];
 }
 	
-$msg="Your application Rejected by Provincial Director of Health Services.
-	 
-More information please contact relevant Provincial Director of Health Services.";
+$msg="Your renewal application for the year 2026 has not been recommended by the PDHS. 
+
+For more details, please contact the relevant PDHS office or check the reason through your user login. 
+
+Please resubmit the application with the requested information";
 
 	 require_once $backwardSeparator.'classes/ESMSWS.php';
 $session=createSession('','esmsusr_1f7m','3esotc9','');

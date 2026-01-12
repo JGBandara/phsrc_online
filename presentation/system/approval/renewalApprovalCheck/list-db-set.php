@@ -19,7 +19,6 @@ $anStatus       = $_REQUEST['anStatus'];
 $txtRemark      = $_REQUEST['txtRemark'];
 $cboInspection      = $_REQUEST['cboInspection'];
 
-//--------------------------------------------
 
 
 $companyId           = isset($userCompanyId) ? $userCompanyId : null;
@@ -34,7 +33,8 @@ if ($requestType == 'approve') {
     $sql = "update `institute_payment_detail`
           set payment_is_approval = '10',
 			payment_check_remark='$txtRemark',
-            Inspection_user=$cboInspection
+            Inspection_user=$cboInspection,
+            payment_checked_date=now()
           where payment_detail_institute_id='$id'";
 
     $finalResult = $db->singleQuery($sql);
@@ -62,9 +62,11 @@ where institute_registration.ins_application_id=$id";
         $newMobile = $row['ins_mobile'];
     }
 
-    $msg = "Your application Rejected by Provincial Director of Health Services.
-	 
-More information please contact relevant Provincial Director of Health Services.";
+    $msg = "Your renewal application has been returned due to incomplete information. 
+    
+    Please log in to your user account or contact the relevant PDHS office for details. 
+    
+    Resubmit the application with the requested information.";
 
     require_once $backwardSeparator . 'classes/ESMSWS.php';
     $session = createSession('', 'esmsusr_1f7m', '3esotc9', '');
