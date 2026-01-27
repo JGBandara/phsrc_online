@@ -1,22 +1,19 @@
 <?php
 session_start();
+$backwardSeparator = "../../../../";
+$thisFilePath =  $_SERVER['PHP_SELF'];
+$userId 	= $_SESSION['loginId'];
+$userCompanyId = $_SESSION['companyId'];
+$userLocationId = $_SESSION['locationId'];
 
-$backwardSeparator = "../../../../../";
 require "{$backwardSeparator}autoLoad.php";
-include "{$backwardSeparator}dataAccess/serverAccessController.php";
 
+include  "{$backwardSeparator}dataAccess/serverAccessController.php";
 $response = [];
 
 $requestType = $_REQUEST['requestType'];
 $id          = isset($_REQUEST['cboSearch']) ? $_REQUEST['cboSearch'] : null;
 
-// ===============================
-// HEADER FIELDS
-// ===============================
-$code        = isset($_REQUEST['txtCode']) ? trim($_REQUEST['txtCode']) : null;
-$name        = isset($_REQUEST['txtName']) ? trim($_REQUEST['txtName']) : null;
-$description = isset($_REQUEST['txtDescription']) ? trim($_REQUEST['txtDescription']) : null;
-$status      = isset($_REQUEST['cboStatus']) ? trim($_REQUEST['cboStatus']) : null;
 
 $companyId   = $_SESSION['companyId'];
 $userId      = $_SESSION['loginId'];
@@ -42,13 +39,137 @@ try {
   // ==================================================
   // ADD
   // ==================================================
+  // ======================================
+// SAVE FACILITY TYPES (SECTION WISE)
+// ======================================
+if ($requestType === 'saveFacility') {
+
+    if (!$intEditx && !$intAddx) {
+        throw new Exception("Permission Denied");
+    }
+
+    // ===============================
+    // GET VALUES FROM JS
+    // ===============================
+    $regNo    = $_POST['reg_no'];
+    $name     = $_POST['institute'];
+    $year     = $_POST['year'];
+    $month    = $_POST['month'];
+    $headerId = !empty($_POST['id']) ? $_POST['id'] : null;
+
+    // Facility values
+    $facilityArr = [
+        'PV' => $_POST['pv'],
+        'MS' => $_POST['ms'],
+        'PG' => $_POST['pg'],
+        'MC' => $_POST['mc'],
+        'PD' => $_POST['pd'],
+        'PA' => $_POST['pa'],
+        'PL' => $_POST['pl'],
+        'OI' => $_POST['oi']
+    ];
+
+    // ===============================
+    // START TRANSACTION
+    // ===============================
+    $db->begin();
+
+    // ===============================
+    // HEADER INSERT / UPDATE (RUN ONCE)
+    // ===============================
+    if ($headerId) {
+
+        // UPDATE HEADER
+        $db->batchQuery("
+            UPDATE dc_monthly_data_header
+            SET dc_reg_id='$regNo',
+                dc_name='$name',
+                dc_year='$year',
+                dc_month='$month',
+                dc_company_id='$companyId',
+                dc_last_modified_by='$userId',
+                dc_last_modified_on=NOW(),
+                dc_is_deleted=0
+            WHERE dc_id='$headerId'
+        ");
+
+    } else {
+
+        // INSERT HEADER
+        $db->batchQuery("
+            INSERT INTO dc_monthly_data_header
+            (dc_reg_id, dc_name, dc_year, dc_month,
+             dc_company_id, dc_created_by, dc_created_on, dc_is_deleted)
+            VALUES
+            ('$regNo','$name','$year','$month',
+             '$companyId','$userId',NOW(),0)
+        ");
+    }
+
+    // ===============================
+    // FACILITY INSERT / UPDATE (LOOP)
+    // ===============================
+    foreach ($facilityArr as $facCode => $newVal) {
+
+     $chkSql = "
+            SELECT dcf_is_available
+            FROM dc_monthly_data_facility
+            WHERE dcf_header_id='$regNo'
+              AND dcf_fac_code='$facCode'
+              AND dcf_company_id='$companyId'
+        ";
+
+        $result = $db->batchQuery($chkSql);
+
+        if ($row = mysqli_fetch_assoc($result)) {
+
+            // UPDATE ONLY IF VALUE CHANGED
+            if ($row['dcf_is_available'] != $newVal) {
+
+                $db->batchQuery("
+                    UPDATE dc_monthly_data_facility SET
+                        dcf_is_available='$newVal',
+                        dcf_modified_on=NOW(),
+                        dcf_modified_by='$userId'
+                    WHERE dcf_header_id='$regNo'
+                      AND dcf_fac_code='$facCode'
+                ");
+            }
+
+        } else {
+
+            // INSERT FACILITY
+            $db->batchQuery("
+                INSERT INTO dc_monthly_data_facility
+                (dcf_header_id, dcf_fac_code, dcf_is_available,
+                 dcf_company_id, dcf_created_on, dcf_created_by)
+                VALUES
+                ('$regNo','$facCode','$newVal',
+                 '$companyId',NOW(),'$userId')
+            ");
+        }
+    }
+
+    // ===============================
+    // COMMIT TRANSACTION
+    // ===============================
+    $db->commit();
+
+    echo json_encode([
+        'type' => 'pass',
+        'msg'  => 'Facility Types saved successfully'
+    ]);
+    exit;
+}
+
+
   if ($requestType == 'add') {
 
     if (!$intAddx) {
       throw new Exception("Permission Denied");
     }
 
-    $sql = "
+  $sql = "
       INSERT INTO dc_monthly_data_header
       (dc_code, dc_name, dc_description, dc_status,
        dc_company_id, dc_created_by, dc_created_on)
