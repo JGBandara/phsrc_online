@@ -1,0 +1,93 @@
+<?php
+session_start();
+$backwardSeparator = "../../../../";
+$backwardseperator = "../../../../";
+$thisFilePath =  $_SERVER['PHP_SELF'];
+$userId     = $_SESSION['loginId'];
+$userCompanyId = $_SESSION['companyId'];
+$userLocationId = $_SESSION['locationId'];
+
+require "{$backwardSeparator}autoLoad.php";
+
+require_once $backwardSeparator . 'dataAccess/connector.php';
+
+$response = array('type' => '', 'msg' => '');
+
+
+$requestType     = $_REQUEST['requestType'];
+$anStatus       = $_REQUEST['anStatus'];
+$txtRemark      = $_REQUEST['txtRemark'];
+$cboInspection      = $_REQUEST['cboInspection'];
+
+
+
+$companyId           = isset($userCompanyId) ? $userCompanyId : null;
+$createdBy           = isset($userId) ? $userId : null;
+$lastModifiedBy           = isset($userId) ? $userId : null;
+$deletedBy           = isset($userId) ? $userId : null;
+
+if ($requestType == 'approve') {
+    $id = $_REQUEST['id'];
+    $db->begin();
+
+    $sql = "update `institute_payment_detail`
+          set payment_is_approval = '0',
+			reject_remark='$txtRemark'
+          where payment_detail_institute_id='$id'";
+
+    $finalResult = $db->singleQuery($sql);
+
+    if ($finalResult) {
+        $response['type']     = 'pass';
+        $response['msg']     = 'Saved successfully.';
+    } else {
+        $response['type']         = 'fail';
+        $response['msg']         = $db->errormsg;
+        $response['q']             = $sql;
+    }
+    echo json_encode($response);
+} else if ($requestType == 'reject') {
+    $id = $_REQUEST['id'];
+
+    $sql = "SELECT
+institute_registration.ins_application_id,
+institute_registration.ins_mobile
+FROM
+institute_registration
+where institute_registration.ins_application_id=$id";
+    $result = $db->singleQuery($sql);
+    while ($row = mysqli_fetch_array($result)) {
+        $newMobile = $row['ins_mobile'];
+    }
+
+    $msg = "Your renewal application has been returned due to incomplete information. 
+    
+    Please log in to your user account or contact the relevant PDHS office for details. 
+    
+    Resubmit the application with the requested information.";
+
+    require_once $backwardSeparator . 'classes/ESMSWS.php';
+    $session = createSession('', 'esmsusr_1f7m', '3esotc9', '');
+    sendMessages($session, 'PHSRC', $msg, array($newMobile), 1); // 1 for promotional messages, 0 for normal message 
+    closeSession($session);
+
+    $db->begin();
+    $sql = "update `institute_payment_detail`
+          set
+            payment_is_approval = '52',
+			reject_remark='$txtRemark'
+          where payment_detail_institute_id='$id'";
+
+    $finalResult = $db->singleQuery($sql);
+
+
+    if ($finalResult) {
+        $response['type']     = 'pass';
+        $response['msg']     = 'Saved successfully.';
+    } else {
+        $response['type']         = 'fail';
+        $response['msg']         = $db->errormsg;
+        $response['q']             = $sql;
+    }
+    echo json_encode($response);
+}
